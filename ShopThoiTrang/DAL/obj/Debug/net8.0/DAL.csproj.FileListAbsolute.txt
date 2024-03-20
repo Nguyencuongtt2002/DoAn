@@ -1,0 +1,15 @@
+D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\DAL\bin\Debug\net8.0\DAL.deps.json
+D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\DAL\bin\Debug\net8.0\DAL.dll
+D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\DAL\bin\Debug\net8.0\DAL.pdb
+D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\DAL\bin\Debug\net8.0\Model.dll
+D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\DAL\bin\Debug\net8.0\Model.pdb
+D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\DAL\obj\Debug\net8.0\DAL.csproj.AssemblyReference.cache
+D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\DAL\obj\Debug\net8.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\DAL\obj\Debug\net8.0\DAL.AssemblyInfoInputs.cache
+D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\DAL\obj\Debug\net8.0\DAL.AssemblyInfo.cs
+D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\DAL\obj\Debug\net8.0\DAL.csproj.CoreCompileInputs.cache
+D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\DAL\obj\Debug\net8.0\DAL.csproj.Up2Date
+D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\DAL\obj\Debug\net8.0\DAL.dll
+D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\DAL\obj\Debug\net8.0\refint\DAL.dll
+D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\DAL\obj\Debug\net8.0\DAL.pdb
+D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\DAL\obj\Debug\net8.0\ref\DAL.dll

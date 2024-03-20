@@ -1,0 +1,612 @@
+<div class="container-fluid">
+    <div class="row">
+        <!-- Phần trái (col-8 chiếm 70%) -->
+        <div class="col-8">
+            <div class="content">
+                <div class="layout-page-customer">
+                    <!-- Nội dung của phần trái ở đây -->
+                    <h3 class="text-center mb-3 font-weight-bold" data-aos="flip-right">Danh sách Sản phẩm </h3>
+
+                    <p class="text-muted font-13 m-b-30">
+                        <button class="btn btn-primary btn-sm ml-2" data-toggle="modal" (click)="taomoi()"
+                            data-target="#exampleModal">
+                            <i class="fa fa-plus"></i> Tạo mới
+                        </button>
+                        <button class="btn btn-warning btn-sm ml-2" data-toggle="modal" data-target="#exampleModal1">
+                            <i class="fas fa-edit"></i> Cập nhật
+                        </button>
+                        <button class="btn btn-danger btn-sm ml-2" (click)="xoa()">
+                            <i class="fas fa-trash-alt"></i> Xóa
+                        </button>
+                        <button class="btn btn-success btn-sm ml-2" data-toggle="modal" data-target="#exampleModal2">
+                            Chi Tiết
+                        </button>
+                    </p>
+                    <div class="table-responsive">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Tìm kiếm..." [(ngModel)]="searchTerm">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" (click)="getSPALL()">Tìm
+                                    kiếm</button>
+                            </div>
+                        </div>
+                        <table class="table table-bordered table-striped">
+                            <thead class="thead-dark">
+                                <tr class="text-center">
+                                    <th style="width: 5%;">ID</th>
+                                    <th style="width: 15%;">Tên Sản Phẩm</th>
+                                    <th style="width: 25%;">Mô Tả</th>
+                                    <th style="width: 15%;">Tên Loại</th>
+                                    <th style="width: 15%;">Tên Thương Hiệu</th>
+                                    <th style="width: 10%;">Ảnh Đại Diện</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let sp of listsanpham ;let i = index">
+                                <tr (click)="onRowClick(sp)" [class.selected]="selectedRow === sp">
+                                    <td>{{ sp.maSanPham }}</td>
+                                    <td>{{ sp.tenSP }}</td>
+                                    <td [innerHTML]="sp.moTa |slice:0:100"></td>
+                                    <td>{{ sp.tenLoaiSanPham }}</td>
+                                    <td>{{ sp.tenThuongHieu }}</td>
+                                    <td>
+                                        <img src="assets/Images/{{ sp.anhDaiDien }}" class="img-thumbnail"
+                                            style="max-width: 70px; max-height: 70px;">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination-area pt-30 pb-30 text-center">
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item" [class.disabled]="p === 1" (click)="pageChanged(1)">
+                                        <a class="page-link">Đầu</a>
+                                    </li>
+                                    <li class="page-item" *ngIf="p > 3">
+                                        <a class="page-link">...</a>
+                                    </li>
+                                    <li class="page-item" *ngFor="let page of visiblePages" [class.active]="page === p"
+                                        (click)="pageChanged(page)">
+                                        <a class="page-link">{{ page }}</a>
+                                    </li>
+                                    <li class="page-item" *ngIf="p < totalPages - 2">
+                                        <a class="page-link">...</a>
+                                    </li>
+                                    <li class="page-item" [class.disabled]="p === totalPages"
+                                        (click)="pageChanged(totalPages)">
+                                        <a class="page-link">Cuối</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="content">
+                <h3 class="text-center mb-3 font-weight-bold" data-aos="flip-right">Giá Sản phẩm </h3>
+                <div class="form-row mb-4">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-md-12 control-label" for="idNgayBD">Ngày BĐ:</label>
+                            <div class="col-md-12">
+                                <input type="date" id="idNgayBD" class="form-control" name="ngayBD"
+                                    [(ngModel)]="gia.ngayBD" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-md-12 control-label" for="idNgayKT">Ngày KT:</label>
+                            <div class="col-md-12">
+                                <input type="date" id="idNgayKT" class="form-control" name="ngayKT"
+                                    [(ngModel)]="gia.ngayKT" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group row">
+                            <label class="col-md-12 control-label" for="idDonGia">Đơn giá:</label>
+                            <div class="col-md-12">
+                                <input type="text" id="idDonGia" class="form-control" name="donGia"
+                                    [(ngModel)]="gia.donGia" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12 d-flex justify-content-center">
+                            <button id="btnCapNhat" class="btn btn-primary mr-2" (click)="CapNhatGia()">
+                                <i class="icon-save"></i> Cập nhật
+                            </button>
+                            <button id="btnXoa" class="btn btn-danger" (click)="XoaGia()">
+                                <i class="icon-delete"></i> Xóa
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="content">
+                <h3 class="text-center mb-3 font-weight-bold" data-aos="flip-right">Giảm giá </h3>
+                <div class="form-row mb-4">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-md-12 control-label" for="idTenLoaiSanPham1">Ngày BĐ:</label>
+                            <div class="col-md-12">
+                                <input type="date" id="idTenLoaiSanPham1" class="form-control" name="giamgia[0].ngayBD"
+                                    [(ngModel)]="giamgia.ngayBD" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-md-12 control-label" for="idTenLoaiSanPham1">Ngày KT:</label>
+                            <div class="col-md-12">
+                                <input type="date" id="idTenLoaiSanPham1" class="form-control" name="giamgia[0].ngayKT"
+                                    [(ngModel)]="giamgia.ngayKT" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group row">
+                            <label class="col-md-12 control-label" for="idTenLoaiSanPham1">Phần trăm:</label>
+                            <div class="col-md-12">
+                                <input type="text" id="idTenLoaiSanPham1" class="form-control" name="giamgia.phanTram"
+                                    [(ngModel)]="giamgia.phanTram" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12 d-flex justify-content-center">
+                            <button id="btnCapNhat" class="btn btn-primary mr-2" (click)="CapNhatGiamGia()">
+                                <i class="icon-save"></i> Cập nhật
+                            </button>
+                            <button id="btnXoa" class="btn btn-danger" (click)="XoaGiamGia()">
+                                <i class="icon-delete"></i> Xóa
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Add this modal at the end of your HTML body -->
+<div #addModal class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModal"
+    aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 1200px;"> <!-- Increase the max-width to accommodate the two columns -->
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">Sản Phẩm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <!-- First Column - Sản phẩm -->
+                    <div class="col-md-9">
+                        <form novalidate name="frmLoaiSP" id="frmLoaiSP" class="form-horizontal row-border">
+                            <h3 class="text-center mb-3 font-weight-bold" data-aos="flip-right">Sản phẩm </h3>
+                            <div class="row">
+                                <!-- First Column -->
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-12 control-label" for="idTenLoaiSanPham1">Tên Sản
+                                            Phẩm:</label>
+                                        <div class="col-md-12">
+                                            <input type="text" id="idTenLoaiSanPham1" placeholder="Nhập tên sản phẩm"
+                                                class="form-control" name="TenSP" [(ngModel)]="TenSP" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-12 control-label" for="idTenLoaiSanPham1">Mô tả:</label>
+                                        <angular-editor [placeholder]="'Nhập nội dung'" [config]="editorConfig"
+                                            name="MoTa" [(ngModel)]="MoTa"></angular-editor>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-12 control-label" for="idTenLoaiSanPham1">Size :</label>
+                                        <div class="col-md-12">
+                                            <select class="form-control" id="MaSanPham" name="MaSize"
+                                                [(ngModel)]="MaSize">
+                                                <option value="" disabled selected>Chọn Size</option>
+                                                <option *ngFor="let sz of listsize" [value]="sz.maSize">
+                                                    {{sz.tenSize}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Second Column -->
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <div class="col-md-12">
+                                            <label class="col-md-12 control-label" for="idTenLoaiSanPham">Tên loại:
+                                            </label>
+                                            <select class="form-control" id="MaSanPham" name="MaSanPham"
+                                                [(ngModel)]="MaLoaiSanPham">
+                                                <option value="" disabled selected>Chọn loại sản phẩm</option>
+                                                <option *ngFor="let l of loaisanpham" [value]="l.maLoaiSanPham">
+                                                    {{l.tenLoaiSanPham}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-12">
+                                            <label class="col-md-12 control-label" for="idTenLoaiSanPham">Tên TH:
+                                            </label>
+                                            <select class="form-control" id="MaSanPham" name="MaSanPham"
+                                                [(ngModel)]="MaThuongHieu">
+                                                <option value="" disabled selected>Chọn thương hiệu</option>
+                                                <option *ngFor="let th of thuonghieu" [value]="th.maThuongHieu">
+                                                    {{th.tenThuongHieu}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-12 control-label" for="idTenLoaiSanPham1">Ảnh:</label>
+                                        <div class="col-md-12">
+                                            <input type="file" (change)="onFileChange($event)" id="idTenLoaiSanPham"
+                                                [(ngModel)]="AnhDaiDien" class="form-control" name="HinhAnh" />
+                                        </div>
+                                    </div>
+                                    <table class="table table-bordered table-striped">
+                                        <thead class="thead-dark">
+                                            <tr class="text-center">
+                                                <th style="width: 5%;">Tên thông số</th>
+                                                <th style="width: 15%;">Mô tả</th>
+                                                <th style="width:5%;">thao tác</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody *ngFor="let ts of thongSo;let i = index">
+                                            <tr>
+                                                <td>{{ts.tenThongSo}}</td>
+                                                <td>{{ ts.moTa | slice:0:15 }}</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-danger mx-1 btn-xs"
+                                                        (click)="deleteThongSo(i)">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-3">
+                        <form novalidate name="frmLoaiSP" id="frmLoaiSP" class="form-horizontal row-border">
+                            <h3 class="text-center mb-3 font-weight-bold" data-aos="flip-right">Thông số</h3>
+                            <div class="form-group row">
+                                <label class="col-md-12 control-label" for="idTenLoaiSanPham1">Tên thông số</label>
+                                <div class="col-md-12">
+                                    <input type="text" id="idTenLoaiSanPham1" class="form-control"
+                                        name="newThongSo.tenThongSo" [(ngModel)]="newThongSo.tenThongSo" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-12 control-label" for="idTenLoaiSanPham">Mô tả: </label>
+                                <div class="col-md-12">
+                                    <textarea type="text" id="idTenLoaiSanPham" class="form-control"
+                                        style="height: 100px; resize: none;" name="newThongSo.moTa"
+                                        [(ngModel)]="newThongSo.moTa"></textarea>
+                                </div>
+                            </div>
+                            <!-- Add Parameter Button -->
+                            <div class="form-group row">
+                                <div class="col-md-12 text-center">
+                                    <button type="button" class="btn btn-primary" (click)="addThongSo()">Thêm thông
+                                        số</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <form novalidate name="frmLoaiSP" id="frmLoaiSP" class="form-horizontal row-border">
+                            <h3 class="text-center mb-3 font-weight-bold" data-aos="flip-right">Giá </h3>
+                            <div class="form-row mb-4">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-12 control-label" for="idTenLoaiSanPham1">Ngày BĐ:</label>
+                                        <div class="col-md-12">
+                                            <input type="date" id="idTenLoaiSanPham1" class="form-control" name="NgayBD"
+                                                [(ngModel)]="NgayBD" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-12 control-label" for="idTenLoaiSanPham1">Ngày KT:</label>
+                                        <div class="col-md-12">
+                                            <input type="date" id="idTenLoaiSanPham1" class="form-control" name="NgayKT"
+                                                [(ngModel)]="NgayKT" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <label class="col-md-12 control-label" for="idTenLoaiSanPham1">Đơn giá:</label>
+                                        <div class="col-md-12">
+                                            <input type="text" id="idTenLoaiSanPham1" class="form-control" name="DonGia"
+                                                [(ngModel)]="DonGia" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        <form novalidate name="frmLoaiSP" id="frmLoaiSP" class="form-horizontal row-border">
+                            <h3 class="text-center mb-3 font-weight-bold" data-aos="flip-right">Giảm giá </h3>
+                            <div class="form-row mb-4">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-12 control-label" for="idTenLoaiSanPham1">Ngày BĐ:</label>
+                                        <div class="col-md-12">
+                                            <input type="date" id="idTenLoaiSanPham1" class="form-control"
+                                                name="NgayBatDau" [(ngModel)]="NgayBatDau" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-12 control-label" for="idTenLoaiSanPham1">Ngày KT:</label>
+                                        <div class="col-md-12">
+                                            <input type="date" id="idTenLoaiSanPham1" class="form-control"
+                                                name="NgayKetThuc" [(ngModel)]="NgayKetThuc" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <label class="col-md-12 control-label" for="idTenLoaiSanPham1">Phần
+                                            trăm:</label>
+                                        <div class="col-md-12">
+                                            <input type="text" id="idTenLoaiSanPham1" class="form-control"
+                                                name="PhanTram" [(ngModel)]="PhanTram" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-12 text-center">
+                    <button id="save" class="btn btn-success" (click)="Them()">
+                        <i class="icon-save"></i> Save
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div #updateModal class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModal1"
+    aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 1200px;"> <!-- Increase the max-width to accommodate the two columns -->
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">Sản Phẩm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <!-- First Column - Sản phẩm -->
+                    <div class="col-md-8">
+                        <form novalidate name="frmLoaiSP" id="frmLoaiSP" class="form-horizontal row-border">
+                            <h3 class="text-center mb-3 font-weight-bold" data-aos="flip-right">Sản phẩm </h3>
+                            <div class="row">
+                                <!-- First Column -->
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-12 control-label" for="idTenLoaiSanPham1">Tên Sản
+                                            Phẩm:</label>
+                                        <div class="col-md-12">
+                                            <input type="text" id="idTenLoaiSanPham1" class="form-control" name="TenSP"
+                                                [(ngModel)]="TenSP" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-12 control-label" for="idTenLoaiSanPham1">Mô tả:</label>
+                                        <angular-editor [placeholder]="'Nhập nội dung'" [config]="editorConfig"
+                                            name="MoTa" [(ngModel)]="MoTa"></angular-editor>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-12 control-label" for="idTenLoaiSanPham1">Size :</label>
+                                        <div class="col-md-12">
+                                            <select class="form-control" id="MaSanPham" name="MaSize"
+                                                [(ngModel)]="MaSize">
+                                                <option value="" disabled selected>Chọn Size</option>
+                                                <option *ngFor="let sz of listsize" [value]="sz.maSize">
+                                                    {{sz.tenSize}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Second Column -->
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <div class="col-md-12">
+                                            <label class="col-md-12 control-label" for="idTenLoaiSanPham">Tên loại:
+                                            </label>
+                                            <select class="form-control" id="MaSanPham" name="MaLoaiSanPham"
+                                                [(ngModel)]="MaLoaiSanPham">
+                                                <option disabled selected>Chọn sản phẩm</option>
+                                                <option *ngFor="let l of loaisanpham" [value]="l.maLoaiSanPham">
+                                                    {{l.tenLoaiSanPham}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-12">
+                                            <label class="col-md-12 control-label" for="idTenLoaiSanPham">Tên TH:
+                                            </label>
+                                            <select class="form-control" id="MaSanPham" name="MaThuongHieu"
+                                                [(ngModel)]="MaThuongHieu">
+                                                <option disabled selected>Chọn sản phẩm</option>
+                                                <option *ngFor="let th of thuonghieu" [value]="th.maThuongHieu">
+                                                    {{th.tenThuongHieu}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-12 control-label" for="idTenLoaiSanPham1">Ảnh:</label>
+                                        <div class="col-md-12">
+                                            <input type="file" (change)="onFileChange($event)" id="idTenLoaiSanPham"
+                                                [(ngModel)]="AnhDaiDien" class="form-control" name="HinhAnh" />
+                                        </div>
+                                    </div>
+                                    <table class="table table-bordered table-striped">
+                                        <thead class="thead-dark">
+                                            <tr class="text-center">
+                                                <th style="width: 5%;">Tên thông số</th>
+                                                <th style="width: 15%;">Mô tả</th>
+                                                <th style="width:5%;">thao tác</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody *ngFor="let ts of thongSo;let i = index">
+                                            <tr>
+                                                <td>{{ts.tenThongSo}}</td>
+                                                <td>{{ ts.moTa | slice:0:15 }}</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-danger mx-1 btn-xs"
+                                                        (click)="deleteThongSoUpdate(ts)">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-4">
+                        <form novalidate name="frmLoaiSP" id="frmLoaiSP" class="form-horizontal row-border">
+                            <h3 class="text-center mb-3 font-weight-bold" data-aos="flip-right">Thông số</h3>
+                            <div class="form-group row">
+                                <label class="col-md-12 control-label" for="idTenLoaiSanPham1">Tên thông số</label>
+                                <div class="col-md-12">
+                                    <input type="text" id="idTenLoaiSanPham1" class="form-control"
+                                        name="newThongSo.tenThongSo" [(ngModel)]="newThongSo.tenThongSo" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-12 control-label" for="idTenLoaiSanPham">Mô tả: </label>
+                                <div class="col-md-12">
+                                    <textarea type="text" id="idTenLoaiSanPham" class="form-control"
+                                        style="height: 100px; resize: none;" name="newThongSo.moTa"
+                                        [(ngModel)]="newThongSo.moTa"></textarea>
+                                </div>
+                            </div>
+                            <!-- Add Parameter Button -->
+                            <div class="form-group row">
+                                <div class="col-md-12 text-center">
+                                    <button type="button" class="btn btn-primary" (click)="createThongSoUpdate()">Thêm
+                                        thông số</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-12 text-center">
+                    <button id="save" class="btn btn-success" (click)="update()">
+                        <i class="icon-save"></i> Cập nhật
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<!-- Add this modal at the end of your HTML body -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModal2"
+    aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 1200px;">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">Thông Tin Sản Phẩm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <!-- Image Column -->
+                        <div class="col-md-4">
+                            <img src="assets/Images/{{AnhDaiDien}}" alt="Ảnh Sản Phẩm" class="img-fluid rounded">
+                        </div>
+                        <!-- Details Column -->
+                        <div class="col-md-8">
+                            <h3>Tên Sản Phẩm: {{TenSP}}</h3>
+                            <p><strong>Mô tả:</strong>{{MoTa}}.</p>
+                            <p><strong>Size:</strong>{{MaSize}}</p>
+                            <p><strong>Tên loại:</strong>{{TenLoaiSanPham}}</p>
+                            <p><strong>Tên thương hiệu:</strong>{{TenThuongHieu}}</p>
+                            <p><strong>Giá:</strong>{{GiaMoiKhiGiam| number: '1.0-0'}} VNĐ</p>
+                            <p><strong>Giảm giá:</strong> <span class="badge badge-success">{{PhanTram}}%</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <h4 class="text-center">Thông Số Kỹ Thuật</h4>
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-dark">
+                        <tr class="text-center">
+                            <th style="width: 20%;">Tên thông số</th>
+                            <th style="width: 80%;">Mô tả</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let ts of thongSo">
+                        <tr>
+                            <td>{{ts.tenThongSo}}</td>
+                            <td>{{ts.moTa}}</td>
+                        </tr>
+                        <!-- Add more rows as needed -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>

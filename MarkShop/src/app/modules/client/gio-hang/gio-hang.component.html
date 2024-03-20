@@ -1,0 +1,73 @@
+<div class="label"></div>
+<table class="table table-bordered table-hover" style="margin-top: 50px;">
+    <thead class="thead-dark">
+        <tr class="text-center">
+            <th style="width: 10%;">Mã sản phẩm</th>
+            <th style="width: 22%;">Tên sản phẩm</th>
+            <th style="width: 15%;">Hình ảnh</th>
+            <th style="width: 13%;">Số lượng</th>
+            <th style="width: 15%;">Đơn giá</th>
+            <th style="width: 15%;">Thành tiền</th>
+            <th style="width: 10%;" class="text-center">
+                <button class="btn btn-danger">
+                    <a class="text-white" style="text-decoration:none" (click)="deleteAllGioHang()" type="button">Xóa
+                        tất cả</a>
+                </button>
+            </th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let gh of ListGioHang">
+        <tr class="text-center">
+            <td>{{gh.MaSanPham}}</td>
+            <td>{{gh.TenSP}}</td>
+            <td style="text-align: center;">
+                <a href="" data-lightbox="listImg">
+                    <img src='/assets/Images/{{gh.AnhDaiDien}}' height="70" />
+                </a>
+            </td>
+            <td style="text-align: center;">
+                <div class="input-group">
+                    <div class="input-group-append">
+                        <a class='btn btn-outline-secondary' (click)="tangGioHang(gh.MaSanPham)" type="button"><i
+                                class='fa fa-caret-up'></i></a>
+                    </div>
+                    <input class='form-control col-6' type='number' value="{{gh.SoLuong}}" readonly max=""
+                        style="text-align: center;">
+                    <div class="input-group-prepend">
+                        <a class='btn btn-outline-secondary' (click)="giamGioHang(gh.MaSanPham)" type="button"><i
+                                class='fa fa-caret-down'></i></a>
+                    </div>
+                </div>
+            </td>
+            <td>{{gh.DonGia}} VNĐ</td>
+            <td>{{gh.DonGia * gh.SoLuong | number: '1.0-0'}} VNĐ</td>
+            <td>
+                <button class="btn btn-danger"><a class="text-white" (click)="deleteGioHang(gh.MaSanPham)"
+                        style="text-decoration:none" type="button">Xóa</a></button>
+            </td>
+        </tr>
+
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4" class="text-right">
+                Tổng cộng: <span class="text-danger">{{SoLuong}}</span>
+            </td>
+            <td colspan="2" class="text-right font-weight-bold">Tổng thành tiền:</td>
+            <td colspan="2" class="text-right">
+                <span class="text-danger font-weight-bold">{{TongGia| number: '1.0-0'}} VND</span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4" class="text-right">
+                <button class="btn btn-info" type="submit" id="btnUpdateQuantity">
+                    <a href="" style="color: white; text-decoration: none;">Tiếp tục mua hàng</a>
+                </button>
+            </td>
+            <td colspan="4" class="text-right">
+                <a class="btn btn-outline-danger" (click)="thanhToan()" id="datHang">Đặt hàng</a>
+            </td>
+        </tr>
+    </tfoot>
+
+</table>

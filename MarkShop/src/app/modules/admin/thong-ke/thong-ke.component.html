@@ -1,0 +1,71 @@
+<div class="content" style="max-width: 1250px;">
+    <div class="layout-page-customer">
+        <h3 class="text-center mb-3 font-weight-bold" data-aos="flip-right">Thống Kê </h3>
+        <div class="row">
+            <div class="col-md-4 col-sm-12 mb-4">
+                <div class="border p-3">
+                    <span class="count_top"><i class="fas fa-cubes"></i> Tổng số lượng sản phẩm</span>
+                    <div class="count">{{tongSanPham}} sản phẩm</div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12 mb-4">
+                <div class="border p-3">
+                    <span class="count_top"><i class="fas fa-users"></i> Tổng số người dùng đăng ký</span>
+                    <div class="count">{{tongNguoiDung}} người dùng</div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12 mb-4">
+                <div class="border p-3">
+                    <span class="count_top"><i class="fas fa-chart-line"></i> Tổng doanh thu</span>
+                    <div class="count">{{tongDoanhThu| number: '1.0-0'}} VNĐ</div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        Thống kê doanh thu theo tháng
+                    </div>
+                    <div class="panel-body">
+                        <canvas id="chart1">{{ chart1 }}</canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        Thống kê sản phẩm bán chạy
+                    </div>
+                    <div class="panel-body">
+                        <canvas style="height:300px;" id="chart2">{{ chart2 }}</canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        Thống kê doanh thu theo năm
+                    </div>
+                    <div class="panel-body">
+                        <canvas id="chart3">{{ chart3 }}</canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        Thống kê người mua hàng nhiều nhất qua các năm
+                    </div>
+                    <div class="panel-body">
+                        <canvas id="chart4">{{ chart4 }}</canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

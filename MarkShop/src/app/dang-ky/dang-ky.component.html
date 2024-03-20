@@ -1,0 +1,93 @@
+<div class="py-5 container__custom">
+    <div class="row" id="renderSearch">
+        <div class="d-flex w-100">
+            <div class="modalLeft">
+                <h2>Tạo tài khoản</h2>
+                <p>
+                    Tạo tài khoản để theo dõi đơn hàng, lưu danh sách sản phẩm yêu thích, nhận nhiều ưu đãi hấp dẫn.
+                </p>
+                <img src="assets/Images/fashionGirl.png" class="img-fluid mt-3" />
+            </div>
+            <div class="modalRight m-0 d-flex justify-content-center align-items-center"
+                style="margin-left:15px !important;">
+                <form action="" (ngSubmit)="Register()">
+                    <div class="form-group d-flex align-items-center">
+                        <label for="tenKH">Họ tên</label>
+                        <div class="flex-column d-flex">
+                            <input type="text" id="tenKhachHang" [(ngModel)]="HoTen" name="Ho"
+                                placeholder="Nhập họ tên">
+                            <span class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group d-flex align-items-center" style="margin-bottom:8px">
+                        <label for="ngaySinh">Ngày sinh<br /></label>
+                        <div class="flex-column d-flex">
+                            <input type="date" [(ngModel)]="NgaySinh" name="NgaySinh">
+                            <span class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group d-flex align-items-center">
+                        <label style="width: 123px;">Giới tính</label>
+                        <div class="flex-column d-flex">
+                            <select name="GioiTinh" id="gioiTinh" [(ngModel)]="GioiTinh" class="form-control w-100">
+                                <option value="Nam" selected>Nam</option>
+                                <option value="Nữ">Nữ</option>
+                            </select>
+                            <span class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group d-flex align-items-center">
+                        <label>Tên tài khoản</label>
+                        <div class="flex-column d-flex">
+                            <input type="text" id="tendangnhap" name="tendangnhap" [(ngModel)]="TaiKhoan"
+                                placeholder="Nhập tài khoản">
+                            <span class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group d-flex align-items-center">
+                        <label>Mật khẩu</label>
+                        <div class="flex-column d-flex">
+                            <input type="password" id="matkhau" name="matkhau" [(ngModel)]="MatKhau"
+                                placeholder="Nhập mật khẩu">
+                            <span class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group d-flex align-items-center">
+                        <label for="diaChi">Địa chỉ</label>
+                        <div class="flex-column d-flex">
+                            <input type="text" id="diachi" name="diachi" [(ngModel)]="DiaChi"
+                                placeholder="Nhập địa chỉ">
+                            <span class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group d-flex align-items-center">
+                        <label for="email">Email</label>
+                        <div class="flex-column d-flex">
+                            <input type="text" [(ngModel)]="Email" name="Email" placeholder="Email của bạn">
+                            <span class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group d-flex align-items-center">
+                        <label for="soDienThoai">Số điện thoại</label>
+                        <div class="flex-column d-flex">
+                            <input type="text" id="dienthoai" name="dienthoai" [(ngModel)]="SoDienThoai"
+                                placeholder="Nhập số điện thoại">
+                            <span class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="text-center mt-4">
+                        <label style="width:123px"></label>
+                        <button class="btn btn-success" style="width:400px" type="submit">Đăng kí</button>
+                    </div>
+                    <div class="form-group row mt-3">
+                        <div style="width: 123px;"></div>
+                        <div class="col-sm-9">
+                            <p class="mt-3">Nếu bạn đã có tài khoản, <a href="/Dang-nhap-user">nhấn vào đây để đăng
+                                    nhập</a>.</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="d-flex justify-content-center align-items-center customize">
+    <form (ngSubmit)="LoginAd()">
+        <div class="myForm">
+            <h3 class="text-center mb-5">Đăng nhập</h3>
+            <div class="group">
+                <input type="text" required name="username" [(ngModel)]="TaiKhoan" autocomplete="off">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Username</label>
+            </div>
+
+            <div class="group">
+                <input type="password" [(ngModel)]="MatKhau" required name="password">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Password</label>
+            </div>
+            <div class="text-center btnSubmit">
+                <button type="submit" style="letter-spacing: 1px;">
+                    SUBMIT
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

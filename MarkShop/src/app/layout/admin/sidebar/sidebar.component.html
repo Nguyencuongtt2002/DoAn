@@ -1,0 +1,58 @@
+<nav class="sidebar" id="sidebar-nav">
+    <div class="text py-3">
+        <div class="mb-2">
+            <img src="assets/Images/{{AnhDaiDien}}" style="width: 50px; height: 50px; border-radius: 50%" />
+        </div>
+        <h3>{{HoTen}}</h3>
+    </div>
+    <ul>
+        <li>
+            <p class="mb-0" (click)="thongke()"><i class="fa fa-th-list pr-3"></i>Thống kê</p>
+        </li>
+        <li>
+            <p class="mb-0" (click)="nguoidung()"><i class="fas fa-user pr-3"></i>Người dùng</p>
+        </li>
+        <li>
+            <p class="sanpham-btn mb-0">
+                <i class="fas fa-tshirt pr-3"></i>Sản phẩm <span class="fas fa-caret-down first"></span>
+            </p>
+            <ul class="sanpham-show">
+                <li><a href="/admin/ad-sanpham">Quản lý sản phẩm</a></li>
+                <li><a href="/admin/ad-kho">Quản lý kho</a></li>
+            </ul>
+        </li>
+        <li>
+            <p class="feat-btn mb-0">
+                <i class="fas fa-store pr-3"></i>Quản lý trang<span class="fas fa-caret-down Second"></span>
+            </p>
+            <ul class="feat-show">
+                <li><a href="/admin/ad-menu">Quản lý menu</a></li>
+                <li><a href="/admin/ad-slide">Quản lý slide</a></li>
+                <li><a href="/admin/ad-lienhe">Quản lý liên hệ</a></li>
+                <li><a href="/admin/ad-gioithieu">Quản lý giới thiệu</a></li>
+                <li><a href="/admin/ad-tintuc">Quản lý tin tức</a></li>
+            </ul>
+        </li>
+        <li>
+            <p class="donvi-btn mb-0">
+                <i class="fas fa-building pr-3"></i>Đơn vị <span class="fas fa-caret-down Third"></span>
+            </p>
+            <ul class="donvi-show">
+                <li><a href="/admin/ad-nhacungcap">Quản lý nhà cung cấp</a></li>
+                <li><a href="/admin/ad-loaisp">Quản lý loại sản phẩm</a></li>
+                <li><a href="/admin/ad-thuonghieu">Quản lý thương hiệu</a></li>
+            </ul>
+        </li>
+        <li>
+            <p class="serv-btn mb-0"> <i class="fas fa-file-invoice pr-3"></i> Hóa đơn
+                <span class="fas fa-caret-down Final"></span>
+            </p>
+            <ul class="serv-show">
+                <li><a href="/admin/ad-hoadonnhap">Quản lý hóa đơn nhập</a></li>
+                <li><a href="/admin/ad-donhang">Quản lý đơn hàng</a></li>
+            </ul>
+        </li>
+        <li><a (click)="logout()"><i class="fa fa-arrow-left pr-3"></i>Exit</a></li>
+    </ul>
+    <a href="#" class="collapseBtn"></a>
+</nav>

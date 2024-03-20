@@ -1,0 +1,24 @@
+<div id="loading" style="display:none"><img src="/assets/Images/loadingPage.gif" /></div>
+<app-header></app-header>
+<router-outlet></router-outlet>
+<hr />
+<app-footer></app-footer>
+<div class="modal__login js-modal-login">
+    <div class="modal__login--container js-modal__login--container">
+        <div class="modal__login-close js-modal-close">
+            <i class="fa fa-times"></i>
+        </div>
+        <div class="modal__login-body">
+            <a href="/dang-nhap-admin" class="modal__login--admin">Đăng nhập quyền admin</a>
+            <div class="modal__login-separate">
+                <div class="modal__login-separate--line"></div>
+                <span class="modal__login-separate--text">Hoặc</span>
+                <div class="modal__login-separate--line"></div>
+            </div>
+            <a [routerLink]="['/Dang-nhap-user']" class="modal__login--user">Đăng nhập quyền user</a>
+        </div>
+    </div>
+</div>
+<a href="#" class="cd-top text-replace js-cd-top backToTop">
+    <img src="/assets/Images/to-top.png" />
+</a>

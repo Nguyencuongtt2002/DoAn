@@ -1,0 +1,53 @@
+<div class="label"></div>
+<div class="py-5 container__custom">
+    <div class="row" id="renderSearch">
+        <div class="col-md-4">
+            <nav>
+                <ul class="menuProduct">
+                    <li>
+                        <a href="" class="tpnam_btn mb-0 listAll">Danh mục sản phẩm</a>
+                        <ul class="tpnam_show" *ngFor="let loaisp of loaisp">
+                            <li><a
+                                    [routerLink]="['/SanPhamTheoLoai',loaisp.maLoaiSanPham]">{{loaisp.tenLoaiSanPham}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-md-8">
+            <h2 class="page-heading">
+                <span class="page-heading-title"><i class="fa fa-newspaper" style="margin-right: 10px;"></i>News</span>
+            </h2>
+            <div class="row mb-4 mt-3" *ngFor="let tt of tintuc | paginate: { itemsPerPage: pageSize, currentPage: p }">
+                <div class="col-md-4 text-center" data-aos="flip-right">
+                    <a href="" data-lightbox="listImg">
+                        <img src="/assets/Images/{{tt.anhTinTuc}}" class="img-fluid" />
+                    </a>
+                </div>
+                <div class="col-md-6" data-aos="fade-left" data-aos-duration="1000">
+                    <h3 class="entry-title"><a href="" style="text-decoration: none; color:#666;">{{tt.tieuDe}}</a></h3>
+                    <div class="entry-meta-data">
+                        <span class="author">
+                            <i class="fa fa-user"></i> by: <a href="#" style="text-decoration: none; color:#666;">Ngày
+                                đăng:</a>
+                        </span>
+                        <span class="date"><i class="fas fa-calendar-alt"></i>{{tt.ngayDang| date:"dd/MM/yyyy"}}</span>
+                    </div>
+
+                    <div class="entry-excerpt">
+                        {{tt.noiDung}}{{tt.noiDung.length > 100? "..." : ""}}
+                    </div>
+
+                    <div class="entry-more">
+                        <a [routerLink]="['/CTTinTuc',tt.maTinTuc]" class="btn btn-dark text-white">Xem chi tiết</a>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>

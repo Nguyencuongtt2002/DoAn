@@ -1,0 +1,60 @@
+<div class="label"></div>
+<div class="py-5 container__custom" *ngIf="gioithieu && gioithieu.length > 0">
+    <div class="row" id="renderSearch">
+        <div class="main-content">
+            <div class="content-page">
+                <div data-aos="fade-up" data-aos-duration="1000" *ngIf="gioithieu[0]">
+                    <h3 class="text-center font-weight-bold">{{ gioithieu[0].tieuDe }}</h3>
+                    <p class="text-center pb-5">{{ gioithieu[0].noiDung }}</p>
+                </div>
+                <div class="row bg-white">
+                    <div class="col-md-6 d-flex align-items-center justify-content-center" data-aos="fade-right"
+                        data-aos-duration="500" *ngIf="gioithieu[1]">
+                        <div class="text-center text-justify">
+                            <p>{{gioithieu[1].noiDung}}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6" data-aos="fade-left" data-aos-duration="500" *ngIf="gioithieu[1]">
+                        <div class="bg-image">
+                            <img src="assets/Images/{{gioithieu[1].hinhAnh}}" alt="Background Image" class="bg-img">
+                            <div class="sub-content">
+                                <div class="sub-content-item">
+                                    <p><strong>5.000.000</strong> Sơ mi nam, nữ / năm</p>
+                                    <p><strong>1.200.000</strong> Quần tây, Khaki nam, nữ / năm</p>
+                                    <p><strong>300.000</strong> Veston nam, nữ / năm</p>
+                                    <p><strong>1.500.000</strong> Giày thể thao / năm</p>
+                                    <p><strong>4.000.000</strong> Đồ lót / năm</p>
+                                    <p><strong>1.200.000</strong> Dệt Seamless / năm</p>
+                                    <p><strong>1.500.000</strong> Các sản phẩm khác / năm</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 70px 0" data-aos="fade-up" data-aos-duration="800">
+                    <h3 class="text-center font-weight-bold">HỆ THỐNG CỬA HÀNG</h3>
+                    <p class="text-center">The standard chunk of Lorem Ipsum used since the 1500s is reproduced below
+                        for those interested.</p>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="img-item">
+                                <img src="assets/Images/1.jpg" class="d-block w-100" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="img-item">
+                                <img class="d-block w-100" src="assets/Images/2.jpg" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="img-item">
+                                <img class="d-block w-100" src="assets/Images/3.jpg" />
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-center mt-5" *ngIf="gioithieu[2]">{{gioithieu[2].noiDung}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,139 @@
+<div class="label"></div>
+<div class="py-5 container__custom">
+    <div class="row" id="renderSearch">
+        <div class="col-md-3">
+            <nav>
+                <ul class="menuProduct">
+                    <li>
+                        <a href="#" class="tpnam_btn mb-0 listAll">Danh mục sản phẩm</a>
+                        <ul class="tpnam_show">
+                            <li *ngFor="let loaisp of loaisp">
+                                <a
+                                    [routerLink]="['/SanPhamTheoLoai', loaisp.maLoaiSanPham]">{{loaisp.tenLoaiSanPham}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-md-9">
+            <div class="transaction-history w-100">
+                <h3 class="text-center font-weight-bold mb-3">Lịch sử đặt hàng</h3>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Mã HD</th>
+                                <th>Ngày đặt</th>
+                                <th>Ngày giao</th>
+                                <th>Tên SP</th>
+                                <th>Tình trạng</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngIf="lichSuMuaHang.length === 0; else hasTransactionDetails">
+                                <tr>
+                                    <td colspan="8" class="text-center">Không có thông tin đơn hàng</td>
+                                </tr>
+                            </ng-container>
+                            <ng-template #hasTransactionDetails>
+                                <tr *ngFor="let donHang of lichSuMuaHang">
+                                    <td>{{donHang.maDonHang}}</td>
+                                    <td>{{donHang.ngayDat | date: 'dd/MM/yyyy'}}</td>
+                                    <td>{{donHang.ngayGiao | date: 'dd/MM/yyyy'}}</td>
+                                    <td>{{donHang.tenSP}}</td>
+                                    <td>
+                                        {{donHang.trangThai === 1 ? 'Đang giao' : (donHang.trangThai === 0 ? 'Đang lấy
+                                        hàng' : 'Đã hủy')}}
+                                    </td>
+                                    <td>
+                                        <button
+                                            *ngIf="donHang.tinhTrang === 0 && donHang.trangThai === 0; else disabledButton"
+                                            class="btn btn-danger btnHuyDon"
+                                            (click)="huyDon(donHang.maDonHang, donHang.maSanPham)">
+                                            Huỷ đơn
+                                        </button>
+                                        <ng-template #disabledButton>
+                                            <button class="btn btn-danger btnHuyDon" disabled style="cursor: no-drop">
+                                                Huỷ đơn
+                                            </button>
+                                        </ng-template>
+                                        <button class="btn btnXemChiTiet btn-primary" data-toggle="modal"
+                                            data-target="#exampleModal" (click)="XemChiTiet(donHang)">
+                                            <i class="fas fa-eye"></i> Xem
+                                        </button>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div #ViewModal class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="detailModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document" style="max-width: 800px;">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">Thông tin đơn hàng</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="store-info">
+                            <h4>Cửa hàng MarkShop</h4>
+                            <div *ngFor="let lh of lienhe">
+                                <p><strong>Địa chỉ cửa hàng:</strong>{{ lh.diaChi }}</p>
+                                <p><strong>Email cửa hàng:</strong>{{ lh.email }}</p>
+                                <p><strong>Số điện thoại cửa hàng:</strong>{{ lh.soDienThoai }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="customer-info">
+                            <h4>Thông tin khách hàng</h4>
+                            <div>
+                                <p><strong>Tên khách hàng:</strong>{{ HoTen }}</p>
+                                <p><strong>Địa chỉ:</strong>{{ DiaChi }}</p>
+                                <p><strong>Số điện thoại:</strong>{{ SoDienThoai }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr class="text-center">
+                            <th style="width:8%;">Mã Đơn Hàng</th>
+                            <th style="width: 40%;">Tên sản phẩm</th>
+                            <th style="width: 10%;">Số lượng</th>
+                            <th style="width: 20%;">Giá tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center">
+                            <td>{{MaDonHang}}</td>
+                            <td>{{TenSP}}</td>
+                            <td>{{SoLuong}}</td>
+                            <td>{{GiaTien| number: '1.0-0'}} VNĐ</td>
+                        </tr>
+
+                        <!-- New row for total invoice -->
+                        <tr>
+                            <td colspan="3" class="text-right"><strong>Tổng hóa đơn:</strong></td>
+                            <td class="text-center">{{Tonghoadon| number: '1.0-0'}} VNĐ</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>

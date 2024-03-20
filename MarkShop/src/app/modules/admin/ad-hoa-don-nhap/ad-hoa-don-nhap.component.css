@@ -1,0 +1,5 @@
+.selected {
+    cursor: pointer;
+    color: #FFF;
+    background-color: rgb(180, 167, 167) !important;
+}

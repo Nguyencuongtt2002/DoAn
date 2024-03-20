@@ -1,0 +1,111 @@
+<div class="content" style="max-width: 1250px;">
+    <div class="layout-page-customer">
+        <h3 class="text-center mb-3 font-weight-bold" data-aos="flip-right">Danh sách thương hiệu </h3>
+
+        <!-- "Create New" button that triggers the modal -->
+        <p class="text-muted font-13 m-b-30">
+            <button class="btn btn-success fa fa-plus" data-toggle="modal" (click)="taomoi()"
+                data-target="#exampleModal">Tạo mới</button>
+        </p>
+
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Tìm kiếm...">
+        </div>
+
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr class="text-center">
+                    <th style="width: 5%;">STT</th>
+                    <th style="width: 15%;">Tên loại</th>
+                    <th style="width: 45%;">Giới Thiệu </th>
+                    <th style="width: 8%;" colspan="2">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let th of thuonghieu | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+                <tr>
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ th.tenThuongHieu }}</td>
+                    <td [innerHTML]="th.gioiThieu"></td>
+                    <td class="w-100 " colspan="2">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-primary mx-1 btn-xs" (click)="CapNhat(th)"
+                                data-toggle="modal" data-target="#exampleModal">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button type="button" class="btn btn-danger mx-1 btn-xs" data-toggle="modal"
+                                data-target="#exampleModal1" (click)="onDelete(th)">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="text-center mt-4">
+            <pagination-controls class="pagination" (pageChange)="p = $event"></pagination-controls>
+        </div>
+    </div>
+</div>
+<div #CreateUpdateModal class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 600px;">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">Thương hiệu</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form novalidate name="frmLoaiSP" id="frmLoaiSP" class="form-horizontal row-border"
+                    (ngSubmit)="CreateUpdate()">
+                    <div class="form-group row">
+                        <label class="col-md-12 control-label" for="idTenLoaiSanPham">Tên Thương hiệu : </label>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <input type="text" id="idTenLoaiSanPham" class="form-control" name="TenThuongHieu"
+                                [(ngModel)]="TenThuongHieu" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-12 control-label" for="idTenLoaiSanPham">Giới thiệu : </label>
+                    </div>
+                    <angular-editor [placeholder]="'Nhập nội dung'" name="GioiThieu" [config]="editorConfig"
+                        [(ngModel)]="GioiThieu"></angular-editor>
+                    <div class="form-group row">
+                        <div class="col-md-12 text-center">
+                            <button id="save" class="btn btn-success">
+                                <i class="icon-save"></i>{{btnText}}
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <!-- Additional footer content can be added here if needed -->
+            </div>
+        </div>
+    </div>
+</div>
+<div #deleteModal class="modal" tabindex="-1" id="exampleModal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thương hiệu</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc chắn xóa không ?.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="hanleDelete()">Xóa</button>
+            </div>
+        </div>
+    </div>
+</div>

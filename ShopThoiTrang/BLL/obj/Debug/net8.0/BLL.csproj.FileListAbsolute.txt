@@ -1,0 +1,17 @@
+D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\BLL\bin\Debug\net8.0\BLL.deps.json
+D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\BLL\bin\Debug\net8.0\BLL.dll
+D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\BLL\bin\Debug\net8.0\BLL.pdb
+D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\BLL\bin\Debug\net8.0\DAL.dll
+D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\BLL\bin\Debug\net8.0\Model.dll
+D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\BLL\bin\Debug\net8.0\DAL.pdb
+D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\BLL\bin\Debug\net8.0\Model.pdb
+D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\BLL\obj\Debug\net8.0\BLL.csproj.AssemblyReference.cache
+D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\BLL\obj\Debug\net8.0\BLL.GeneratedMSBuildEditorConfig.editorconfig
+D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\BLL\obj\Debug\net8.0\BLL.AssemblyInfoInputs.cache
+D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\BLL\obj\Debug\net8.0\BLL.AssemblyInfo.cs
+D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\BLL\obj\Debug\net8.0\BLL.csproj.CoreCompileInputs.cache
+D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\BLL\obj\Debug\net8.0\BLL.csproj.Up2Date
+D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\BLL\obj\Debug\net8.0\BLL.dll
+D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\BLL\obj\Debug\net8.0\refint\BLL.dll
+D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\BLL\obj\Debug\net8.0\BLL.pdb
+D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\BLL\obj\Debug\net8.0\ref\BLL.dll

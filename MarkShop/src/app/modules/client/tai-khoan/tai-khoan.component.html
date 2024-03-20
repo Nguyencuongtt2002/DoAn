@@ -1,0 +1,84 @@
+<div class="label"></div>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card user-card" style="box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.2);">
+                <img src="assets/Images/{{customerInfo.anhDaiDien}}" name="anhDaiDien" class="card-img-top"
+                    alt="User Avatar">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{customerInfo.HoTen}}</h5>
+                    <div class="card-info">
+                        <p class="card-text"><strong>Email:</strong> {{ customerInfo.email}}</p>
+                        <p class="card-text"><strong>Địa chỉ:</strong> {{customerInfo.diaChi}}</p>
+                        <p class="card-text"><strong>Số điện thoại:</strong> {{customerInfo.soDienThoai}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card account-details" style="box-shadow: 0 0 8px 2px rgba(0,0,0,0.2)">
+                <div class="card-body">
+                    <h5 class="text-center font-weight-bold mb-4">Thông tin chi tiết người dùng</h5>
+                    <form class="form-row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="tenKhachHang">Họ Tên:</label>
+                                <input type="text" class="form-control" id="tenKhachHang"
+                                    [(ngModel)]="customerInfo.hoTen" name="customerInfo.hoTen">
+                            </div>
+                            <div class="form-group">
+                                <label for="matKhau">Mật Khẩu:</label>
+                                <input type="password" class="form-control" id="matKhau" [(ngModel)]="MatKhauCu"
+                                    name="MatKhauCu">
+                            </div>
+                            <div class="form-group">
+                                <label for="matKhau">Mật Khẩu mới:</label>
+                                <input type="password" class="form-control" id="matKhau" [(ngModel)]="MatKhauMoi"
+                                    name="MatKhauMoi">
+                            </div>
+                            <div class="form-group">
+                                <label for="matKhau">Xác nhận mật khẩu mới:</label>
+                                <input type="password" class="form-control" id="matKhau" [(ngModel)]="NhapLaiMatKhauMoi"
+                                    name="NhapLaiMatKhauMoi">
+                            </div>
+                            <div class="form-group">
+                                <label for="anhDaiDien">Ảnh đại diện:</label>
+                                <input type="date" class="form-control" type="file" (change)="onFileChange($event)"
+                                    [(ngModel)]="customerInfo.anhDaiDien" name="customerInfo.anhDaiDien"
+                                    id="anhDaiDien">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="anhDaiDien">Giới tính:</label>
+                                <input type="text" class="form-control" [(ngModel)]="customerInfo.gioiTinh"
+                                    name="customerInfo.gioiTinh">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" class="form-control" id="email" [(ngModel)]="customerInfo.email"
+                                    name="customerInfo.email">
+                            </div>
+                            <div class="form-group">
+                                <label for="diaChi">Địa chỉ:</label>
+                                <input type="text" class="form-control" id="diaChi" [(ngModel)]="customerInfo.diaChi"
+                                    name="customerInfo.diaChi">
+                            </div>
+                            <div class="form-group">
+                                <label for="soDienThoai">Số điện thoại:</label>
+                                <input type="tel" class="form-control" id="soDienThoai"
+                                    [(ngModel)]="customerInfo.soDienThoai" name="customerInfo.soDienThoai">
+                            </div>
+                            <div class="form-group">
+                                <label for="ngaySinh">Ngày Sinh:</label>
+                                <input type="date" class="form-control" [(ngModel)]="customerInfo.ngaySinh"
+                                    name="customerInfo.ngaySinh">
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-block mt-4" (click)="CapNhatThongTin()" type="submit">Cập
+                            nhập</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

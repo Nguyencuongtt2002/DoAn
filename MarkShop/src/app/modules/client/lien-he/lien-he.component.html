@@ -1,0 +1,37 @@
+<div class="label"></div>
+<div class="py-5 container__custom">
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="page-heading">
+                <span class="page-heading-title"><i class="fa fa-envelope" style="margin-right: 10px;"></i>Liên
+                    Hệ</span>
+            </h2>
+            <form id="contactForm" action="submit_form.php" method="POST">
+                <div class="form-group">
+                    <label for="name">Họ và Tên:</label>
+                    <input type="text" id="name" name="name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Nội dung:</label>
+                    <textarea id="message" name="message" class="form-control" rows="5" required
+                        style="resize: none;"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Gửi</button>
+            </form>
+        </div>
+        <div class="col-md-6" *ngFor="let lh of lienhe">
+            <h2 class="page-heading">
+                <span class="page-heading-title"><i class="fa fa-info-circle" style="margin-right: 10px;"></i>Thông Tin
+                    Liên Hệ</span>
+            </h2>
+            <p><strong>Địa chỉ:</strong>{{lh.diaChi}}</p>
+            <p><strong>Điện thoại:</strong>{{lh.soDienThoai}}</p>
+            <p><strong>Email:</strong>{{lh.email}}</p>
+            <p>Vui lòng điền vào mẫu liên hệ bên trái để gửi tin nhắn cho chúng tôi.</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+.selected {
+    cursor: pointer;
+    color: #FFF;
+    background-color: rgb(180, 167, 167) !important;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination a {
+    color: #007bff;
+    border: 1px solid #007bff;
+    padding: 8px 12px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination a:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.pagination .active a {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* Hiệu ứng mượt mà khi hover */
+.pagination a {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination a:hover {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
