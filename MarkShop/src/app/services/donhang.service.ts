@@ -45,4 +45,15 @@ export class DonhangService {
         return this.http.post(`${_api}/api/DonHang/excel`, obj, { headers, responseType: 'blob' });
     }
 
+    vnpay(obj: any): Observable<any> {
+        return this.http.post<any>(_api + '/api/VnPay/vnpay', obj, { headers });
+    }
+
+    callback(): Observable<any> {
+        return this.http.post<any>(_api + '/api/VnPay/callback', {}, { headers });
+    }
+    getNewDonHang(): Observable<any> {
+        return this.http.get<any>(_api + '/api/DonHang/getnew', { headers });
+    }
+
 }

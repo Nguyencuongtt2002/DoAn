@@ -10,6 +10,7 @@ namespace DAL
     public partial interface IDonHangDAL
     {
         List<DonHangModel> GetALL();
+        DonHangModel GetNew();
         bool CreateDonHang(DonHangModel model);
         List<DonHangModel> LichSuMuaHang(int MaNguoiDung);
         bool HuyDonHang(DonHangModel model);

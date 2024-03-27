@@ -49,7 +49,7 @@
                                     <owl-carousel-o [options]="customOptions">
                                         <ng-template carouselSlide *ngFor="let s of sanphammoi">
                                             <div class="item" style="box-shadow: 0 0 8px 2px rgba(0,0,0,0.2)">
-                                                <a href="/XemChiTiet/{{s.maSanPham}}">
+                                                <a routerLink="/XemChiTiet/{{s.maSanPham}}">
                                                     <img src="/assets/Images/{{ s.anhDaiDien }}"
                                                         style="width:100%;height:300px ;" />
                                                     <div id="label">New</div>
@@ -115,7 +115,7 @@
                                     <owl-carousel-o [options]="customOptions">
                                         <ng-template carouselSlide *ngFor="let sp of sanphambanchay">
                                             <div class="item" style="box-shadow: 0 0 8px 2px rgba(0,0,0,0.2)">
-                                                <a href="/XemChiTiet/{{sp.maSanPham}}">
+                                                <a routerLink="/XemChiTiet/{{sp.maSanPham}}">
                                                     <img src="/assets/Images/{{ sp.anhDaiDien }}"
                                                         style="width:100%;height:300px ;" />
                                                     <div *ngIf="sp.phanTram == null">
@@ -185,7 +185,7 @@
                                     <owl-carousel-o [options]="customOptions">
                                         <ng-template carouselSlide *ngFor="let sp of sanphamgiamgia">
                                             <div class="item" style="box-shadow: 0 0 8px 2px rgba(0,0,0,0.2)">
-                                                <a href="/XemChiTiet/{{sp.maSanPham}}">
+                                                <a routerLink="/XemChiTiet/{{sp.maSanPham}}">
                                                     <img src="/assets/Images/{{ sp.anhDaiDien }}"
                                                         style="width:100%;height:300px ;" />
                                                     <div id="label">giảm: {{sp.phanTram}}%</div>
@@ -250,7 +250,7 @@
             <div class="col-4">
                 <div class="clothesForMen">
                     <div class="position-relative item" style="cursor: pointer" *ngIf="ListAnh[0]">
-                        <a href="">
+                        <a routerLink="">
                             <img src="/assets/Images/{{ListAnh[0].HinhAnh}}" class="w-100" />
                             <div class="details detailsForMen position-absolute">
                                 <h3>{{ListAnh[0].TenHinhAnh}}</h3>
@@ -262,7 +262,7 @@
             <div class="col-4">
                 <div class="clothesForWomen">
                     <div class="position-relative item" style="cursor: pointer" *ngIf="ListAnh[1]">
-                        <a href="">
+                        <a routerLink="">
                             <img src="/assets/Images/{{ListAnh[1].HinhAnh}}" class="w-100" />
                             <div class="details detailsForWomen position-absolute">
                                 <h3>{{ListAnh[1].TenHinhAnh}}</h3>
@@ -275,7 +275,7 @@
                 <div class="row">
                     <div class="col-12 mb-4">
                         <div class="PIERRE_CARDING item" style="cursor: pointer" *ngIf="ListAnh[2]">
-                            <a href="">
+                            <a routerLink="">
                                 <img class="img__PIERRE_CARDING position-relative"
                                     src="/assets/Images/{{ListAnh[2].HinhAnh}}" alt="PIERRE CARDING">
                                 <div class="details detailsForPIE position-absolute">
@@ -290,7 +290,7 @@
                                 <img class="img__voucher" src="/assets/Images/{{ListAnh[3].HinhAnh}}"
                                     alt="PHIẾU QUÀ TẶNG">
                                 <div class="details detailsForPIE position-absolute">
-                                    <h3><a href="#">{{ListAnh[3].TenHinhAnh}}</a></h3>
+                                    <h3><a routerLink="#">{{ListAnh[3].TenHinhAnh}}</a></h3>
                                 </div>
                             </div>
                         </div>

@@ -13,7 +13,7 @@ using System.Text;
 
 namespace ShopThoiTrang.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     [Route("api/[controller]")]
     [ApiController]
     public class NguoiDungController : ControllerBase
@@ -96,6 +96,21 @@ namespace ShopThoiTrang.Controllers
             {
                 return BadRequest(new { success = false, message = ex.Message });
             }
+        }
+        [Route("resetmatkhau")]
+        [HttpPost]
+        public IActionResult ResetMatKhau([FromBody] NguoiDungModel model)
+        {
+            model.MatKhau = CalculateMD5Hash(model.MatKhau);
+            var nguoidung = new NguoiDungModel
+            {
+                TaiKhoan = model.TaiKhoan,
+                MatKhau = model.MatKhau,
+            };
+            _nguoidungBus.ResetMatKhau(nguoidung);
+
+            // Trả về kết quả thành công
+            return Ok(new { success = true, message = "Reset thành công" });
         }
         [AllowAnonymous]
         [Route("them")]

@@ -30,6 +30,7 @@ export class AdNguoiDungComponent implements OnInit {
   @ViewChild('addModal') addModal!: ElementRef;
   @ViewChild('updateModal') updateModal!: ElementRef;
   @ViewChild('deleteModal') deleteModal!: ElementRef;
+  @ViewChild('resetModal') resetModal!: ElementRef;
   constructor(
     private nd: NguoidungService,
     private toastr: ToastrService) { }
@@ -169,13 +170,15 @@ export class AdNguoiDungComponent implements OnInit {
 
   hanleDelete = () => {
     if (this.selectedRow) {
-      // Thực hiện xóa dữ liệu
-      this.nd.Delete(this.MaNguoiDung).subscribe((res) => {
-        this.toastr.success('xóa thành công', '', {
-          progressBar: true,
+      if (this.selectedRow.vaiTro === 'Admin') {
+        Swal.fire({
+          icon: 'warning',
+          title: 'Không thể xóa',
+          text: 'Không thể xóa tài khoản có vai trò là Admin!',
+          confirmButtonColor: '#3085d6',
+          confirmButtonText: 'OK'
         });
-        this.getall();
-        this.selectedRow = null
+        this.selectedRow = null;
         const deleteModal = this.deleteModal.nativeElement;
         deleteModal.classList.remove('show');
         deleteModal.style.display = 'none';
@@ -184,9 +187,51 @@ export class AdNguoiDungComponent implements OnInit {
         for (let i = 0; i < modalBackdrop.length; i++) {
           modalBackdrop[i].remove();
         }
-      });
+      } else {
+        // Thực hiện xóa dữ liệu
+        this.nd.Delete(this.MaNguoiDung).subscribe((res) => {
+          this.toastr.success('Xóa thành công', '', {
+            progressBar: true,
+          });
+          this.getall();
+          this.selectedRow = null;
+          const deleteModal = this.deleteModal.nativeElement;
+          deleteModal.classList.remove('show');
+          deleteModal.style.display = 'none';
+          document.body.classList.remove('modal-open');
+          const modalBackdrop = document.getElementsByClassName('modal-backdrop');
+          for (let i = 0; i < modalBackdrop.length; i++) {
+            modalBackdrop[i].remove();
+          }
+        });
+      }
     }
+  }
 
+  onReset = () => {
+    this.resetModal.nativeElement.classList.add('show');
+  }
+  hanleRest = () => {
+    const obj = {
+      taiKhoan: this.TaiKhoan,
+      matKhau: "123456789"
+    }
+    if (this.selectedRow) {
+      this.nd.ResetMatKhau(obj).subscribe((res) => {
+        this.toastr.success('Reset mật khẩu thành công', '', {
+          progressBar: true,
+        });
+        this.selectedRow = null
+        const resetModal = this.resetModal.nativeElement;
+        resetModal.classList.remove('show');
+        resetModal.style.display = 'none';
+        document.body.classList.remove('modal-open');
+        const modalBackdrop = document.getElementsByClassName('modal-backdrop');
+        for (let i = 0; i < modalBackdrop.length; i++) {
+          modalBackdrop[i].remove();
+        }
+      })
+    }
   }
   //File
   onFileChange(event: any) {

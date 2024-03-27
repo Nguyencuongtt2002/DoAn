@@ -61,6 +61,12 @@ namespace ShopThoiTrang.Controllers
                 });
             }
         }
+        [Route("getnew")]
+        [HttpGet]
+        public DonHangModel GetNew()
+        {
+            return _donhangBus.GetNew();
+        }
         [AllowAnonymous]
         [Route("them")]
         [HttpPost]

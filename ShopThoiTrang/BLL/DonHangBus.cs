@@ -21,6 +21,10 @@ namespace BLL
         {
             return _res.GetALL();
         }
+        public DonHangModel GetNew()
+        {
+            return _res.GetNew();
+        }
         public List<ChiTietDonHangModel> GetCTDonHangTheoDonHang(int MaDonHang, int MaSanPham)
         {
             return _res.GetCTDonHangTheoDonHang(MaDonHang,MaSanPham);

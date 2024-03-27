@@ -134,13 +134,22 @@ export class AdHoaDonNhapComponent implements OnInit {
   //Thêm thông số 
   addCT() {
     if (this.newcthoadonnhap.maSanPham && this.newcthoadonnhap.soLuong && this.newcthoadonnhap.giaTien) {
-      this.chitiethoadonnhap.push({ ...this.newcthoadonnhap });
-      console.log(this.chitiethoadonnhap)
-      this.newcthoadonnhap = { maSanPham: '', soLuong: 0, giaTien: 0 };
+      const selectedProduct = this.listsanpham.find(product => product.maSanPham === parseInt(this.newcthoadonnhap.maSanPham, 10));
+      //console.log(parseInt(this.newcthoadonnhap.maSanPham, 10), this.newcthoadonnhap.maSanPham)
+      if (selectedProduct) {
+        this.chitiethoadonnhap.push({
+          maSanPham: selectedProduct.maSanPham,
+          tenSP: selectedProduct.tenSP,
+          soLuong: this.newcthoadonnhap.soLuong,
+          giaTien: this.newcthoadonnhap.giaTien
+        });
+        this.newcthoadonnhap = { maSanPham: '', soLuong: 0, giaTien: 0, tenSP: '' };
+      } else {
+        alert('Không tìm thấy sản phẩm');
+      }
     } else {
       alert('Thông tin không được để trống');
     }
-    //this.getSPALL()
   }
   deleteCT(index: number): void {
     this.chitiethoadonnhap.splice(index, 1);

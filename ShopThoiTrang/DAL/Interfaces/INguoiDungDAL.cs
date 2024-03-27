@@ -16,6 +16,7 @@ namespace DAL
         bool Create(NguoiDungModel model);
         bool Update(NguoiDungModel model);
         bool Delete(int ma);
+        bool ResetMatKhau(NguoiDungModel model);
 
     }
 }

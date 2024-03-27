@@ -5,7 +5,7 @@
             <nav>
                 <ul class="menuProduct">
                     <li>
-                        <a href="" class="tpnam_btn mb-0 listAll">Danh mục sản phẩm</a>
+                        <a routerLink="" class="tpnam_btn mb-0 listAll">Danh mục sản phẩm</a>
                         <ul class="tpnam_show" *ngFor="let loaisp of loaisp">
                             <li><a
                                     [routerLink]="['/SanPhamTheoLoai',loaisp.maLoaiSanPham]">{{loaisp.tenLoaiSanPham}}</a>
@@ -35,9 +35,10 @@
                             </div>
                             <div class="col-12 col-md-6">
                                 <div class="news-content">
-                                    <a href="chitiettintuc.html" style="color: #000; text-decoration: none;">
+                                    <a [routerLink]="['/CTTinTuc',tt.maTinTuc]"
+                                        style="color: #000; text-decoration: none;">
                                         <h4 class="font-weight-bold" style="font-size: 14px; cursor: pointer;">
-                                            {{tt.tieuDe}}</h4>
+                                            {{tt?.tieuDe}}</h4>
                                     </a>
                                     <p class="mt-2">{{ tt.noiDung.length > 30 ? tt.noiDung.substring(0, 30) + '...' :
                                         tt.noiDung }}</p>

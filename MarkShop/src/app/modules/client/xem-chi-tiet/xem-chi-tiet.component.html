@@ -6,7 +6,7 @@
             <nav>
                 <ul class="menuProduct">
                     <li>
-                        <a href="" class="tpnam_btn mb-0 listAll">Danh mục sản phẩm</a>
+                        <a routerLink="" class="tpnam_btn mb-0 listAll">Danh mục sản phẩm</a>
                         <ul class="tpnam_show" *ngFor="let loaisp of loaisp">
                             <li><a
                                     [routerLink]="['/SanPhamTheoLoai',loaisp.maLoaiSanPham]">{{loaisp.tenLoaiSanPham}}</a>
@@ -21,7 +21,7 @@
         <div class="col-md-9">
             <div class="row">
                 <div class="col-md-6 text-center" data-aos="flip-right">
-                    <a href="" data-lightbox="listImg">
+                    <a routerLink="" data-lightbox="listImg">
                         <img src="/assets/Images/{{product?.anhDaiDien}}" class="img-fluid" />
                     </a>
                     <br>
@@ -34,7 +34,7 @@
                             <label for="quantity" class="form-label" style="font-size: 16px;">Số lượng:</label>
                         </div>
                         <div class="col-auto" data-aos="fade-left" data-aos-duration="1000">
-                            <input type="number" id="quantity" name="quantity" min="1" max="{{product?.SoLuong}}"
+                            <input type="number" id="quantity" name="quantity" min="1" max="{{product?.soLuong}}"
                                 value="{{soluong}}" [(ngModel)]="soluong" class="form-control form-control-sm"
                                 style="font-size: 12px; max-width: 80px;">
                         </div>
@@ -53,7 +53,7 @@
                         (click)="Themvaogio(product,soluong)">
                         THÊM VÀO GIỎ
                     </button>
-                    <button class="btnStyle btn2" data-aos="fade-left" data-aos-duration="1000"><a href=""
+                    <button class="btnStyle btn2" data-aos="fade-left" data-aos-duration="1000"><a routerLink=""
                             class="text-white" style="text-decoration: none">XEM THÊM SẢN PHẨM</a></button>
                     <br />
                     <br />
@@ -86,7 +86,7 @@
     <owl-carousel-o [options]="customOptions">
         <ng-template carouselSlide *ngFor="let s of sanphamcungloai">
             <div class="item" style="box-shadow: 0 0 8px 2px rgba(0,0,0,0.2)">
-                <a href="/XemChiTiet/{{s.maSanPham}}">
+                <a routerLink="/XemChiTiet/{{s.maSanPham}}">
                     <img src="/assets/Images/{{ s.anhDaiDien }}" style="width:100%;height:300px ;" />
                     <div *ngIf="s.phanTram == null">
                         <div id="label">New</div>

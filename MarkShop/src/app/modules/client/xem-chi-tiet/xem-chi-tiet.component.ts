@@ -59,8 +59,8 @@ export class XemChiTietComponent implements OnInit {
     this._route.params.subscribe(params => {
       const ma = +params['id'];
       this.sp.getOne(ma).subscribe(res => {
-        console.log(res)
         this.product = res
+        console.log(this.product)
         this.loadSanPhamCungLoai();
       });
     });
@@ -80,15 +80,25 @@ export class XemChiTietComponent implements OnInit {
     });
   }
   Themvaogio = (res: any, soluong: number) => {
-    console.log(res)
-    if (soluong <= res.tongSoLuong) {
+    console.log(res);
+    if (soluong <= res.soLuong) {
       this.cartSrv.Themvaogio(res.maSanPham, soluong);
-    } else {
+    }
+    else if (res.soLuong == 0) {
+      Swal.fire({
+        icon: 'info',
+        title: 'Sản phẩm đã hết hàng',
+        text: 'Xin lỗi, sản phẩm này đã hết hàng. Vui lòng chọn sản phẩm khác.',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'OK'
+      });
+    }
+    else {
       // Use Swal to show a warning message
       Swal.fire({
         icon: 'warning',
         title: 'Số lượng không hợp lệ',
-        text: 'Không được mua vượt quá số lượng trong kho!',
+        text: 'Không được mua vượt quá số lượng sản phẩm!',
         confirmButtonColor: '#3085d6',
         confirmButtonText: 'OK'
       });
@@ -97,6 +107,9 @@ export class XemChiTietComponent implements OnInit {
 
   private async loadJS(): Promise<void> {
     await this.load2.loadScript('/assets/JS/jquery-3.5.1.min.js')
+    await this.load2.loadScript('/assets/JS/jquery.countup.min.js')
+    await this.load2.loadScript('/assets/JS/jquery.validate.min.js')
+    await this.load2.loadScript('/assets/JS/jquery.validate.unobtrusive.min.js')
     await this.load2.loadScript('/assets/JS/index.js')
   }
 }

@@ -50,6 +50,7 @@ export class DangKyComponent implements OnInit {
     formData.append('vaiTro', this.VaiTro)
 
     this.nd.kiemtra(formData).subscribe(res => {
+      console.log(res)
       if (!res.data || res.length === 0) {
         this.nd.createUser(formData).subscribe(res => {
           if (res) {
@@ -69,7 +70,7 @@ export class DangKyComponent implements OnInit {
         Swal.fire({
           icon: 'error',
           title: 'Registration Failed',
-          text: 'Tài khoản bạn nhập đã tồn tại .Vui lòng nhập lại !'
+          text: 'Tài khoản hoặc email bạn nhập đã tồn tại .Vui lòng nhập lại !'
         });
       }
     })

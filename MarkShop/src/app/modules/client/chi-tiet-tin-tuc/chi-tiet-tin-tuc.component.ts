@@ -20,16 +20,15 @@ export class ChiTietTinTucComponent implements OnInit {
   ngOnInit(): void {
 
 
-    this.MaTinTuc = Number(this._route.snapshot.paramMap.get('MaTinTuc'));
-    this.tt.getOne(this.MaTinTuc).subscribe(data => {
-      this.tintuc = data;
-      console.log(this.tintuc.listjson_NoiDungCT)
-    })
-
-
-    this.tt.getTinTucKhac(this.MaTinTuc).subscribe(data => {
-      this.tintuckhac = data.data;
-    })
+    this._route.params.subscribe(params => {
+      const ma = +params['MaTinTuc'];
+      this.tt.getOne(ma).subscribe(data => {
+        this.tintuc = data;
+      })
+      this.tt.getTinTucKhac(ma).subscribe(data => {
+        this.tintuckhac = data.data;
+      })
+    });
     this.loaisanphamService.getLoaiSanPhamAll().subscribe(res => {
       this.loaisp = res;
     })

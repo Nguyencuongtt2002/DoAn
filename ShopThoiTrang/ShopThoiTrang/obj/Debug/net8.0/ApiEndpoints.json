@@ -110,100 +110,6 @@
     ]
   },
   {
-    "ContainingType": "ShopThoiTrang.Controllers.CTKhoController",
-    "Method": "GetALL",
-    "RelativePath": "api/CTKho/get-all",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Model.CTKhoModel, Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "ShopThoiTrang.Controllers.CTKhoController",
-    "Method": "GetCTKhoTheoKho",
-    "RelativePath": "api/CTKho/getctkhobykho/{ma}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "ma",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "ShopThoiTrang.Controllers.CTKhoController",
-    "Method": "Create",
-    "RelativePath": "api/CTKho/them",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "them",
-        "Type": "Model.CTKhoModel",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "ShopThoiTrang.Controllers.CTKhoController",
-    "Method": "Update",
-    "RelativePath": "api/CTKho/update",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "sua",
-        "Type": "Model.CTKhoModel",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "ShopThoiTrang.Controllers.CTKhoController",
-    "Method": "Xoa",
-    "RelativePath": "api/CTKho/xoa/{ma}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "ma",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Boolean",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
     "ContainingType": "ShopThoiTrang.Controllers.CTTinTucController",
     "Method": "GetALL",
     "RelativePath": "api/CTTinTuc/get-all",
@@ -374,6 +280,26 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ShopThoiTrang.Controllers.DonHangController",
+    "Method": "GetNew",
+    "RelativePath": "api/DonHang/getnew",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Model.DonHangModel",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "ShopThoiTrang.Controllers.DonHangController",
@@ -878,106 +804,6 @@
     ]
   },
   {
-    "ContainingType": "ShopThoiTrang.Controllers.KhoController",
-    "Method": "GetAll",
-    "RelativePath": "api/Kho/get-all",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "formData",
-        "Type": "System.Collections.Generic.Dictionary\u00602[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "ShopThoiTrang.Controllers.KhoController",
-    "Method": "GetTheoMa",
-    "RelativePath": "api/Kho/getbyid/{ma}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "ma",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "Model.KhoModel",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "ShopThoiTrang.Controllers.KhoController",
-    "Method": "Create",
-    "RelativePath": "api/Kho/them",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "them",
-        "Type": "Model.KhoModel",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "ShopThoiTrang.Controllers.KhoController",
-    "Method": "Update",
-    "RelativePath": "api/Kho/update",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "sua",
-        "Type": "Model.KhoModel",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "ShopThoiTrang.Controllers.KhoController",
-    "Method": "Xoa",
-    "RelativePath": "api/Kho/xoa/{ma}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "ma",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Boolean",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
     "ContainingType": "ShopThoiTrang.Controllers.LienHeController",
     "Method": "GetAll",
     "RelativePath": "api/LienHe/get-all",
@@ -1336,6 +1162,22 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "ShopThoiTrang.Controllers.NguoiDungController",
+    "Method": "ResetMatKhau",
+    "RelativePath": "api/NguoiDung/resetmatkhau",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "Model.NguoiDungModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "ShopThoiTrang.Controllers.NguoiDungController",
@@ -1803,7 +1645,7 @@
         "IsRequired": false
       },
       {
-        "Name": "TongSoLuong",
+        "Name": "SoLuong",
         "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
@@ -1915,7 +1757,7 @@
         "IsRequired": false
       },
       {
-        "Name": "TongSoLuong",
+        "Name": "SoLuong",
         "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
@@ -2608,6 +2450,32 @@
       {
         "Name": "ma",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ShopThoiTrang.Controllers.VnPayController",
+    "Method": "PaymentCallback",
+    "RelativePath": "api/VnPay/callback",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ShopThoiTrang.Controllers.VnPayController",
+    "Method": "CreatePaymentUrl",
+    "RelativePath": "api/VnPay/vnpay",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "Model.PaymentInformationModel",
         "IsRequired": true
       }
     ],

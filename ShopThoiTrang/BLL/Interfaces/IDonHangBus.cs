@@ -6,6 +6,7 @@ namespace BLL
     {
         List<DonHangModel> GetALL();
         bool CreateDonHang(DonHangModel model);
+        DonHangModel GetNew();
         List<DonHangModel> LichSuMuaHang(int MaNguoiDung);
         bool HuyDonHang(DonHangModel model);
         bool DuyetDonHang(int ma);

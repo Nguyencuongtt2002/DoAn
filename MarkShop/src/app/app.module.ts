@@ -46,7 +46,7 @@ import { ChiTietTinTucComponent } from './modules/client/chi-tiet-tin-tuc/chi-ti
 import { TimKiemComponent } from './modules/client/tim-kiem/tim-kiem.component';
 import { SanPhamComponent } from './modules/client/san-pham/san-pham.component';
 import { ErrorComponentComponent } from './error-component/error-component.component';
-
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -63,6 +63,7 @@ import { ErrorComponentComponent } from './error-component/error-component.compo
     BrowserModule, AppRoutingModule, HttpClientModule, CarouselModule, BrowserAnimationsModule,
     FormsModule, AngularEditorModule,
     NgxPaginationModule, ToastrModule.forRoot({ preventDuplicates: true }),
+    NgSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,7 +3,7 @@ import { NguoidungService } from 'src/app/services/nguoidung.service';
 import { DonhangService } from 'src/app/services/donhang.service';
 import { Nguoidung } from 'src/app/models/nguoidung';
 import Swal from 'sweetalert2';
-
+import { PaymentInformation } from 'src/app/models/vnpay';
 @Component({
   selector: 'app-thanh-toan',
   templateUrl: './thanh-toan.component.html',
@@ -16,25 +16,26 @@ export class ThanhToanComponent implements OnInit {
   NgayGiao: Date = new Date();
   SoDienThoai: string = '';
   Email: string = '';
+  phuongThucThanhToan: string = '';
   customerInfo: any;
   ListGioHang: any;
   SoLuong: number = 0;
   TongGia: number = 0;
+
   constructor(private nd: NguoidungService, private dh: DonhangService) { }
+
   ngOnInit(): void {
     this.loadGioHang();
     this.customerInfo = this.nd.checkLogin();
     if (this.customerInfo) {
-      // If logged in, populate the input fields with customer information
       this.TenKhachHang = this.customerInfo.hoTen;
       this.DiaChi = this.customerInfo.diaChi;
       this.SoDienThoai = this.customerInfo.soDienThoai;
       this.Email = this.customerInfo.email;
-      this.MaNguoiDung = this.customerInfo.maNguoiDung
+      this.MaNguoiDung = this.customerInfo.maNguoiDung;
     }
   }
 
-  //Load giỏ hàng
   loadGioHang() {
     let cart: any[] = JSON.parse(localStorage.getItem('cart') || '[]');
     this.ListGioHang = cart;
@@ -57,7 +58,15 @@ export class ThanhToanComponent implements OnInit {
     if (!this.NgayGiao || this.NgayGiao === undefined || ngaygiao < new Date()) {
       Swal.fire({
         title: 'Thông báo',
-        text: 'Vui lòng chọn ngày giao hàng hợp lệ !',
+        text: 'Vui lòng chọn ngày giao hàng hợp lệ!',
+        icon: 'error',
+      });
+      return false;
+    }
+    else if (this.phuongThucThanhToan === '') {
+      Swal.fire({
+        title: 'Thông báo',
+        text: 'Vui lòng chọn phương thức thanh toán!',
         icon: 'error',
       });
       return false;
@@ -65,21 +74,24 @@ export class ThanhToanComponent implements OnInit {
     return true;
   }
 
-  ThanhToan() {
+
+
+  ThanhToan = () => {
     if (this.KiemTraThongTin()) {
       const obj: {
         hoTen: string,
         diaChi: string,
         soDienThoai: string,
-        maNguoiDung: number
+        maNguoiDung: number,
+        phuongThucThanhToan: string,
         ngayGiao: Date;
         p_list_json_chitiet_hoadon: { maSanPham: number; soLuong: number; giaTien: number }[];
       } = {
-        //trái trùng postman , phải khai báo trên 
         hoTen: this.TenKhachHang,
         diaChi: this.DiaChi,
         soDienThoai: this.SoDienThoai,
         maNguoiDung: this.MaNguoiDung,
+        phuongThucThanhToan: this.phuongThucThanhToan,
         ngayGiao: this.NgayGiao,
         p_list_json_chitiet_hoadon: []
       };
@@ -95,13 +107,20 @@ export class ThanhToanComponent implements OnInit {
 
       this.dh.thanhToan(obj).subscribe(
         () => {
-          Swal.fire('Thanh toán thành công', 'Cảm ơn quý khách đã tin tưởng sản phẩm của shop', 'success')
-            .then((result) => {
-              if (result.isConfirmed) {
-                localStorage.removeItem('cart');
-                location.assign('/');
-              }
-            });
+          Swal.fire({
+            title: 'Thông báo',
+            text: 'Cảm ơn quý khách đã tin tưởng sản phẩm của shop.',
+            icon: 'success',
+            showCancelButton: false,
+            confirmButtonText: 'OK'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              localStorage.removeItem('cart');
+              this.dh.getNewDonHang().subscribe((res) => {
+                this.vnPay(res.maDonHang)
+              })
+            }
+          });
         },
         error => {
           console.error('Error during payment:', error);
@@ -109,8 +128,29 @@ export class ThanhToanComponent implements OnInit {
         }
       );
     }
-
   }
+  //Thanh toán online
+  vnPay = (id: number) => {
+    const payment: PaymentInformation = {
+      orderId: id,
+      name: this.TenKhachHang,
+      amount: this.TongGia,
+      orderDescription: '',
+      orderType: "other",
+      url: `${window.location.origin}/`
+    }
 
+    this.dh.vnpay(payment).subscribe(res => {
+      if (res.success) {
+        window.location.href = res.data;
+      }
+      else {
+        Swal.fire({
+          icon: 'warning',
+          title: 'Cảnh báo',
+          text: res.message
+        });
+      }
+    });
+  }
 }
-

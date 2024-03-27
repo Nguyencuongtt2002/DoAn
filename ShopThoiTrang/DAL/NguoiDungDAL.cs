@@ -157,5 +157,24 @@ namespace DAL
                 throw ex;
             }
         }
+        public bool ResetMatKhau(NguoiDungModel model)
+        {
+            string msgError = "";
+            try
+            {
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_resetpassword_NguoiDung",
+                "@p_TaiKhoan", model.TaiKhoan,
+                "@p_MatKhau", model.MatKhau);
+                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception(Convert.ToString(result) + msgError);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

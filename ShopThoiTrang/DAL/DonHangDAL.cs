@@ -73,6 +73,7 @@ namespace DAL
                 "@p_DiaChi",model.DiaChi,
                 "@p_SoDienThoai",model.SoDienThoai,
                 "@p_MaNguoiDung",model.MaNguoiDung,
+                "@p_PhuongThucThanhToan",model.PhuongThucThanhToan,
                 "@p_NgayGiao",model.NgayGiao,
                 "@p_list_json_chitiet_hoadon", model.p_list_json_chitiet_hoadon != null ? MessageConvert.SerializeObject(model.p_list_json_chitiet_hoadon) : null);
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
@@ -80,6 +81,21 @@ namespace DAL
                     throw new Exception(Convert.ToString(result) + msgError);
                 }
                 return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public DonHangModel GetNew()
+        {
+            string msgError = "";
+            try
+            {
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_getnew_DonHang");
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                return dt.ConvertTo<DonHangModel>().FirstOrDefault();
             }
             catch (Exception ex)
             {

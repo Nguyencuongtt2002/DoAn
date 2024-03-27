@@ -37,9 +37,14 @@ builder.Services.AddAuthentication(x =>
         ValidateAudience = false
     };
 });
-
 // Add services to the container.
 builder.Services.AddTransient<IDatabaseHelper, DatabaseHelper>();
+
+//Cấu hình VnPay
+builder.Services.AddTransient<IVnPayDAL, VnPayDAL>();
+builder.Services.AddTransient<IVnPayBus, VnPayBus>();
+builder.Services.AddHttpContextAccessor();
+
 
 builder.Services.AddTransient<ILienHeDAL, LienHeDAL>();
 builder.Services.AddTransient<ILienHeBus,LienHeBus>();
@@ -62,15 +67,8 @@ builder.Services.AddTransient<INguoiDungBus, NguoiDungBus>();
 builder.Services.AddTransient<ICTTinTucDAL, CTTinTucDAL>();
 builder.Services.AddTransient<ICTTinTucBus, CTTinTucBus>();
 
-builder.Services.AddTransient<IKhoDAL, KhoDAL>();
-builder.Services.AddTransient<IKhoBus, KhoBus>();
-
 builder.Services.AddTransient<IHoaDonNhapDAL, HoaDonNhapDAL>();
 builder.Services.AddTransient<IHoaDonNhapBus, HoaDonNhapBus>();
-
-builder.Services.AddTransient<ICTKhoDAL, CTKhoDAL>();
-builder.Services.AddTransient<ICTKhoBus, CTKhoBus>();
-
 
 builder.Services.AddTransient<ICTHoaDonNhapDAL, CTHoaDonNhapDAL>();
 builder.Services.AddTransient<ICTHoaDonNhapBus, CTHoaDonNhapBus>();

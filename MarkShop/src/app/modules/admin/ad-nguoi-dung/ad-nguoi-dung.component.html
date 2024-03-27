@@ -4,18 +4,23 @@
         <!-- "Create New" button that triggers the modal -->
         <p class="text-muted font-13 m-b-30">
             <button class="btn btn-success fa fa-plus" data-toggle="modal" (click)="taomoi()"
-                data-target="#exampleModal">Tạo mới</button>
-            <button class="btn btn-info btn-sm ml-2" data-toggle="modal" data-target="#exampleModal1"
+                data-target="#exampleModal">Tạo
+                mới</button>
+            <button class="btn btn-primary btn-sm ml-2" data-toggle="modal" data-target="#exampleModal1"
                 [disabled]="!selectedRow">
                 <i class="fas fa-edit"></i> Cập nhật
             </button>
-            <button class="btn btn-danger btn-sm ml-2" data-toggle="modal" data-target="#exampleModal2"
+            <button class="btn btn-info btn-sm ml-2" data-toggle="modal" data-target="#exampleModal2"
                 [disabled]="!selectedRow">
                 Chi Tiết
             </button>
-            <button class="btn btn-info btn-sm ml-2" data-toggle="modal" data-target="#exampleModal3"
+            <button class="btn btn-danger btn-sm ml-2" data-toggle="modal" data-target="#exampleModal3"
                 [disabled]="!selectedRow" (click)="onDelete()">
                 <i class="fas fa-trash-alt"></i> Xóa
+            </button>
+            <button class="btn btn-warning btn-sm ml-2" [disabled]="!selectedRow" (click)="onReset()"
+                data-toggle="modal" data-target="#exampleModal4">
+                <i class="fas fa-key"></i> Reset Password
             </button>
         </p>
         <div class="input-group mb-3">
@@ -348,6 +353,25 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" (click)="hanleDelete()">Xóa</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div #resetModal class="modal" tabindex="-1" id="exampleModal4">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Người dùng</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc chắn muốn Reset lại mật khẩu không ?.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="hanleRest()">Reset mật khẩu</button>
             </div>
         </div>
     </div>

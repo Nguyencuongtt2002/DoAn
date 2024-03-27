@@ -32,7 +32,6 @@ export class LichSuMuaHangComponent implements OnInit {
   }
   getLoaiSanPham = () => {
     this.loaisanpham.getLoaiSanPhamAll().subscribe(res => {
-      console.log(res)
       this.loaisp = res;
     })
   }
@@ -98,12 +97,11 @@ export class LichSuMuaHangComponent implements OnInit {
     }
     this.donhangService.getChiTietDonHangByDonHang(obj).subscribe(data => {
       console.log(data.data)
-      this.MaDonHang = data.data.maDonHang
-      this.TenSP = data.data.tenSP;
-      this.SoLuong = data.data.soLuong;
-      this.GiaTien = data.data.giaTien;
+      this.MaDonHang = data?.data[0].maDonHang
+      this.TenSP = data?.data[0].tenSP;
+      this.SoLuong = data?.data[0].soLuong;
+      this.GiaTien = data?.data[0].giaTien;
       this.Tonghoadon = this.SoLuong * this.GiaTien;
-      console.log(this.TenSP)
     })
 
 

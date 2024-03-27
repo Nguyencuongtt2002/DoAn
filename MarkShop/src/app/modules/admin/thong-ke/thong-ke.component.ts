@@ -42,10 +42,11 @@ export class ThongKeComponent implements OnInit {
 
   LoadThongKeSoLuong = () => {
     this.service.thongKeTongSoLuong().subscribe(res => {
+      console.log(res)
       this.thongketongsoluong = res;
-      this.tongSanPham = this.thongketongsoluong.tongSanPham;
-      this.tongNguoiDung = this.thongketongsoluong.tongNguoiDung;
-      this.tongDoanhThu = this.thongketongsoluong.tongDoanhThu
+      this.tongSanPham = this.thongketongsoluong?.tongSanPham ?? 0;
+      this.tongNguoiDung = this.thongketongsoluong?.tongNguoiDung ?? 0;
+      this.tongDoanhThu = this.thongketongsoluong?.tongDoanhThu ?? 0;
     })
   }
   LoadDoanhThuTheoThang = () => {

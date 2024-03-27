@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { AuthService } from './auth.service';
-
+import Swal from 'sweetalert2';
 @Injectable({
     providedIn: 'root',
 })
@@ -17,12 +17,19 @@ export class AuthGuard {
                 }
                 // vai trò Nhân viên
                 else if (user.vaiTro === "Nhân viên") {
-                    if (state.url === '/admin/ad-nguoidung') {
-                        this.router.navigate(['/dang-nhap-admin']);
-                        return false;
-                    } else {
-                        return true;
-                    }
+                    // Hiển thị thông báo sử dụng Swal
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Truy cập bị từ chối',
+                        text: 'Nhân viên không có quyền truy cập vào trang này!',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed || result.isDismissed) {
+                            this.router.navigate(['/dang-nhap-admin']);
+                        }
+                    });
+                    return false;
                 }
                 else {
                     // vai trò khách hàng

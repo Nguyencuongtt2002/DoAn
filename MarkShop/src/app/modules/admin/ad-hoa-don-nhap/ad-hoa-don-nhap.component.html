@@ -84,13 +84,14 @@
                         <form novalidate name="frmLoaiSP" id="frmLoaiSP" class="form-horizontal row-border">
                             <h3 class="text-center mb-3 font-weight-bold">Chi tiết hóa đơn</h3>
                             <div class="form-group row">
-                                <label class="col-md-4 control-label" for="idTenLoaiSanPham1">Mã Sản phẩm:</label>
+                                <label class="col-md-4 control-label" for="idTenLoaiSanPham1">Tên Sản phẩm:</label>
                                 <div class="col-md-8">
-                                    <select class="form-control" id="MaSanPham" name="newcthoadonnhap.maSanPham"
+                                    <select class="form-control" id="TenSanPham" name="newcthoadonnhap.maSanPham"
                                         [(ngModel)]="newcthoadonnhap.maSanPham">
                                         <option value="" disabled selected>Chọn sản phẩm</option>
                                         <option *ngFor="let sp of listsanpham" [value]="sp.maSanPham">
-                                            {{sp.maSanPham}}-{{sp.tenSP}}</option>
+                                            {{ sp.tenSP }}
+                                        </option>
                                     </select>
                                 </div>
                             </div>
@@ -122,7 +123,7 @@
                     <table class="table table-bordered table-striped mt-4">
                         <thead class="thead-dark">
                             <tr class="text-center">
-                                <th style="width: 10%;">Mã SP</th>
+                                <th style="width: 10%;">Tên SP</th>
                                 <th style="width: 10%;">Số lượng</th>
                                 <th style="width: 10%;">Giá tiền</th>
                                 <th style="width: 5%;">Thao tác</th>
@@ -130,7 +131,7 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let ct of chitiethoadonnhap; let i = index">
-                                <td>{{ct.maSanPham}}</td>
+                                <td>{{ct.tenSP}}</td>
                                 <td>{{ct.soLuong}}</td>
                                 <td>{{ct.giaTien}}</td>
                                 <td>
@@ -234,7 +235,7 @@
                     <table class="table table-bordered table-striped mt-4">
                         <thead class="thead-dark">
                             <tr class="text-center">
-                                <th style="width: 40%;">Mã SP</th>
+                                <th style="width: 40%;">Tên SP</th>
                                 <th style="width: 20%;">Số lượng</th>
                                 <th style="width: 20%;">Giá tiền</th>
                                 <th style="width: 20%;">Thao tác</th>

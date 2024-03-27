@@ -40,4 +40,7 @@ export class NguoidungService {
     Delete(id: number): Observable<any> {
         return this.http.delete<any>(`${_api}/api/NguoiDung/xoa/` + id, { headers: headers });
     }
+    ResetMatKhau(obj: any): Observable<any> {
+        return this.http.post<Array<any>>(_api + '/api/NguoiDung/resetmatkhau', obj, { headers: headers });
+    }
 }

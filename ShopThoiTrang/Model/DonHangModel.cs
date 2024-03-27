@@ -14,6 +14,7 @@ namespace Model
         public string? HoTen {  get; set; }
         public string? DiaChi { get; set; }
         public string? SoDienThoai { get; set; }
+        public string? PhuongThucThanhToan { get; set; }
         public int? MaNguoiDung { get; set; }
         public int? TinhTrang { get; set; }
         public int? TrangThai { get; set; }
@@ -22,7 +23,7 @@ namespace Model
         public int? SoLuong { get; set; }
         public int? GiaTien { get; set; }
         public int? TongTien { get; set; }
-        public List<ChiTietDonHangModel> p_list_json_chitiet_hoadon { get; set; }
+        public List<ChiTietDonHangModel>? p_list_json_chitiet_hoadon { get; set; }
 
     }
     public class ChiTietDonHangModel

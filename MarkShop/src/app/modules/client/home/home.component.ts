@@ -96,7 +96,4 @@ export class HomeComponent implements OnInit {
     await this.load2.loadScript('/assets/JS/jquery-3.5.1.min.js')
     await this.load2.loadScript('/assets/JS/index.js')
   }
-  test() {
-    this.toastr.success('Đã thêm vào giỏ hàng!', 'Success');
-  }
 }

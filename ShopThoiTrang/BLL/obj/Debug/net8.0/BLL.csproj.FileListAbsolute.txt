@@ -15,3 +15,4 @@ D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\BLL\obj\Debug\net8.0\BLL.dll
 D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\BLL\obj\Debug\net8.0\refint\BLL.dll
 D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\BLL\obj\Debug\net8.0\BLL.pdb
 D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\BLL\obj\Debug\net8.0\ref\BLL.dll
+D:\Đồ Án\Đồ án tốt nghiệp\ShopThoiTrang\BLL\obj\Debug\net8.0\BLL.sourcelink.json

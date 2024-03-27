@@ -24,7 +24,7 @@ namespace BLL
         }
         public NguoiDungModel DangNhap(string TaiKhoan, string MatKhau)
         {
-            var nguoidung = _res.DangNhap(TaiKhoan,MatKhau);
+            var nguoidung = _res.DangNhap(TaiKhoan, MatKhau);
 
             if (nguoidung == null)
                 return null;
@@ -37,7 +37,9 @@ namespace BLL
                 {
                     new Claim(ClaimTypes.Name, nguoidung.HoTen.ToString()),
                     new Claim(ClaimTypes.Email, nguoidung.Email.ToString()),
-                    new Claim(ClaimTypes.StreetAddress, nguoidung.DiaChi.ToString())
+                    new Claim(ClaimTypes.StreetAddress, nguoidung.DiaChi.ToString()),
+                    new Claim(ClaimTypes.MobilePhone, nguoidung.SoDienThoai.ToString()),
+                    new Claim(ClaimTypes.Role, nguoidung.VaiTro.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
@@ -70,6 +72,10 @@ namespace BLL
         public bool Delete(int ma)
         {
             return _res.Delete(ma);
+        }
+        public bool ResetMatKhau(NguoiDungModel model)
+        {
+            return _res.ResetMatKhau(model);
         }
     }
 }

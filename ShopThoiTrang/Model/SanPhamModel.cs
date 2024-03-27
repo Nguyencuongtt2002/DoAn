@@ -20,7 +20,7 @@ namespace Model
         public string? TenSize { get; set; }
         public int MaThuongHieu { get; set; }
         public string? TenThuongHieu { get; set; }
-        public int? TongSoLuong { get; set; }
+        public int? SoLuong { get; set; }
         public int? DonGia { get; set; }
         public int? PhanTram { get; set; }
         public int? GiaMoiKhiGiam { get; set; }
