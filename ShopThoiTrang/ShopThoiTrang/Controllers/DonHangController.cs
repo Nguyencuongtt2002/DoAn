@@ -76,6 +76,14 @@ namespace ShopThoiTrang.Controllers
             return model;
         }
         [AllowAnonymous]
+        [Route("capnhat-donhang")]
+        [HttpPost]
+        public DonHangModel CapNhatDonHang([FromBody] DonHangModel model)
+        {
+            _donhangBus.CapNhatDonHang(model);
+            return model;
+        }
+        [AllowAnonymous]
         [Route("lichsumuahang/{MaNguoiDung}")]
         [HttpGet]
         public IActionResult LichSuMuaHang(int MaNguoiDung)

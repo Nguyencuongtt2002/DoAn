@@ -74,8 +74,6 @@ export class ThanhToanComponent implements OnInit {
     return true;
   }
 
-
-
   ThanhToan = () => {
     if (this.KiemTraThongTin()) {
       const obj: {
@@ -83,6 +81,7 @@ export class ThanhToanComponent implements OnInit {
         diaChi: string,
         soDienThoai: string,
         maNguoiDung: number,
+        tinhTrang: number,
         phuongThucThanhToan: string,
         ngayGiao: Date;
         p_list_json_chitiet_hoadon: { maSanPham: number; soLuong: number; giaTien: number }[];
@@ -91,12 +90,12 @@ export class ThanhToanComponent implements OnInit {
         diaChi: this.DiaChi,
         soDienThoai: this.SoDienThoai,
         maNguoiDung: this.MaNguoiDung,
+        tinhTrang: this.phuongThucThanhToan === 'Chuyển khoản' ? 3 : 0,
         phuongThucThanhToan: this.phuongThucThanhToan,
         ngayGiao: this.NgayGiao,
         p_list_json_chitiet_hoadon: []
       };
-
-      const danhSachSanPham: any[] = JSON.parse(localStorage.getItem('cart') || '[]');
+      const danhSachSanPham = JSON.parse(localStorage.getItem('cart') || '[]');
       for (const sanpham of danhSachSanPham) {
         obj.p_list_json_chitiet_hoadon.push({
           maSanPham: sanpham.MaSanPham,
@@ -104,7 +103,6 @@ export class ThanhToanComponent implements OnInit {
           giaTien: sanpham.DonGia
         });
       }
-
       this.dh.thanhToan(obj).subscribe(
         () => {
           Swal.fire({
@@ -116,19 +114,21 @@ export class ThanhToanComponent implements OnInit {
           }).then((result) => {
             if (result.isConfirmed) {
               localStorage.removeItem('cart');
-              this.dh.getNewDonHang().subscribe((res) => {
-                this.vnPay(res.maDonHang)
-              })
+              if (this.phuongThucThanhToan === 'Chuyển khoản') {
+                this.dh.getNewDonHang().subscribe((res) => {
+                  this.vnPay(res.maDonHang);
+                });
+              }
             }
           });
         },
         error => {
-          console.error('Error during payment:', error);
           Swal.fire('Lỗi', 'Đã xảy ra lỗi trong quá trình thanh toán', 'error');
         }
       );
     }
   }
+
   //Thanh toán online
   vnPay = (id: number) => {
     const payment: PaymentInformation = {
@@ -137,7 +137,7 @@ export class ThanhToanComponent implements OnInit {
       amount: this.TongGia,
       orderDescription: '',
       orderType: "other",
-      url: `${window.location.origin}/`
+      url: `${window.location.origin}/camon`
     }
 
     this.dh.vnpay(payment).subscribe(res => {

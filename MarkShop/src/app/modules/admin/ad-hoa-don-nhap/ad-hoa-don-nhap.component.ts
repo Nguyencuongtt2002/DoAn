@@ -131,7 +131,7 @@ export class AdHoaDonNhapComponent implements OnInit {
       }
     );
   }
-  //Thêm thông số 
+  //Thêm chi tiết hóa đơn nhập 
   addCT() {
     if (this.newcthoadonnhap.maSanPham && this.newcthoadonnhap.soLuong && this.newcthoadonnhap.giaTien) {
       const selectedProduct = this.listsanpham.find(product => product.maSanPham === parseInt(this.newcthoadonnhap.maSanPham, 10));

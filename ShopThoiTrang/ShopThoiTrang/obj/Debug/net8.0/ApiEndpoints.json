@@ -205,6 +205,32 @@
   },
   {
     "ContainingType": "ShopThoiTrang.Controllers.DonHangController",
+    "Method": "CapNhatDonHang",
+    "RelativePath": "api/DonHang/capnhat-donhang",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "Model.DonHangModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Model.DonHangModel",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ShopThoiTrang.Controllers.DonHangController",
     "Method": "DuyetDonHang",
     "RelativePath": "api/DonHang/duyetdon/{ma}",
     "HttpMethod": "GET",

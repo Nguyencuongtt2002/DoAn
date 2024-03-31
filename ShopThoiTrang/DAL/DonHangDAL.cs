@@ -73,6 +73,7 @@ namespace DAL
                 "@p_DiaChi",model.DiaChi,
                 "@p_SoDienThoai",model.SoDienThoai,
                 "@p_MaNguoiDung",model.MaNguoiDung,
+                "@p_TinhTrang",model.TinhTrang,
                 "@p_PhuongThucThanhToan",model.PhuongThucThanhToan,
                 "@p_NgayGiao",model.NgayGiao,
                 "@p_list_json_chitiet_hoadon", model.p_list_json_chitiet_hoadon != null ? MessageConvert.SerializeObject(model.p_list_json_chitiet_hoadon) : null);
@@ -102,6 +103,7 @@ namespace DAL
                 throw ex;
             }
         }
+
         public List<DonHangModel> LichSuMuaHang(int MaNguoiDung)
         {
             string msgError = "";
@@ -112,6 +114,26 @@ namespace DAL
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
                 return dt.ConvertTo<DonHangModel>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public bool CapNhatDonHang(DonHangModel model)
+        {
+            string msgError = "";
+            try
+            {
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_capnhat_DonHang",
+                "@p_MaDonHang", model.MaDonHang,
+                "@p_TinhTrang", model.TinhTrang);
+
+                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception(Convert.ToString(result) + msgError);
+                }
+                return true;
             }
             catch (Exception ex)
             {

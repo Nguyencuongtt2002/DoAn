@@ -12,9 +12,12 @@ namespace ShopThoiTrang.Controllers
     public class VnPayController : ControllerBase
     {
         private IVnPayBus _bll;
-        public VnPayController(IVnPayBus bll)
+        private IDonHangBus _blldonhang;
+        public VnPayController(IVnPayBus bll, IDonHangBus blldonhang)
         {
             _bll = bll;
+            _blldonhang = blldonhang;
+
         }
 
         [Route("vnpay")]
@@ -39,6 +42,13 @@ namespace ShopThoiTrang.Controllers
             try
             {
                 var response = _bll.PaymentExecute(Request.Query);
+                if(response.Success)
+                {
+                    DonHangModel model = new DonHangModel();
+                    model.MaDonHang = int.Parse(response.OrderId);
+                    model.TinhTrang = 4;
+                    _blldonhang.CapNhatDonHang(model);
+                }
                 return Ok(response);
             }
             catch (Exception ex)

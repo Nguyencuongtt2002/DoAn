@@ -35,6 +35,7 @@ import { ChiTietTinTucComponent } from './modules/client/chi-tiet-tin-tuc/chi-ti
 import { TimKiemComponent } from './modules/client/tim-kiem/tim-kiem.component';
 import { SanPhamComponent } from './modules/client/san-pham/san-pham.component';
 import { ErrorComponentComponent } from './error-component/error-component.component';
+import { CamOnComponent } from './modules/client/cam-on/cam-on.component';
 
 
 
@@ -110,6 +111,11 @@ const routes: Routes = [
         component: SanPhamComponent,
         title: 'sản phẩm'
       },
+      {
+        path: 'camon',
+        component: CamOnComponent,
+        title: 'cảm ơn'
+      }
     ],
 
   },

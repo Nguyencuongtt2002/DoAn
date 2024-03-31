@@ -14,6 +14,7 @@ namespace DAL
         bool CreateDonHang(DonHangModel model);
         List<DonHangModel> LichSuMuaHang(int MaNguoiDung);
         bool HuyDonHang(DonHangModel model);
+        bool CapNhatDonHang(DonHangModel model);
         bool DuyetDonHang(int ma);
         List<ChiTietDonHangModel> GetCTDonHangTheoDonHang(int MaDonHang , int MaSanPham);
         List<LienHeModel> ThongTinLienHe();
