@@ -9,10 +9,11 @@ namespace BLL
         DonHangModel GetNew();
         List<DonHangModel> LichSuMuaHang(int MaNguoiDung);
         bool HuyDonHang(DonHangModel model);
-        bool DuyetDonHang(int ma);
+        bool DuyetDonHang(DonHangModel model);
         List<ChiTietDonHangModel> GetCTDonHangTheoDonHang(int MaDonHang, int MaSanPham);
         List<LienHeModel> ThongTinLienHe();
         bool CapNhatDonHang(DonHangModel model);
+        bool CapNhatDonHangKhiGiao(DonHangModel model);
 
     }
 }

@@ -36,22 +36,37 @@
                     <td>{{dh.soDienThoai}}</td>
 
                     <!-- Use Bootstrap styling for "Chưa thanh toán" -->
-                    <ng-container *ngIf="dh.tinhTrang === 0 && dh.trangThai === 0">
-                        <td class="badge badge-danger">Chưa thanh toán</td>
+                    <ng-container *ngIf="(dh.tinhTrang === 0 || dh.tinhTrang === 1 ) && dh.trangThai === 0">
+                        <td class="badge badge-danger">Chờ duyệt</td>
                         <td style="width: 70px">
-                            <button class="btn btn-warning btnDuyetDH" (click)="DuyetDon(dh.maDonHang)">Duyệt</button>
+                            <button class="btn btn-warning btnDuyetDH" (click)="DuyetDon(dh)">Duyệt</button>
                         </td>
                     </ng-container>
 
-                    <!-- Use Bootstrap styling for "Đã thanh toán" -->
                     <ng-container *ngIf="dh.tinhTrang === 1  && dh.trangThai ==1">
-                        <td class="badge badge-success">Đã thanh toán</td>
+                        <td class="badge badge-success">Đã duyệt</td>
                         <td></td>
                     </ng-container>
+
                     <ng-container *ngIf="dh.trangThai === 2 && (dh.tinhTrang === 1 || dh.tinhTrang === 0)">
-                        <td class="badge badge-success">Đã hủy</td>
+                        <td class="badge badge-secondary">Đã hủy</td>
+                    </ng-container>
+
+                    <ng-container *ngIf="dh.trangThai === 3 && dh.tinhTrang === 3 ">
+                        <td class="badge badge-primary">Chờ thanh toán</td>
                         <td></td>
                     </ng-container>
+
+                    <ng-container *ngIf="dh.trangThai === 4 && dh.tinhTrang === 4 ">
+                        <td class="badge badge-info">Đã thanh toán</td>
+                        <td></td>
+                    </ng-container>
+
+                    <ng-container *ngIf="dh.trangThai === 5 && dh.tinhTrang === 5 ">
+                        <td class="badge badge-warning">Đã hoàn thành</td>
+                        <td></td>
+                    </ng-container>
+
                 </tr>
             </tbody>
         </table>

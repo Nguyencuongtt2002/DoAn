@@ -84,7 +84,7 @@ export class ThanhToanComponent implements OnInit {
         tinhTrang: number,
         phuongThucThanhToan: string,
         ngayGiao: Date;
-        p_list_json_chitiet_hoadon: { maSanPham: number; soLuong: number; giaTien: number }[];
+        p_list_json_chitiet_hoadon: { maSanPham: number; soLuong: number; giaTien: number, trangThai: number }[];
       } = {
         hoTen: this.TenKhachHang,
         diaChi: this.DiaChi,
@@ -100,7 +100,8 @@ export class ThanhToanComponent implements OnInit {
         obj.p_list_json_chitiet_hoadon.push({
           maSanPham: sanpham.MaSanPham,
           soLuong: sanpham.SoLuong,
-          giaTien: sanpham.DonGia
+          giaTien: sanpham.DonGia,
+          trangThai: this.phuongThucThanhToan === 'Chuyển khoản' ? 3 : 0,
         });
       }
       this.dh.thanhToan(obj).subscribe(
@@ -114,7 +115,10 @@ export class ThanhToanComponent implements OnInit {
           }).then((result) => {
             if (result.isConfirmed) {
               localStorage.removeItem('cart');
-              if (this.phuongThucThanhToan === 'Chuyển khoản') {
+              if (this.phuongThucThanhToan === 'Thanh toán khi giao hàng') {
+                location.href = '/'
+              }
+              else if (this.phuongThucThanhToan === 'Chuyển khoản') {
                 this.dh.getNewDonHang().subscribe((res) => {
                   this.vnPay(res.maDonHang);
                 });

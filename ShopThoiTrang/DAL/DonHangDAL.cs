@@ -127,7 +127,30 @@ namespace DAL
             {
                 var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_capnhat_DonHang",
                 "@p_MaDonHang", model.MaDonHang,
-                "@p_TinhTrang", model.TinhTrang);
+                "@p_TinhTrang", model.TinhTrang,
+                "@p_TrangThai",model.TrangThai);
+
+                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception(Convert.ToString(result) + msgError);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public bool CapNhatDonHangKhiGiao(DonHangModel model)
+        {
+            string msgError = "";
+            try
+            {
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_capnhatthanhtoankhigiao_DonHang",
+                "@p_MaDonHang", model.MaDonHang,
+                "@p_MaSanPham",model.MaSanPham,
+                "@p_TinhTrang", model.TinhTrang,
+                "@p_TrangThai",model.TrangThai);
 
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
@@ -160,13 +183,14 @@ namespace DAL
                 throw ex;
             }
         }
-        public bool DuyetDonHang(int ma)
+        public bool DuyetDonHang(DonHangModel model)
         {
             string msgError = "";
             try
             {
                 var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_duyetdon_DonHang",
-                "@p_MaDonHang", ma);
+                "@p_MaDonHang", model.MaDonHang,
+                "@p_MaSanPham",model.MaSanPham);
 
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {

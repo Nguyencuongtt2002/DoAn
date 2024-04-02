@@ -4,7 +4,8 @@ import { Observable } from 'rxjs';
 import { Donhang } from 'src/app/models/donhang';
 import { Lienhe } from 'src/app/models/lienhe';
 import { Loaisanpham } from 'src/app/models/loaisanpham';
-const _api = 'https://localhost:44377';
+import { API_BASE_URL } from './api';
+const _api = API_BASE_URL;
 const _user = JSON.parse(localStorage.getItem('user') || '{}');
 const headers = new HttpHeaders({
     'Authorization': 'Bearer ' + _user.token
@@ -22,12 +23,8 @@ export class DonhangService {
     getChiTietDonHangByDonHang(obj: any): Observable<any> {
         return this.http.post(`${_api}/api/DonHang/getctdonhangbydonhang`, obj);
     }
-    // getOrderProductDetails(obj: any): Observable<any> {
-    //     return this.http.post(`${_api}/hoadon/GetOrderProductDetails`, obj);
-    // }
-    DuyetDon(MaDonHang: number): Observable<any> {
-        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + _user.token);
-        return this.http.get(`${_api}/api/DonHang/duyetdon/${MaDonHang}`, { headers });
+    DuyetDon(obj: any): Observable<any> {
+        return this.http.post(_api + '/api/DonHang/duyetdon', obj, { headers });
     }
     getlienheAll(obj: any): Observable<any> {
         return this.http.post<any>(_api + '/api/LienHe/get-all', obj);
@@ -58,6 +55,9 @@ export class DonhangService {
     }
     capNhatDonHang(obj: any): Observable<any> {
         return this.http.post<any>(_api + '/api/DonHang/capnhat-donhang', obj, { headers })
+    }
+    capNhatDonHangKhiGiao(obj: any): Observable<any> {
+        return this.http.post<any>(_api + '/api/DonHang/capnhat-donhang-khigiao', obj, { headers })
     }
 
 }

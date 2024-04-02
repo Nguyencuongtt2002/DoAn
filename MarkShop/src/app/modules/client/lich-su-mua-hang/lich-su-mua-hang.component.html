@@ -44,24 +44,45 @@
                                     <td>{{donHang.ngayGiao | date: 'dd/MM/yyyy'}}</td>
                                     <td>{{donHang.tenSP}}</td>
                                     <td>
-                                        {{donHang.trangThai === 1 ? 'Đang giao' : (donHang.trangThai === 0 ? 'Đang lấy
-                                        hàng' : 'Đã hủy')}}
+                                        <span
+                                            *ngIf="(donHang.tinhTrang === 5 ||donHang.tinhTrang === 4) && donHang.trangThai === 4"
+                                            class="badge badge-success">Đã thanh
+                                            toán</span>
+                                        <span *ngIf="donHang.tinhTrang === 3 && donHang.trangThai === 3"
+                                            class="badge badge-warning">Chờ thanh
+                                            toán</span>
+                                        <span *ngIf="donHang.tinhTrang === 5 && donHang.trangThai === 5"
+                                            class="badge badge-info">Đã hoàn thành</span>
+                                        <span *ngIf="donHang.tinhTrang === 0 && donHang.trangThai === 2"
+                                            class="badge badge-danger">Đã hủy</span>
+                                        <span
+                                            *ngIf="(donHang.tinhTrang === 1 || donHang.tinhTrang === 5) && donHang.trangThai === 1"
+                                            class="badge badge-primary">Đang giao</span>
+                                        <span *ngIf="donHang.tinhTrang === 0 && donHang.trangThai === 0"
+                                            class="badge badge-secondary">Chờ xử lý</span>
                                     </td>
+
                                     <td>
                                         <button
-                                            *ngIf="donHang.tinhTrang === 0 && donHang.trangThai === 0; else disabledButton"
+                                            *ngIf="(donHang.tinhTrang === 0 && donHang.trangThai === 0) || (donHang.tinhTrang === 3 && donHang.trangThai === 3)"
                                             class="btn btn-danger btnHuyDon"
                                             (click)="huyDon(donHang.maDonHang, donHang.maSanPham)">
                                             Huỷ đơn
                                         </button>
-                                        <ng-template #disabledButton>
-                                            <button class="btn btn-danger btnHuyDon" disabled style="cursor: no-drop">
-                                                Huỷ đơn
-                                            </button>
-                                        </ng-template>
+                                        <button
+                                            *ngIf="!(donHang.tinhTrang === 0 && donHang.trangThai === 0) && !(donHang.tinhTrang === 3 && donHang.trangThai === 3)"
+                                            class="btn btn-danger btnHuyDon" disabled>
+                                            Huỷ đơn
+                                        </button>
                                         <button class="btn btnXemChiTiet btn-primary" data-toggle="modal"
                                             data-target="#exampleModal" (click)="XemChiTiet(donHang)">
                                             <i class="fas fa-eye"></i> Xem
+                                        </button>
+                                        <button style="margin-top: 5px;" *ngIf="(donHang.tinhTrang === 5 && donHang.trangThai === 1) || (donHang.tinhTrang === 1 && donHang.trangThai === 1) || (donHang.tinhTrang === 4 && donHang.trangThai === 4) 
+                                            || (donHang.tinhTrang === 5 && donHang.trangThai === 4)"
+                                            class="btn btn-success"
+                                            (click)="daNhanHang(donHang.maDonHang, donHang.maSanPham)">
+                                            Đã nhận hàng
                                         </button>
                                     </td>
                                 </tr>
@@ -131,7 +152,12 @@
                     </tbody>
                 </table>
             </div>
+
             <div class="modal-footer">
+                <ng-container *ngIf="TinhTrang === 3">
+                    <button type="button" class="btn btn-success" data-dismiss="modal" (click)="vnPay(MaDonHang)">Thanh
+                        toán</button>
+                </ng-container>
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
             </div>
         </div>

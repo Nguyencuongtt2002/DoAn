@@ -1,0 +1,19 @@
+/* CSS for badges */
+.badge {
+    font-size: 12px;
+    padding: 5px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    margin-right: 5px;
+}
+
+/* CSS for buttons */
+.btn {
+    font-size: 14px;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+/* Additional styles if needed */

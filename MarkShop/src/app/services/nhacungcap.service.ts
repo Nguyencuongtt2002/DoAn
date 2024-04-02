@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-const _api = 'https://localhost:44377';
+import { API_BASE_URL } from './api';
+const _api = API_BASE_URL;
 const _user = JSON.parse(localStorage.getItem('user') || '{}');
 const headers = new HttpHeaders({
     'Authorization': 'Bearer ' + _user.token

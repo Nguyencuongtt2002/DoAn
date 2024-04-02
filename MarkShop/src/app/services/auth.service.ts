@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-const _api = 'https://localhost:44377';
+import { API_BASE_URL } from './api';
+const _api = API_BASE_URL;
 @Injectable({
     providedIn: 'root',
 })

@@ -47,6 +47,7 @@ namespace ShopThoiTrang.Controllers
                     DonHangModel model = new DonHangModel();
                     model.MaDonHang = int.Parse(response.OrderId);
                     model.TinhTrang = 4;
+                    model.TrangThai = 4;
                     _blldonhang.CapNhatDonHang(model);
                 }
                 return Ok(response);

@@ -53,12 +53,10 @@ export class AdDonHangComponent implements OnInit {
     });
   }
   tongDoanhThu() {
-    this.TongTien = 0; // Reset giá trị tổng doanh thu về 0 trước khi tính toán lại
-
     // Duyệt qua mỗi đơn hàng trong mảng donhang
     this.donhang.forEach(dh => {
       // Kiểm tra điều kiện tinhTrang và trangThai
-      if (dh.tinhTrang === 1 && dh.trangThai === 1) {
+      if (dh.tinhTrang === 5 && dh.trangThai === 5) {
         const obj = {
           maDonHang: dh.maDonHang,
           maSanPham: dh.maSanPham
@@ -67,9 +65,9 @@ export class AdDonHangComponent implements OnInit {
         // Gọi service để lấy thông tin chi tiết đơn hàng
         this.donhangSrv.getChiTietDonHangByDonHang(obj).subscribe(res => {
           this.chitietdonhang = res.data;
-          this.GiaTien = this.chitietdonhang.giaTien;
-          this.Tonghoadon = this.GiaTien * this.chitietdonhang.soLuong;
-
+          this.GiaTien = this.chitietdonhang[0].giaTien;
+          this.Tonghoadon = this.GiaTien * this.chitietdonhang[0].soLuong;
+          console.log(res.data)
           // Cộng giá trị tổng hóa đơn vào tổng doanh thu
           this.TongTien += this.Tonghoadon;
         });
@@ -92,7 +90,7 @@ export class AdDonHangComponent implements OnInit {
     });
   }
 
-  DuyetDon(MaDonHang: number) {
+  DuyetDon(item: any) {
     Swal.fire({
       title: 'Thông báo',
       text: 'Bạn có chắc chắn duyệt đơn hàng này không?',
@@ -104,7 +102,11 @@ export class AdDonHangComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         // User clicked "Duyệt"
-        this.donhangSrv.DuyetDon(MaDonHang).subscribe(res => {
+        const obj = {
+          maDonHang: item.maDonHang,
+          maSanPham: item.maSanPham
+        }
+        this.donhangSrv.DuyetDon(obj).subscribe(res => {
           // Assuming the AJAX request is successful
           Swal.fire({
             title: 'Thông báo',

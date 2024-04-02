@@ -5,7 +5,7 @@ import { LoaisanphamService } from 'src/app/services/loaisanpham.service';
 import { NguoidungService } from 'src/app/services/nguoidung.service';
 import Swal from 'sweetalert2';
 import { Lienhe } from 'src/app/models/lienhe';
-
+import { PaymentInformation } from 'src/app/models/vnpay';
 @Component({
   selector: 'app-lich-su-mua-hang',
   templateUrl: './lich-su-mua-hang.component.html',
@@ -22,7 +22,7 @@ export class LichSuMuaHangComponent implements OnInit {
   TenSP: string = '';
   SoLuong: number = 0;
   GiaTien: number = 0;
-
+  TinhTrang: number = 0;
   lienhe: Array<Lienhe> = new Array<Lienhe>();
   constructor(private donhangService: DonhangService, private loaisanpham: LoaisanphamService, private nd: NguoidungService) { }
 
@@ -80,7 +80,8 @@ export class LichSuMuaHangComponent implements OnInit {
     this.HoTen = donhang.hoTen;
     this.DiaChi = donhang.diaChi;
     this.SoDienThoai = donhang.soDienThoai
-
+    this.MaDonHang = donhang.maDonHang
+    this.TinhTrang = donhang.tinhTrang
     const lienhe = {
       page: 1,
       pageSize: 1,
@@ -105,6 +106,61 @@ export class LichSuMuaHangComponent implements OnInit {
     })
 
 
+  }
+  daNhanHang = (MaDonHang: number, MaSanPham: number) => {
+    const obj = {
+      maDonHang: MaDonHang,
+      maSanPham: MaSanPham,
+      tinhTrang: 5,
+      trangThai: 5
+    }
+
+    Swal.fire({
+      title: 'Xác nhận',
+      text: `Bạn có chắc chắn muốn nhận  sản phẩm có mã ${MaSanPham} của đơn hàng ${MaDonHang} này?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Có',
+      cancelButtonText: 'Hủy',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.donhangService.capNhatDonHangKhiGiao(obj).subscribe(res => {
+          Swal.fire({
+            title: 'Thông báo',
+            text: 'Cảm ơn bạn đã mua hàng tại shop',
+            icon: 'success'
+          }).then(() => {
+            this.lichsumuahang();
+          });
+        })
+      }
+    })
+  }
+  //Thanh toán online
+  vnPay = (id: number) => {
+    const payment: PaymentInformation = {
+      orderId: id,
+      name: this.HoTen,
+      amount: this.Tonghoadon,
+      orderDescription: '',
+      orderType: "other",
+      url: `${window.location.origin}/camon`
+    }
+
+    this.donhangService.vnpay(payment).subscribe(res => {
+      if (res.success) {
+        window.location.href = res.data;
+      }
+      else {
+        Swal.fire({
+          icon: 'warning',
+          title: 'Cảnh báo',
+          text: res.message
+        });
+      }
+    });
   }
 }
 

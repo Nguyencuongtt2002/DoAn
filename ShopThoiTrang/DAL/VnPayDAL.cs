@@ -72,6 +72,14 @@ namespace DAL
                 {
                     Success = false
                 };
+            var transactionStatus = vnPay.GetResponseData("vnp_TransactionStatus");
+            if (transactionStatus != "00")
+            {
+                return new VnPaymentModel()
+                {
+                    Success = false
+                };
+            }
 
             return new VnPaymentModel()
             {

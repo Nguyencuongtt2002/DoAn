@@ -84,6 +84,14 @@ namespace ShopThoiTrang.Controllers
             return model;
         }
         [AllowAnonymous]
+        [Route("capnhat-donhang-khigiao")]
+        [HttpPost]
+        public DonHangModel CapNhatDonHangKhiGiao([FromBody] DonHangModel model)
+        {
+            _donhangBus.CapNhatDonHangKhiGiao(model);
+            return model;
+        }
+        [AllowAnonymous]
         [Route("lichsumuahang/{MaNguoiDung}")]
         [HttpGet]
         public IActionResult LichSuMuaHang(int MaNguoiDung)
@@ -112,11 +120,11 @@ namespace ShopThoiTrang.Controllers
             _donhangBus.HuyDonHang(model);
             return model;
         }
-        [Route("duyetdon/{ma}")]
-        [HttpGet]
-        public bool DuyetDonHang(int ma)
+        [Route("duyetdon")]
+        [HttpPost]
+        public bool DuyetDonHang([FromBody] DonHangModel model)
         {
-            return _donhangBus.DuyetDonHang(ma);
+            return _donhangBus.DuyetDonHang(model);
         }
         
 
