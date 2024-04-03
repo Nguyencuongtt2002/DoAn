@@ -2050,6 +2050,150 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ShopThoiTrang.Controllers.ThamSoController",
+    "Method": "GetALL",
+    "RelativePath": "api/ThamSo/get-all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Model.ThamSoModel, Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ShopThoiTrang.Controllers.ThamSoController",
+    "Method": "GetTheoMa",
+    "RelativePath": "api/ThamSo/getbyid/{ma}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ma",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Model.ThamSoModel",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ShopThoiTrang.Controllers.ThamSoController",
+    "Method": "Create",
+    "RelativePath": "api/ThamSo/them",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "MaThamSo",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "TenThamSo",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "KyHieu",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "NoiDung",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Anh",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "File",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ShopThoiTrang.Controllers.ThamSoController",
+    "Method": "Update",
+    "RelativePath": "api/ThamSo/update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "MaThamSo",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "TenThamSo",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "KyHieu",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "NoiDung",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Anh",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "File",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ShopThoiTrang.Controllers.ThamSoController",
+    "Method": "Xoa",
+    "RelativePath": "api/ThamSo/xoa/{ma}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ma",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ShopThoiTrang.Controllers.ThongKeController",
     "Method": "ThongKe_doanhthutheonam",
     "RelativePath": "api/ThongKe/doanhthutheonam",

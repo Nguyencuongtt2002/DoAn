@@ -67,6 +67,9 @@ builder.Services.AddTransient<INguoiDungBus, NguoiDungBus>();
 builder.Services.AddTransient<ICTTinTucDAL, CTTinTucDAL>();
 builder.Services.AddTransient<ICTTinTucBus, CTTinTucBus>();
 
+builder.Services.AddTransient<IThamSoDAL,ThamSoDAL>();
+builder.Services.AddTransient<IThamSoBus,ThamSoBus>();
+
 builder.Services.AddTransient<IHoaDonNhapDAL, HoaDonNhapDAL>();
 builder.Services.AddTransient<IHoaDonNhapBus, HoaDonNhapBus>();
 
