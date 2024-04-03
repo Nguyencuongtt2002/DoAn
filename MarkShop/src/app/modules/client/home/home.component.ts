@@ -7,6 +7,9 @@ import { LoadScriptService } from 'src/app/services/loadscript.service';
 import { SlideService } from 'src/app/services/slide.service';
 import { Slide } from 'src/app/models/slide';
 import { ToastrService } from 'ngx-toastr';
+import { Anh } from 'src/app/models/anh';
+import { AnhService } from 'src/app/services/anh.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -40,7 +43,7 @@ export class HomeComponent implements OnInit {
       }
     }
   };
-
+  ListAnh: Array<Anh> = new Array<Anh>();
   sanphammoi: Array<Sanpham> = new Array<Sanpham>();
   sanphambanchay: Array<Sanpham> = new Array<Sanpham>();
   sanphamgiamgia: Array<Sanpham> = new Array<Sanpham>();
@@ -50,6 +53,7 @@ export class HomeComponent implements OnInit {
     private cartSrv: CartService,
     private load2: LoadScriptService,
     private slide: SlideService,
+    private anh: AnhService,
     private toastr: ToastrService) { }
 
   ngOnInit(): void {
@@ -61,12 +65,12 @@ export class HomeComponent implements OnInit {
     this.SanPhamGiamGia();
     // lấy tất cả slide 
     this.getSlideAll();
-
+    // Lấy tất Cả ảnh 
+    this.getAnhAll();
     this.loadJS()
   }
   SanPhamMoi = () => {
     this.sp.getSanPhamMoi().subscribe(res => {
-      console.log(res)
       this.sanphammoi = res;
     })
   }
@@ -83,8 +87,12 @@ export class HomeComponent implements OnInit {
   getSlideAll = () => {
     //lấy tất cả slides
     this.slide.getSlideAll().subscribe(res => {
-      console.log(res)
       this.slides = res;
+    })
+  }
+  getAnhAll = () => {
+    this.anh.getAllAnh().subscribe(res => {
+      this.ListAnh = res
     })
   }
   //Thêm vào giỏ hàng

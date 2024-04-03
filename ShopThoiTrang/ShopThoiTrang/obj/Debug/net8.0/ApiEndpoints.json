@@ -1,5 +1,25 @@
 [
   {
+    "ContainingType": "ShopThoiTrang.Controllers.AnhController",
+    "Method": "GetALL",
+    "RelativePath": "api/Anh/get-all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Model.AnhModel, Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "ShopThoiTrang.Controllers.CTHoaDonNhapController",
     "Method": "ExportToExcel",
     "RelativePath": "api/CTHoaDonNhap/excel/{id}",
@@ -2080,6 +2100,32 @@
       {
         "Name": "ma",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Model.ThamSoModel",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ShopThoiTrang.Controllers.ThamSoController",
+    "Method": "GetTheoKyHieu",
+    "RelativePath": "api/ThamSo/getbykyhieu/{kyhieu}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "kyhieu",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],

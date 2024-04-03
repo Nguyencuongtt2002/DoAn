@@ -25,7 +25,6 @@ export class GiamGiaService {
         return this.http.put(`${_api}/api/GiamGia/update`, obj, { headers: headers });
     }
     getGiamGiaBySanPham(MaSanPham: number): Observable<any> {
-        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + _user.token);
         return this.http.get(`${_api}/api/GiamGia/getgiamgiabysanpham/${MaSanPham}`, { headers });
     }
 }

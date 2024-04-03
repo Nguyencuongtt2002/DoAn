@@ -10,7 +10,7 @@ namespace DAL
     public partial interface IThamSoDAL
     {
         List<ThamSoModel> GetALL();
-        //ThamSoModel GetTheoKyHieu(ThamSoModel model);
+        ThamSoModel GetTheoKyHieu(string kyhieu);
         ThamSoModel GetTheoMa(int ma);
         bool Create(ThamSoModel them);
         bool Update(ThamSoModel sua);

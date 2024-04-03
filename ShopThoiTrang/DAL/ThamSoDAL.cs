@@ -16,6 +16,22 @@ namespace DAL
         {
             _dbHelper = dbHelper;
         }
+        public ThamSoModel GetTheoKyHieu(string kyhieu)
+        {
+            string msgError = "";
+            try
+            {
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_getbykyhieu_ThamSo",
+                "@p_KyHieu", kyhieu);
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                return dt.ConvertTo<ThamSoModel>().FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public ThamSoModel GetTheoMa(int ma)
         {
             string msgError = "";

@@ -3,8 +3,8 @@ import { MenuService } from 'src/app/services/menu.service';
 import { Menu } from 'src/app/models/menu';
 import { CartService } from 'src/app/services/cart.service';
 import { NguoidungService } from 'src/app/services/nguoidung.service';
-
-
+import { ThamSo } from 'src/app/models/thamso';
+import { ThamSoService } from 'src/app/services/thamso.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -14,10 +14,16 @@ export class HeaderComponent {
   SoLuong: number = 0;
   TongGia: number = 0;
   menu: Array<Menu> = new Array<Menu>();;
-  isLogin: any
-  constructor(private menuService: MenuService, private nd: NguoidungService, private cartSrv: CartService) { }
+  isLogin: any;
+  logo: ThamSo = new ThamSo();
+  constructor(
+    private menuService: MenuService,
+    private nd: NguoidungService,
+    private cartSrv: CartService,
+    private thamsoService: ThamSoService) { }
 
   ngOnInit(): void {
+    this.loadThamSo();
     //lấy tất cả menu
     this.getMenuAll();
     this.cartSrv.cartUpdated.subscribe(() => {
@@ -46,5 +52,11 @@ export class HeaderComponent {
     var cart = this.cartSrv.loadGioHang();
     this.SoLuong = cart.SoLuong;
     this.TongGia = cart.TongGia;
+  }
+
+  loadThamSo = () => {
+    this.thamsoService.getByKyHieu("LOGO").subscribe(res => {
+      this.logo = res
+    });
   }
 }

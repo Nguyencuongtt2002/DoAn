@@ -24,6 +24,13 @@ namespace ShopThoiTrang.Controllers
             return _Bus.GetTheoMa(ma);
         }
         [AllowAnonymous]
+        [Route("getbykyhieu/{kyhieu}")]
+        [HttpGet]
+        public ThamSoModel GetTheoKyHieu(string kyhieu)
+        {
+            return _Bus.GetTheoKyHieu(kyhieu);
+        }
+        [AllowAnonymous]
         [Route("get-all")]
         [HttpGet]
         public IEnumerable<ThamSoModel> GetALL()

@@ -21,6 +21,10 @@ namespace BLL
         {
             return _res.GetTheoMa(ma);
         }
+        public ThamSoModel GetTheoKyHieu(string kyhieu)
+        {
+            return _res.GetTheoKyHieu(kyhieu);
+        }
         public List<ThamSoModel> GetALL()
         {
             return _res.GetALL();
