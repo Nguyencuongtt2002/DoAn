@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
-using static Org.BouncyCastle.Bcpg.Attr.ImageAttrib;
+using Newtonsoft.Json;
+using K4os.Compression.LZ4.Internal;
 namespace ShopThoiTrang.Controllers
 {
     [Authorize]
@@ -15,10 +16,13 @@ namespace ShopThoiTrang.Controllers
     public class DonHangController : ControllerBase
     {
         private IDonHangBus _donhangBus;
-        public DonHangController(IDonHangBus donhangBus )
+        private IThamSoBus _thamSoBus;
+        private IEmailBus _emailBus;
+        public DonHangController(IDonHangBus donhangBus ,IThamSoBus thamSoBus,IEmailBus emailBus)
         {
             _donhangBus = donhangBus;
-            
+            _thamSoBus = thamSoBus;
+            _emailBus = emailBus;
         }
         [Route("get-all")]
         [HttpGet]
@@ -28,12 +32,12 @@ namespace ShopThoiTrang.Controllers
         }
         [AllowAnonymous]
         [Route("getctdonhangbydonhang")]
-        [HttpPost]
+        [HttpGet]
         public IActionResult GetCTDonHangTheoDonHang([FromBody] ChiTietDonHangModel model)
         {
             try
             {
-                var data = _donhangBus.GetCTDonHangTheoDonHang(model.MaDonHang, model.MaSanPham);
+                var data = _donhangBus.GetCTDonHangTheoDonHang(model.MaDonHang);
                 if (data != null)
                 {
                     return Ok(new
@@ -113,6 +117,32 @@ namespace ShopThoiTrang.Controllers
             }
         }
         [AllowAnonymous]
+        [Route("order-email")]
+        [HttpPost]
+        public IActionResult OrderEmail([FromBody] NguoiDungModel model)
+        {
+            try
+            {
+                var thamso = _thamSoBus.GetTheoKyHieu("NAME");
+                var donhang = _donhangBus.GetTheoMa(model.MaDonHang);
+
+                var listchitietModel = _donhangBus.GetCTDonHangTheoDonHang(model.MaDonHang).Select(chitiet => new ChiTietDonHangModel
+                {
+                    TenSP = chitiet.TenSP,
+                    SoLuong = chitiet.SoLuong,
+                    GiaTien = chitiet.GiaTien
+                }).ToList();
+
+                _emailBus.OrderEmail(model.Email, thamso.NoiDung, donhang.HoTen, donhang.TongTien,donhang.DiaChi, donhang.SoDienThoai, listchitietModel);
+                return Ok(new { success = true, message = "Thông tin đơn hàng đã được gửi đến email của bạn" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { success = false, message = "Đã xảy ra lỗi: " + ex.Message });
+            }
+        }
+
+        [AllowAnonymous]
         [Route("huydon")]
         [HttpPost]
         public DonHangModel HuyDonHang([FromBody] DonHangModel model)
@@ -136,8 +166,9 @@ namespace ShopThoiTrang.Controllers
             {
                 var lienhe = _donhangBus.ThongTinLienHe();
                 var donhang = _donhangBus.GetALL();
+                var thamso = _thamSoBus.GetTheoKyHieu("NAME");
                 // Lấy thông tin đơn hàng và chi tiết đơn hàng từ BLL
-                var chiTietDonHang = _donhangBus.GetCTDonHangTheoDonHang(model.MaDonHang,model.MaSanPham);
+                var chiTietDonHang = _donhangBus.GetCTDonHangTheoDonHang(model.MaDonHang);
 
                 using (var package = new ExcelPackage())
                 {
@@ -145,7 +176,7 @@ namespace ShopThoiTrang.Controllers
                     var worksheet = package.Workbook.Worksheets.Add("Hoá Đơn");
 
                     // Thêm thông tin cửa hàng và hoá đơn vào các ô
-                    worksheet.Cells["A2"].Value = "Cửa hàng MarkShop";
+                    worksheet.Cells["A2"].Value = "Cửa hàng quần áo"+thamso.NoiDung;
                     worksheet.Cells["A3"].Value = "Địa chỉ : " + lienhe[0].DiaChi;
                     worksheet.Cells["A4"].Value = "Email: " + lienhe[0].Email;
                     worksheet.Cells["A5"].Value = "Số điện thoại: " + lienhe[0].SoDienThoai;

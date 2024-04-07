@@ -17,6 +17,7 @@ export class DangKyComponent implements OnInit {
   SoDienThoai: string = "";
   GioiTinh: string = "Nam";
   VaiTro: string = 'Khách hàng';
+  ConfirmationLink: string = "";
   constructor(private nd: NguoidungService) { }
 
   ngOnInit(): void { }
@@ -48,6 +49,8 @@ export class DangKyComponent implements OnInit {
     formData.append('SoDienThoai', this.SoDienThoai);
     formData.append('anhDaiDien', 'avatar.jpg');
     formData.append('vaiTro', this.VaiTro)
+    const confirmationLink = `${window.location.origin}/confirm`;
+    formData.append('confirmationLink', confirmationLink);
 
     this.nd.kiemtra(formData).subscribe(res => {
       console.log(res)
@@ -72,6 +75,7 @@ export class DangKyComponent implements OnInit {
           title: 'Registration Failed',
           text: 'Tài khoản hoặc email bạn nhập đã tồn tại .Vui lòng nhập lại !'
         });
+        return;
       }
     })
   }

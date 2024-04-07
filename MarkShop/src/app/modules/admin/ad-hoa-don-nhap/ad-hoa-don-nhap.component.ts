@@ -81,7 +81,6 @@ export class AdHoaDonNhapComponent implements OnInit {
       pageSize: 20
     }
     this.hdn.getAll(obj).subscribe(res => {
-      console.log(res.data)
       this.listhoadonnhap = res.data;
     })
   }
@@ -101,7 +100,6 @@ export class AdHoaDonNhapComponent implements OnInit {
           progressBar: true,
         });
         this.hdn.getNewHoaDonNhap().subscribe(res => {
-          console.log(res)
           for (let i = 0; i < this.chitiethoadonnhap.length; i++) {
             const obj: any = {
               maHDN: res.maHDN,
@@ -110,6 +108,8 @@ export class AdHoaDonNhapComponent implements OnInit {
               giaTien: this.chitiethoadonnhap[i].giaTien,
             }
             this.ct.create(obj).subscribe(res => { this.getallhdn(); });
+            console.log((this.chitiethoadonnhap[i].maSanPham))
+            this.tangSoLuong(this.chitiethoadonnhap[i].maSanPham, this.chitiethoadonnhap[i].soLuong)
           }
         })
         this.getallhdn();
@@ -131,11 +131,30 @@ export class AdHoaDonNhapComponent implements OnInit {
       }
     );
   }
+
+  tangSoLuong(maSanPham: number, soluong: number) {
+    this.sp.getOne(maSanPham).subscribe(res => {
+      const formData = new FormData();
+      formData.append('maSanPham', maSanPham.toString());
+      formData.append('soLuong', (Number(res.soLuong) + Number(soluong)).toString());
+      this.sp.update(formData).subscribe(res => { })
+    })
+  }
+  giamSoLuong(maSanPham: number, soluong: number) {
+    this.sp.getOne(maSanPham).subscribe(res => {
+      const formData = new FormData();
+      formData.append('maSanPham', maSanPham.toString());
+      formData.append('soLuong', (Number(res.soLuong) - Number(soluong)).toString());
+
+      this.sp.update(formData).subscribe(res => { })
+    })
+  }
+
   //Thêm chi tiết hóa đơn nhập 
   addCT() {
     if (this.newcthoadonnhap.maSanPham && this.newcthoadonnhap.soLuong && this.newcthoadonnhap.giaTien) {
       const selectedProduct = this.listsanpham.find(product => product.maSanPham === parseInt(this.newcthoadonnhap.maSanPham, 10));
-      //console.log(parseInt(this.newcthoadonnhap.maSanPham, 10), this.newcthoadonnhap.maSanPham)
+      console.log(parseInt(this.newcthoadonnhap.maSanPham, 10), this.newcthoadonnhap.maSanPham)
       if (selectedProduct) {
         this.chitiethoadonnhap.push({
           maSanPham: selectedProduct.maSanPham,
@@ -204,9 +223,10 @@ export class AdHoaDonNhapComponent implements OnInit {
     if (confirm('Bạn có muốn xóa chi tiết này không')) {
       this.ct.Delete(chitiet.maChiTiet).subscribe(res => { this.loadCTHoaDonNhap(); });
     }
+    this.giamSoLuong(chitiet.maSanPham, chitiet.soLuong)
   }
   createCThoadonUpdate(): void {
-    if (confirm('Bạn có muốn thêm thông số mới không?')) {
+    if (confirm('Bạn có muốn thêm chi tiết mới không?')) {
       const obj: any = {
         maHDN: this.MaHDN,
         maSanPham: this.newcthoadonnhap.maSanPham,
@@ -219,6 +239,7 @@ export class AdHoaDonNhapComponent implements OnInit {
         this.newcthoadonnhap.soLuong = 0;
         this.newcthoadonnhap.giaTien = 0
       });
+      this.tangSoLuong(obj.maSanPham, obj.soLuong);
     }
   }
 

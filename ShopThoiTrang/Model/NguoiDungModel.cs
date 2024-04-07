@@ -22,5 +22,8 @@ namespace Model
         public string? VaiTro { get; set; }
         public IFormFile? File { get; set; }
         public string? Token { get; set; }
+        public int? MaDonHang { get; set; }
+        public bool? EmailConfirmed { get; set; }
+        public string? ConfirmationLink { get; set; }
     }
 }

@@ -20,7 +20,6 @@ import { Size } from 'src/app/models/size';
   styleUrls: ['./ad-san-pham.component.css']
 })
 export class AdSanPhamComponent implements OnInit {
-  p: number = 1;
   gia: Gia = {
     maGia: 0,
     ngayBD: '',
@@ -67,12 +66,11 @@ export class AdSanPhamComponent implements OnInit {
   PhanTram: any = '';
 
 
-  searchTerm: string = '';
-  pageSize: number = 5;
+  p: number = 1;
+  pageSize: number = 10;
   totalItems: number = 0;
-  totalPages: number = 0;
-  totalPagesArray: number[] = [];
-  visiblePages: number[] = [];
+  searchTerm: string = '';
+
   editorConfig: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
@@ -96,7 +94,7 @@ export class AdSanPhamComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getSPALL();
+    this.getSPALL(this.p);
 
     this.th.getThuongHieuAll().subscribe(res => {
       this.thuonghieu = res;
@@ -129,7 +127,7 @@ export class AdSanPhamComponent implements OnInit {
     this.thongSo.splice(0, this.thongSo.length);
     this.selectedRow = null
   }
-  getSPALL() {
+  getSPALL(p: number) {
     const obj = {
       page: this.p,
       pageSize: this.pageSize,
@@ -138,36 +136,11 @@ export class AdSanPhamComponent implements OnInit {
     this.sp.getSPAll(obj).subscribe(res => {
       this.listsanpham = res.data;
       this.totalItems = res.totalItems;
-      this.calculateTotalPages();
+      this.p = p
+      console.log(this.totalItems)
     })
   }
-  calculateTotalPages = (): void => {
-    this.totalPages = Math.ceil(this.totalItems / this.pageSize);
-    // Tính toán các trang được hiển thị
-    if (this.totalPages <= 5) {
-      this.visiblePages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
-    } else {
-      if (this.p <= 3) {
-        this.visiblePages = [1, 2, 3, 4, 5];
-      } else if (this.p >= this.totalPages - 2) {
-        this.visiblePages = [
-          this.totalPages - 4,
-          this.totalPages - 3,
-          this.totalPages - 2,
-          this.totalPages - 1,
-          this.totalPages
-        ];
-      } else {
-        this.visiblePages = [this.p - 2, this.p - 1, this.p, this.p + 1, this.p + 2];
-      }
-    }
-  }
 
-  pageChanged = (page: number): void => {
-    this.p = page;
-    this.calculateTotalPages();
-    this.getSPALL();
-  }
   Them() {
     const formData = new FormData();
     formData.append('tenSP', this.TenSP);
@@ -208,13 +181,13 @@ export class AdSanPhamComponent implements OnInit {
                     moTa: this.thongSo[i].moTa,
                     maSanPham: res.maSanPham,
                   }
-                  this.ts.create(thongso).subscribe(res => { this.getSPALL(); });
+                  this.ts.create(thongso).subscribe(res => { this.getSPALL(this.p); });
                 }
               }
 
             });
 
-            this.getSPALL();
+            this.getSPALL(this.p);
             const addModal = this.addModal.nativeElement;
             addModal.classList.remove('show');
             addModal.style.display = 'none';
@@ -325,7 +298,7 @@ export class AdSanPhamComponent implements OnInit {
       }).then((result) => {
         if (result.isConfirmed) {
           this.sp.update(formData).subscribe(res => {
-            this.getSPALL();
+            this.getSPALL(this.p);
             // Đóng modal khi tạo thành công
             const updateModal = this.updateModal.nativeElement;
             updateModal.classList.remove('show');
@@ -417,7 +390,7 @@ export class AdSanPhamComponent implements OnInit {
             this.gia.ngayBD = '';
             this.gia.ngayKT = '';
             this.gia.donGia = 0;
-            this.getSPALL();
+            this.getSPALL(this.p);
           });
         });
       }
@@ -473,7 +446,7 @@ export class AdSanPhamComponent implements OnInit {
             this.giamgia.ngayBD = '';
             this.giamgia.ngayKT = '';
             this.giamgia.phanTram = 0;
-            this.getSPALL();
+            this.getSPALL(this.p);
           });
         });
       }
@@ -504,7 +477,7 @@ export class AdSanPhamComponent implements OnInit {
               confirmButtonText: 'OK',
             }).then(() => {
               // Cập nhật danh sách sau khi xóa
-              this.getSPALL();
+              this.getSPALL(this.p);
             });
           });
         }

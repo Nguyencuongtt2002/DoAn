@@ -4,6 +4,7 @@ import { Nguoidung } from 'src/app/models/nguoidung'
 import Swal from 'sweetalert2';
 import { ToastrService } from 'ngx-toastr';
 import * as CryptoJS from 'crypto-js';
+import { ThamSoService } from 'src/app/services/thamso.service';
 @Component({
   selector: 'app-ad-nguoi-dung',
   templateUrl: './ad-nguoi-dung.component.html',
@@ -24,7 +25,11 @@ export class AdNguoiDungComponent implements OnInit {
   AnhDaiDien: any = null;
   VaiTro: string = '';
   MatKhauMoi: string = '';
+
+
   p: number = 1;
+  pageSize: number = 3;
+  totalItems: number = 0;
   searchTerm: string = '';
 
   @ViewChild('addModal') addModal!: ElementRef;
@@ -33,10 +38,12 @@ export class AdNguoiDungComponent implements OnInit {
   @ViewChild('resetModal') resetModal!: ElementRef;
   constructor(
     private nd: NguoidungService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService,
+    private thamsoService: ThamSoService
+  ) { }
 
   ngOnInit(): void {
-    this.getall();
+    this.getall(1);
   }
   taomoi() {
     this.TaiKhoan = '';
@@ -49,51 +56,60 @@ export class AdNguoiDungComponent implements OnInit {
 
     this.selectedRow = null
   }
-  getall() {
+  getall(p: number) {
     const obj = {
-      page: 1,
-      pageSize: 10
+      page: p,
+      pageSize: this.pageSize,
     }
     this.nd.getAll(obj).subscribe(res => {
       this.nguoidung = res.data;
+      this.totalItems = res.totalItems;
+      this.p = p
     })
   }
   Them() {
-    const formData: any = new FormData();
-    formData.append('taiKhoan', this.TaiKhoan);
-    formData.append('matKhau', '123456789')
-    formData.append('email', this.Email);
-    formData.append('hoTen', this.HoTen);
-    formData.append('ngaySinh', '2002-07-14');
-    formData.append('gioiTinh', 'Nam');
-    formData.append('diaChi', 'Thái Bình');
-    formData.append('SoDienThoai', '0123456789');
-    formData.append('anhDaiDien', 'avatar.jpg');
-    formData.append('vaiTro', this.VaiTro)
+    this.thamsoService.getByKyHieu("PassWord").subscribe(res => {
+      const formData: any = new FormData();
+      formData.append('taiKhoan', this.TaiKhoan);
+      formData.append('matKhau', res.noiDung)
+      formData.append('email', this.Email);
+      formData.append('hoTen', this.HoTen);
+      formData.append('ngaySinh', '2002-07-14');
+      formData.append('gioiTinh', 'Nam');
+      formData.append('diaChi', 'Thái Bình');
+      formData.append('SoDienThoai', this.SoDienThoai);
+      formData.append('anhDaiDien', 'avatar.jpg');
+      formData.append('vaiTro', this.VaiTro);
+      const confirmationLink = `${window.location.origin}/confirm`;
+      formData.append('confirmationLink', confirmationLink);
+      this.nd.createUser(formData).subscribe(
+        (res) => {
+          this.toastr.success('Thêm thành công', '', {
+            progressBar: true,
+          });
+          this.getall(1);
 
-    this.nd.createUser(formData).subscribe(
-      (res) => {
-        this.getall();
+          // Đóng modal khi tạo thành công
+          const addModal = this.addModal.nativeElement;
+          addModal.classList.remove('show');
+          addModal.style.display = 'none';
+          document.body.classList.remove('modal-open');
 
-        // Đóng modal khi tạo thành công
-        const addModal = this.addModal.nativeElement;
-        addModal.classList.remove('show');
-        addModal.style.display = 'none';
-        document.body.classList.remove('modal-open');
-
-        const modalBackdrop = document.getElementsByClassName('modal-backdrop');
-        for (let i = 0; i < modalBackdrop.length; i++) {
-          modalBackdrop[i].remove();
+          const modalBackdrop = document.getElementsByClassName('modal-backdrop');
+          for (let i = 0; i < modalBackdrop.length; i++) {
+            modalBackdrop[i].remove();
+          }
+        },
+        (error) => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Lỗi!',
+            text: 'Đã xảy ra lỗi khi thêm người dùng',
+          });
         }
-      },
-      (error) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Lỗi!',
-          text: 'Đã xảy ra lỗi khi thêm người dùng',
-        });
-      }
-    );
+      );
+    })
+
   }
   selectedRow: Nguoidung | null = null;
 
@@ -111,6 +127,7 @@ export class AdNguoiDungComponent implements OnInit {
     this.AnhDaiDien = this.selectedRow.anhDaiDien;
     this.VaiTro = this.selectedRow.vaiTro;
     this.MatKhauMoi = ''
+    console.log(this.AnhDaiDien)
   }
   formatDate(date: string): string {
     const originalDate = new Date(date);
@@ -148,7 +165,7 @@ export class AdNguoiDungComponent implements OnInit {
         this.toastr.success('cập nhật thành công', '', {
           progressBar: true,
         });
-        this.getall();
+        this.getall(1);
         // Đóng modal khi tạo thành công
         const updateModal = this.updateModal.nativeElement;
         updateModal.classList.remove('show');
@@ -193,7 +210,7 @@ export class AdNguoiDungComponent implements OnInit {
           this.toastr.success('Xóa thành công', '', {
             progressBar: true,
           });
-          this.getall();
+          this.getall(1);
           this.selectedRow = null;
           const deleteModal = this.deleteModal.nativeElement;
           deleteModal.classList.remove('show');
@@ -212,26 +229,28 @@ export class AdNguoiDungComponent implements OnInit {
     this.resetModal.nativeElement.classList.add('show');
   }
   hanleRest = () => {
-    const obj = {
-      taiKhoan: this.TaiKhoan,
-      matKhau: "123456789"
-    }
-    if (this.selectedRow) {
-      this.nd.ResetMatKhau(obj).subscribe((res) => {
-        this.toastr.success('Reset mật khẩu thành công', '', {
-          progressBar: true,
-        });
-        this.selectedRow = null
-        const resetModal = this.resetModal.nativeElement;
-        resetModal.classList.remove('show');
-        resetModal.style.display = 'none';
-        document.body.classList.remove('modal-open');
-        const modalBackdrop = document.getElementsByClassName('modal-backdrop');
-        for (let i = 0; i < modalBackdrop.length; i++) {
-          modalBackdrop[i].remove();
-        }
-      })
-    }
+    this.thamsoService.getByKyHieu("PassWord").subscribe(res => {
+      const obj = {
+        taiKhoan: this.TaiKhoan,
+        matKhau: res.noiDung
+      }
+      if (this.selectedRow) {
+        this.nd.ResetMatKhau(obj).subscribe((res) => {
+          this.toastr.success('Reset mật khẩu thành công', '', {
+            progressBar: true,
+          });
+          this.selectedRow = null
+          const resetModal = this.resetModal.nativeElement;
+          resetModal.classList.remove('show');
+          resetModal.style.display = 'none';
+          document.body.classList.remove('modal-open');
+          const modalBackdrop = document.getElementsByClassName('modal-backdrop');
+          for (let i = 0; i < modalBackdrop.length; i++) {
+            modalBackdrop[i].remove();
+          }
+        })
+      }
+    })
   }
   //File
   onFileChange(event: any) {

@@ -11,13 +11,14 @@ namespace DAL
     {
         List<DonHangModel> GetALL();
         DonHangModel GetNew();
+        DonHangModel GetTheoMa(int? ma);
         bool CreateDonHang(DonHangModel model);
         List<DonHangModel> LichSuMuaHang(int MaNguoiDung);
         bool HuyDonHang(DonHangModel model);
         bool CapNhatDonHang(DonHangModel model);
         bool CapNhatDonHangKhiGiao(DonHangModel model);
         bool DuyetDonHang(DonHangModel model);
-        List<ChiTietDonHangModel> GetCTDonHangTheoDonHang(int MaDonHang , int MaSanPham);
+        List<ChiTietDonHangModel> GetCTDonHangTheoDonHang(int? MaDonHang);
         List<LienHeModel> ThongTinLienHe();
     }
 }

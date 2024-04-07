@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using OfficeOpenXml;
+using Model;
 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -108,6 +109,12 @@ builder.Services.AddTransient<ISanPhamBus,SanPhamBus>();
 
 builder.Services.AddTransient<IDonHangDAL, DonHangDAL>();
 builder.Services.AddTransient<IDonHangBus, DonHangBus>();
+
+
+//Cấu hình mail
+builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
+builder.Services.AddTransient<IEmailDAL, EmailDAL>();
+builder.Services.AddTransient<IEmailBus, EmailBus>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

@@ -116,10 +116,22 @@ export class ThanhToanComponent implements OnInit {
             if (result.isConfirmed) {
               localStorage.removeItem('cart');
               if (this.phuongThucThanhToan === 'Thanh toán khi giao hàng') {
-                location.href = '/'
+                this.dh.getNewDonHang().subscribe((res) => {
+                  const email: any = {
+                    email: this.customerInfo.email,
+                    maDonHang: res.maDonHang
+                  };
+                  this.dh.orderEmail(email).subscribe(res => { });
+                  location.href = '/'
+                });
               }
               else if (this.phuongThucThanhToan === 'Chuyển khoản') {
                 this.dh.getNewDonHang().subscribe((res) => {
+                  const email: any = {
+                    email: this.customerInfo.email,
+                    maDonHang: res.maDonHang
+                  };
+                  this.dh.orderEmail(email).subscribe(res => { });
                   this.vnPay(res.maDonHang);
                 });
               }

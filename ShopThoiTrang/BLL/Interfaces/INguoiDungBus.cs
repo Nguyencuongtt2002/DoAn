@@ -12,6 +12,7 @@ namespace BLL
         bool Update(NguoiDungModel model);
         bool Delete(int ma);
         bool ResetMatKhau(NguoiDungModel model);
+        bool ConfirmEmail(string token);
 
     }
 }

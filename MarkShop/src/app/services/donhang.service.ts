@@ -50,8 +50,12 @@ export class DonhangService {
         const queryString = Object.keys(data).map(key => key + '=' + encodeURIComponent(data[key])).join('&');
         return this.http.get<any>(`${_api}/api/VnPay/callback?${queryString}`, { headers });
     }
+
     getNewDonHang(): Observable<any> {
         return this.http.get<any>(_api + '/api/DonHang/getnew', { headers });
+    }
+    orderEmail(object: any): Observable<any> {
+        return this.http.post<any>(`${_api}/api/DonHang/order-email`, object, { headers });
     }
     capNhatDonHang(obj: any): Observable<any> {
         return this.http.post<any>(_api + '/api/DonHang/capnhat-donhang', obj, { headers })

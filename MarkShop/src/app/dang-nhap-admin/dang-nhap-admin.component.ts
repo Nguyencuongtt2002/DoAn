@@ -36,7 +36,7 @@ export class DangNhapAdminComponent implements OnInit {
     };
 
     this.authSrv.login(obj).subscribe((res) => {
-      console.log(res.result)
+      console.log(res)
       if (res.status === 404) {
         Swal.fire({
           icon: 'error',

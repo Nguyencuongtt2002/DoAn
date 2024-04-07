@@ -77,5 +77,9 @@ namespace BLL
         {
             return _res.ResetMatKhau(model);
         }
+        public bool ConfirmEmail(string token)
+        {
+            return _res.ConfirmEmail(token);
+        }
     }
 }

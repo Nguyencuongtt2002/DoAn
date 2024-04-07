@@ -194,7 +194,8 @@ namespace DAL
                 "@p_MaLoaiSanPham", model.MaLoaiSanPham,
                 "@p_MaThuongHieu", model.MaThuongHieu,
                 "@p_MaSize", model.MaSize,
-                "@p_AnhDaiDien", model.AnhDaiDien);
+                "@p_AnhDaiDien", model.AnhDaiDien,
+                "@p_SoLuong",model.SoLuong);
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
                     throw new Exception(Convert.ToString(result) + msgError);

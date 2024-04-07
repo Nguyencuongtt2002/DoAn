@@ -8,7 +8,7 @@ namespace Model
 {
     public class DonHangModel
     {
-        public int? MaDonHang { get; set; }
+        public int MaDonHang { get; set; }
         public DateTime? NgayDat { get; set; }
         public DateTime? NgayGiao {  get; set; }
         public string? HoTen {  get; set; }

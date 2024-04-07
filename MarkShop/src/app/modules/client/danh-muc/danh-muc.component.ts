@@ -14,30 +14,24 @@ export class DanhMucComponent implements OnInit {
   listSPtheoloai: Array<Sanpham> = new Array<Sanpham>(); // Assuming Sanpham is an array type
   loaisp: Array<Loaisanpham> = new Array<Loaisanpham>();
   timkiem: string = '';
+  p: number = 1;
+  pageSize: number = 3;
+  totalItems: number = 0;
   constructor(private _router: Router, private route: ActivatedRoute, private loaisanphamService: LoaisanphamService) { }
 
   ngOnInit(): void {
-    this.LoadSPtheoloai();
+    this.LoadSPtheoloai(1);
 
   }
-  LoadSPtheoloai = () => {
+  LoadSPtheoloai = (page: number) => {
     this.route.params.subscribe(params => {
       const ma = +params['MaLoaiSanPham'];
-      const obj = {
-        page: 1,
-        pageSize: 10,
-        maSanPham: null,
-        tenSanPham: '',
-        tenThuongHiey: '',
-        tenLoaiSanPham: '',
-        minGia: null,
-        maxGia: null,
-        maThuongHieu: null,
-        maLoaiSanPham: ma
-      }
-      this.loaisanphamService.getSanPhamTheoLoai(obj).subscribe(res => {
+      this.loaisanphamService.getSanPhamTheoLoai(page, this.pageSize, ma).subscribe(res => {
         this.listSPtheoloai = res.data;
-        console.log(this.listSPtheoloai);
+        console.log(this.listSPtheoloai)
+        this.p = page;
+        this.totalItems = res.totalItems;
+        console.log(this.totalItems);
       });
     });
     this.loaisanphamService.getLoaiSanPhamAll().subscribe(res => {

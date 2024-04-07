@@ -36,8 +36,7 @@ import { TimKiemComponent } from './modules/client/tim-kiem/tim-kiem.component';
 import { SanPhamComponent } from './modules/client/san-pham/san-pham.component';
 import { ErrorComponentComponent } from './error-component/error-component.component';
 import { CamOnComponent } from './modules/client/cam-on/cam-on.component';
-
-
+import { ConfirmComponent } from './modules/client/confirm/confirm.component';
 
 
 const routes: Routes = [
@@ -115,6 +114,10 @@ const routes: Routes = [
         path: 'camon',
         component: CamOnComponent,
         title: 'cảm ơn'
+      },
+      {
+        path: 'confirm',
+        component: ConfirmComponent,
       }
     ],
 

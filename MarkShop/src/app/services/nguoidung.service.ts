@@ -44,4 +44,7 @@ export class NguoidungService {
     ResetMatKhau(obj: any): Observable<any> {
         return this.http.post<Array<any>>(_api + '/api/NguoiDung/resetmatkhau', obj, { headers: headers });
     }
+    confirmemail(object: any): Observable<any> {
+        return this.http.post<any>(`${_api}/api/NguoiDung/confirm-email`, object);
+    }
 }

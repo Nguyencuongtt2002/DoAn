@@ -48,6 +48,8 @@ import { SanPhamComponent } from './modules/client/san-pham/san-pham.component';
 import { ErrorComponentComponent } from './error-component/error-component.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { CamOnComponent } from './modules/client/cam-on/cam-on.component';
+import { ConfirmComponent } from './modules/client/confirm/confirm.component';
+
 
 
 @NgModule({
@@ -58,7 +60,7 @@ import { CamOnComponent } from './modules/client/cam-on/cam-on.component';
     SidebarComponent, AdLoaispComponent, AdThuongHieuComponent, AdNhaCungCapComponent, AdMenuComponent,
     AdLienHeComponent, ThanhToanComponent, ThongKeComponent, AdGioiThieuComponent, AdSizeComponent,
     AdSlideComponent, LichSuMuaHangComponent, AdDonHangComponent, AdTinTucComponent, AdNguoiDungComponent, AdSanPhamComponent,
-    AdHoaDonNhapComponent, ChiTietTinTucComponent, TimKiemComponent, SanPhamComponent, ErrorComponentComponent, CamOnComponent
+    AdHoaDonNhapComponent, ChiTietTinTucComponent, TimKiemComponent, SanPhamComponent, ErrorComponentComponent, CamOnComponent, ConfirmComponent
   ],
   imports: [
     BrowserModule, AppRoutingModule, HttpClientModule, CarouselModule, BrowserAnimationsModule,

@@ -16,11 +16,8 @@ export class AdLienHeComponent implements OnInit {
   searchTerm: string = '';
 
   p: number = 1;
-  pageSize: number = 10;
+  pageSize: number = 1;
   totalItems: number = 0;
-  totalPages: number = 0;
-  totalPagesArray: number[] = [];
-  visiblePages: number[] = [];
   @ViewChild('addModal') addModal!: ElementRef;
   @ViewChild('updateModal') updateModal!: ElementRef;
   @ViewChild('deleteModal') deleteModal!: ElementRef;
@@ -30,7 +27,7 @@ export class AdLienHeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getall();
+    this.getall(this.p);
   }
   taomoi() {
     this.Email = '';
@@ -39,9 +36,9 @@ export class AdLienHeComponent implements OnInit {
 
     this.selectedRow = null
   }
-  getall = () => {
+  getall = (p: number) => {
     const obj = {
-      page: this.p,
+      page: p,
       pageSize: this.pageSize,
       email: this.searchTerm,
       soDienThoai: ""
@@ -49,37 +46,11 @@ export class AdLienHeComponent implements OnInit {
     this.lh.getlienheAll(obj).subscribe(res => {
       this.lienhe = res.data;
       this.totalItems = res.totalItems;
-      this.calculateTotalPages();
+      this.p = p
 
     })
   }
-  calculateTotalPages = (): void => {
-    this.totalPages = Math.ceil(this.totalItems / this.pageSize);
-    // Tính toán các trang được hiển thị
-    if (this.totalPages <= 5) {
-      this.visiblePages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
-    } else {
-      if (this.p <= 3) {
-        this.visiblePages = [1, 2, 3, 4, 5];
-      } else if (this.p >= this.totalPages - 2) {
-        this.visiblePages = [
-          this.totalPages - 4,
-          this.totalPages - 3,
-          this.totalPages - 2,
-          this.totalPages - 1,
-          this.totalPages
-        ];
-      } else {
-        this.visiblePages = [this.p - 2, this.p - 1, this.p, this.p + 1, this.p + 2];
-      }
-    }
-  }
 
-  pageChanged = (page: number): void => {
-    this.p = page;
-    this.calculateTotalPages();
-    this.getall();
-  }
   Them = () => {
     const lienhe: any = {
       email: this.Email,
@@ -93,7 +64,7 @@ export class AdLienHeComponent implements OnInit {
           this.toastr.success('Thêm thành công', '', {
             progressBar: true,
           });
-          this.getall();
+          this.getall(this.p);
           const addModal = this.addModal.nativeElement;
           addModal.classList.remove('show');
           addModal.style.display = 'none';
@@ -138,7 +109,7 @@ export class AdLienHeComponent implements OnInit {
         this.toastr.success('cập nhật thành công', '', {
           progressBar: true,
         });
-        this.getall();
+        this.getall(this.p);
         // Đóng modal khi tạo thành công
         const updateModal = this.updateModal.nativeElement;
         updateModal.classList.remove('show');
@@ -165,7 +136,7 @@ export class AdLienHeComponent implements OnInit {
         this.toastr.success('xóa thành công', '', {
           progressBar: true,
         });
-        this.getall();
+        this.getall(this.p);
         const deleteModal = this.deleteModal.nativeElement;
         deleteModal.classList.remove('show');
         deleteModal.style.display = 'none';

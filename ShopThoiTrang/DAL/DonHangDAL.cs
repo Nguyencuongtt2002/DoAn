@@ -31,14 +31,28 @@ namespace DAL
                 throw ex;
             }
         }
-        public List<ChiTietDonHangModel> GetCTDonHangTheoDonHang(int MaDonHang,int MaSanPham)
+        public DonHangModel GetTheoMa(int? ma)
+        {
+            string msgError = "";
+            try
+            {
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_getbyid_DonHang", "@p_MaDonHang", ma);
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                return dt.ConvertTo<DonHangModel>().FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public List<ChiTietDonHangModel> GetCTDonHangTheoDonHang(int? MaDonHang)
         {
             string msgError = "";
             try
             {
                 var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_get_CTDonHang_by_DonHang",
-                "@p_MaDonHang", MaDonHang,
-                "@p_MaSanPham",MaSanPham);
+                "@p_MaDonHang", MaDonHang);
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
                 return dt.ConvertTo<ChiTietDonHangModel>().ToList();

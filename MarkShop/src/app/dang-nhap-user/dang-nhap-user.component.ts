@@ -31,13 +31,22 @@ export class DangNhapUserComponent implements OnInit {
     };
 
     this.auSrv.login(obj).subscribe((res) => {
+      console.log(res)
       if (res.status == 404) {
         Swal.fire({
           icon: 'error',
           title: 'Login Failed',
           text: 'Tên đăng nhập hoặc mật khẩu không hợp lệ'
         });
-      } else {
+      }
+      else if (res.success == false) {
+        Swal.fire({
+          title: "Error!",
+          text: res.message,
+          icon: "error",
+        });
+      }
+      else {
         Swal.fire({
           title: 'Success',
           text: 'Đăng nhập thành công',
@@ -50,7 +59,7 @@ export class DangNhapUserComponent implements OnInit {
           }
         });
       }
-    })
+    });
 
   }
 }

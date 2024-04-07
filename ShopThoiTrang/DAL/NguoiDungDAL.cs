@@ -100,7 +100,8 @@ namespace DAL
                 "@p_DiaChi",model.DiaChi,
                 "@p_SoDienThoai",model.SoDienThoai,
                 "@p_AnhDaiDien",model.AnhDaiDien,
-                "@p_VaiTro",model.VaiTro);
+                "@p_VaiTro",model.VaiTro,
+                "@p_ToKen",model.Token);
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
                     throw new Exception(Convert.ToString(result) + msgError);
@@ -112,6 +113,7 @@ namespace DAL
                 throw ex;
             }
         }
+
         public bool Update(NguoiDungModel model)
         {
             string msgError = "";
@@ -157,6 +159,23 @@ namespace DAL
                 throw ex;
             }
         }
+        public bool ConfirmEmail(string token)
+        {
+            string msgError = "";
+            try
+            {
+                var result = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_confirm_NguoiDung", "@p_ToKen", token);
+                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception(Convert.ToString(result) + msgError);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public bool ResetMatKhau(NguoiDungModel model)
         {
             string msgError = "";
@@ -176,5 +195,6 @@ namespace DAL
                 throw ex;
             }
         }
+
     }
 }

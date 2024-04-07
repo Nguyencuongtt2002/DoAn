@@ -21,13 +21,17 @@ namespace BLL
         {
             return _res.GetALL();
         }
+        public DonHangModel GetTheoMa(int? ma)
+        {
+            return _res.GetTheoMa(ma);
+        }
         public DonHangModel GetNew()
         {
             return _res.GetNew();
         }
-        public List<ChiTietDonHangModel> GetCTDonHangTheoDonHang(int MaDonHang, int MaSanPham)
+        public List<ChiTietDonHangModel> GetCTDonHangTheoDonHang(int? MaDonHang)
         {
-            return _res.GetCTDonHangTheoDonHang(MaDonHang,MaSanPham);
+            return _res.GetCTDonHangTheoDonHang(MaDonHang);
         }
         public bool CreateDonHang(DonHangModel model)
         {

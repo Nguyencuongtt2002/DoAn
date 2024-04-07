@@ -9,7 +9,11 @@
         </p>
 
         <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Tìm kiếm...">
+            <input type="text" class="form-control" placeholder="Tìm kiếm..." [(ngModel)]="searchTerm">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" (click)="getAll(p)">Tìm
+                    kiếm</button>
+            </div>
         </div>
 
         <table class="table table-bordered table-striped">
@@ -21,7 +25,8 @@
                     <th style="width: 8%;" colspan="2">Thao tác</th>
                 </tr>
             </thead>
-            <tbody *ngFor="let mn of menu; let i = index">
+            <tbody
+                *ngFor="let mn of menu | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: totalItems }; let i = index">
                 <tr>
                     <td>{{ i + 1 }}</td>
                     <td>{{ mn.tenMenu }}</td>
@@ -39,6 +44,10 @@
                 </tr>
             </tbody>
         </table>
+        <div class="text-center mt-4">
+            <pagination-controls class="pagination" (pageChange)="getAll($event)"
+                (pageBoundsCorrection)="getAll($event)"></pagination-controls>
+        </div>
     </div>
 </div>
 <div #CreateUpdateModal class="modal fade" id="exampleModal" tabindex="-1" role="dialog"

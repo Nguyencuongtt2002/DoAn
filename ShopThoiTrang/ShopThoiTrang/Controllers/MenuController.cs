@@ -51,6 +51,34 @@ namespace ShopThoiTrang.Controllers
                 return BadRequest(new { success = false, message = ex.Message });
             }
         }
+        [AllowAnonymous]
+        [Route("get-all-admin")]
+        [HttpGet]
+        public IActionResult GetAll(int page, int pageSize, string tenMenu = "")
+        {
+            try
+            {
+                int total = 0;
+                var data = _menuBus.GetALLMenu(page, pageSize, out total, tenMenu);
+
+                var response = new
+                {
+                    success = true,
+                    message = "Lấy dữ liệu thành công",
+                    totalItems = total,
+                    page = page,
+                    pageSize = pageSize,
+                    data = data
+                };
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { success = false, message = ex.Message });
+            }
+        }
+
 
         [Route("them")]
         [HttpPost]

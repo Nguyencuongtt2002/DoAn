@@ -18,6 +18,9 @@ export class MenuService {
     getAll(obj: any): Observable<any> {
         return this.http.post<Array<any>>(_api + '/api/Menu/get-all', obj);
     }
+    getAllAdmin(page: number, pageSize: number, tenMenu: string): Observable<any> {
+        return this.http.get<any>(`${_api}/api/Menu/get-all-admin?page=${page}&pageSize=${pageSize}&tenMenu=${tenMenu}`);
+    }
     create(menu: any): Observable<any> {
         return this.http.post(`${_api}/api/Menu/them`, menu, { headers: headers });
     }

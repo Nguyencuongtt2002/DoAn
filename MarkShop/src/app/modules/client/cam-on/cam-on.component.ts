@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { DonhangService } from 'src/app/services/donhang.service';
 
 @Component({
@@ -10,25 +11,34 @@ import { DonhangService } from 'src/app/services/donhang.service';
 export class CamOnComponent {
   success: string = "Thanh toán không thành công";
   text: string = "Vui lòng kiểm tra lại";
+  private routeSubscription: Subscription;
+
   constructor(
-    private dh: DonhangService,
+    private donhangService: DonhangService,
     private route: ActivatedRoute,
     private router: Router
-  ) { }
-  ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      this.router.navigate([], { queryParams: {} });
-      console.log(params);
-      this.callback(params);
+  ) {
+    this.routeSubscription = this.route.queryParams.subscribe(params => {
+      if (params && Object.keys(params).length > 0) {
+        this.router.navigate([], { queryParams: {} });
+        this.callback(params);
+      }
     });
   }
 
+  ngOnDestroy() {
+    if (this.routeSubscription) {
+      this.routeSubscription.unsubscribe();
+    }
+  }
+
   callback(params: any) {
-    this.dh.callback(params).subscribe(res => {
+    this.donhangService.callback(params).subscribe(res => {
       if (res.success) {
         this.success = "Thanh toán thành công cho đơn hàng " + res.orderId;
         this.text = "Cảm ơn bạn đã sử dụng dịch vụ";
       }
-    })
+    });
   }
+
 }

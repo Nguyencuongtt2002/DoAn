@@ -10,6 +10,7 @@ using System.Linq;
 using DAL;
 using System.Security.Cryptography;
 using System.Text;
+using K4os.Compression.LZ4.Internal;
 
 namespace ShopThoiTrang.Controllers
 {
@@ -19,11 +20,15 @@ namespace ShopThoiTrang.Controllers
     public class NguoiDungController : ControllerBase
     {
         private INguoiDungBus _nguoidungBus;
+        private IThamSoBus _thamSoBus;
+        private IEmailBus _emailBus;
         private string _path;
-        public NguoiDungController(INguoiDungBus nguoidungBus, IConfiguration configuration)
+        public NguoiDungController(INguoiDungBus nguoidungBus,IThamSoBus thamSoBus, IConfiguration configuration, IEmailBus emailBus)
         {
             _nguoidungBus = nguoidungBus;
+            _thamSoBus = thamSoBus;
             _path = configuration["AppSettings:PATH_NguoiDung"];
+            _emailBus = emailBus;
         }
         [AllowAnonymous]
         [Route("dangnhap")]
@@ -34,6 +39,8 @@ namespace ShopThoiTrang.Controllers
             var data = _nguoidungBus.DangNhap(model.TaiKhoan, model.MatKhau);
             if (data != null)
             {
+                if (data.EmailConfirmed == false)
+                    return Ok(new { success = false, message = "Tài khoản chưa được xác minh, vui lòng xác minh trong email của bạn" });
                 // Trả về kết quả thành công
                 return Ok(new { result = data, message = "Đăng nhập thành công", status = 200 });
             }
@@ -159,12 +166,14 @@ namespace ShopThoiTrang.Controllers
                     DiaChi = model.DiaChi,
                     SoDienThoai = model.SoDienThoai,
                     AnhDaiDien = imagePath, // Đường dẫn tương đối của ảnh,
-                    VaiTro = model.VaiTro
+                    VaiTro = model.VaiTro,
+                    Token = GenerateToken(64)
                 };
 
                 // Gọi phương thức Create từ BLL để thêm mới vào cơ sở dữ liệu
                 _nguoidungBus.Create(Model);
-
+                var thamso = _thamSoBus.GetTheoKyHieu("NAME");
+                _emailBus.SendConfirmationEmail(model.Email, model.ConfirmationLink, Model.Token, thamso.NoiDung); 
                 // Trả về kết quả thành công
                 return Ok(new { success = true, message = "Tạo mới thành công" });
             }
@@ -284,6 +293,39 @@ namespace ShopThoiTrang.Controllers
                     sb.Append(hashBytes[i].ToString("x2"));
                 }
                 return sb.ToString();
+            }
+        }
+        public static string GenerateToken(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+            using (var rng = new RNGCryptoServiceProvider())
+            {
+                var bytes = new byte[length];
+                rng.GetBytes(bytes);
+                var charArray = new char[length];
+                for (int i = 0; i < length; i++)
+                {
+                    charArray[i] = chars[bytes[i] % chars.Length];
+                }
+                return new string(charArray);
+            }
+        }
+        [AllowAnonymous]
+        [HttpPost("confirm-email")]
+        public IActionResult ConfirmEmail([FromBody] NguoiDungModel model)
+        {
+            try
+            {
+                bool result = _nguoidungBus.ConfirmEmail(model.Token);
+
+                if (result)
+                    return Ok(new { success = true, message = "Xác nhận email thành công" });
+                else
+                    return BadRequest(new { success = false, message = "Xác nhận email thất bại" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { success = false, message = "Đã xảy ra lỗi: " + ex.Message });
             }
         }
     }
