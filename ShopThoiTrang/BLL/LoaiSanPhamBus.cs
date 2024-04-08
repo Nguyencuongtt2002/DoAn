@@ -17,9 +17,9 @@ namespace BLL
         {
             _res = res;
         }
-        public List<LoaiSanPhamModel> GetALL()
+        public List<LoaiSanPhamModel> GetALL(int? pageIndex, int? pageSize, out int total, string? TenLoaiSanPham)
         {
-            return _res.GetALL();
+            return _res.GetALL(pageIndex, pageSize, out total,TenLoaiSanPham);
         }
         public bool Create(LoaiSanPhamModel them)
         {

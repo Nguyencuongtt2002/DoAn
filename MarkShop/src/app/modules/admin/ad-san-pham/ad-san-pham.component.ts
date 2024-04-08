@@ -38,7 +38,7 @@ export class AdSanPhamComponent implements OnInit {
   listsanpham: Array<Sanpham> = new Array<Sanpham>();
   listsize: Array<Size> = new Array<Size>();
   thuonghieu: ThuongHieu[] = [];
-  loaisanpham: Loaisanpham[] = [];
+  loaisanpham: Array<Loaisanpham> = new Array<Loaisanpham>();
   newThongSo: { tenThongSo: string, moTa: string } = { tenThongSo: '', moTa: '' };
   thongSo: { tenThongSo: string, moTa: string }[] = [];
   //sản phẩm 
@@ -98,13 +98,19 @@ export class AdSanPhamComponent implements OnInit {
 
     this.th.getThuongHieuAll().subscribe(res => {
       this.thuonghieu = res;
-
-      this.loaisp.getLoaiSanPhamAll().subscribe(res => {
-        this.loaisanpham = res;
-      })
     })
     this.sz.getAll().subscribe(res => {
       this.listsize = res;
+    })
+  }
+  getLoaiSanPhamAll = () => {
+    const obj = {
+      page: 1,
+      pageSize: 50,
+      tenLoaiSanPham: ""
+    }
+    this.loaisp.getLoaiSanPhamAll(obj).subscribe(res => {
+      this.loaisp = res.data;
     })
   }
   taomoi() {

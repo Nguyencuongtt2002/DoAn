@@ -47,7 +47,6 @@ export class AdLienHeComponent implements OnInit {
       this.lienhe = res.data;
       this.totalItems = res.totalItems;
       this.p = p
-
     })
   }
 
@@ -125,29 +124,29 @@ export class AdLienHeComponent implements OnInit {
     }
   }
 
-  onDelete = () => {
-    this.deleteModal.nativeElement.classList.add('show');
-  }
+  // onDelete = () => {
+  //   this.deleteModal.nativeElement.classList.add('show');
+  // }
 
-  hanleDelete = () => {
-    if (this.selectedRow) {
-      // Thực hiện xóa dữ liệu
-      this.lh.Delete(this.MaLienHe).subscribe((res) => {
-        this.toastr.success('xóa thành công', '', {
-          progressBar: true,
-        });
-        this.getall(this.p);
-        const deleteModal = this.deleteModal.nativeElement;
-        deleteModal.classList.remove('show');
-        deleteModal.style.display = 'none';
-        document.body.classList.remove('modal-open');
-        const modalBackdrop = document.getElementsByClassName('modal-backdrop');
-        for (let i = 0; i < modalBackdrop.length; i++) {
-          modalBackdrop[i].remove();
-        }
-      });
-    }
+  // hanleDelete = () => {
+  //   if (this.selectedRow) {
+  //     // Thực hiện xóa dữ liệu
+  //     this.lh.Delete(this.MaLienHe).subscribe((res) => {
+  //       this.toastr.success('xóa thành công', '', {
+  //         progressBar: true,
+  //       });
+  //       this.getall(this.p);
+  //       const deleteModal = this.deleteModal.nativeElement;
+  //       deleteModal.classList.remove('show');
+  //       deleteModal.style.display = 'none';
+  //       document.body.classList.remove('modal-open');
+  //       const modalBackdrop = document.getElementsByClassName('modal-backdrop');
+  //       for (let i = 0; i < modalBackdrop.length; i++) {
+  //         modalBackdrop[i].remove();
+  //       }
+  //     });
+  //   }
 
-  }
+  // }
 
 }

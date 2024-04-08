@@ -31,8 +31,13 @@ export class LichSuMuaHangComponent implements OnInit {
     this.getLoaiSanPham();
   }
   getLoaiSanPham = () => {
-    this.loaisanpham.getLoaiSanPhamAll().subscribe(res => {
-      this.loaisp = res;
+    const obj = {
+      page: 1,
+      pageSize: 10,
+      tenLoaiSanPham: ""
+    }
+    this.loaisanpham.getLoaiSanPhamAll(obj).subscribe(res => {
+      this.loaisp = res.data;
     })
   }
   lichsumuahang() {

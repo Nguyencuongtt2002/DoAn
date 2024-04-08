@@ -17,23 +17,38 @@ namespace ShopThoiTrang.Controllers
         }
         [AllowAnonymous]
         [Route("get-all")]
-        [HttpGet]
-        public IEnumerable<LoaiSanPhamModel> GetALL()
-        {
-            return _loaisanphamBus.GetALL();
-        }
-        [Route("them")]
         [HttpPost]
-        public IActionResult Create([FromBody] LoaiSanPhamModel them)
+        public IActionResult GetAll([FromBody] Dictionary<string, object> formData)
         {
             try
             {
-                _loaisanphamBus.Create(them);
-                return Ok(new { message = "Đã thêm thành công", results = true, status = 200 });
+                var page = int.Parse(formData["page"].ToString());
+                var pageSize = int.Parse(formData["pageSize"].ToString());
+                string TenLoaiSanPham = "";
+
+                if (formData.Keys.Contains("tenLoaiSanPham") && !string.IsNullOrEmpty(Convert.ToString(formData["tenLoaiSanPham"])))
+                {
+                    TenLoaiSanPham = Convert.ToString(formData["tenLoaiSanPham"].ToString());
+                }
+
+                int total = 0;
+                var data = _loaisanphamBus.GetALL(page, pageSize, out total,TenLoaiSanPham);
+
+                var response = new
+                {
+                    success = true,
+                    message = "Lấy dữ liệu thành công",
+                    totalItems = total,
+                    page = page,
+                    pageSize = pageSize,
+                    data = data
+                };
+
+                return Ok(response);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Đã xảy ra lỗi:" + ex.Message);
+                return BadRequest(new { success = false, message = ex.Message });
             }
         }
         [Route("update")]

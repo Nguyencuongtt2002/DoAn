@@ -16,14 +16,19 @@ namespace DAL
         {
             _dbHelper = dbHelper;
         }
-        public List<LoaiSanPhamModel> GetALL()
+        public List<LoaiSanPhamModel> GetALL(int? pageIndex, int? pageSize, out int total, string? TenLoaiSanPham)
         {
             string msgError = "";
+            total = 0;
             try
             {
-                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_getall_LoaiSanPham");
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_getall_LoaiSanPham",
+                    "@p_pageindex", pageIndex,
+                    "@p_pagesize", pageSize,
+                    "@p_TenLoaiSanPham", TenLoaiSanPham);
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
+                if (dt.Rows.Count > 0) total = (int)dt.Rows[0]["TotalCount"];
                 return dt.ConvertTo<LoaiSanPhamModel>().ToList();
             }
             catch (Exception ex)

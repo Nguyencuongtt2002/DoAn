@@ -16,6 +16,12 @@ export class AdLoaispComponent implements OnInit {
   TenLoaiSanPham: string = "";
   GioiThieu: string = "";
   btnText: string = "Thêm";
+
+  searchTerm: string = '';
+  p: number = 1;
+  pageSize: number = 10;
+  totalItems: number = 0;
+
   @ViewChild('CreateUpdateModal') CreateUpdateModal!: ElementRef;
   @ViewChild('deleteModal') deleteModal!: ElementRef;
   editorConfig: AngularEditorConfig = {
@@ -35,7 +41,7 @@ export class AdLoaispComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getAll();
+    this.getAll(this.p);
     this.loadJS();
   }
   taomoi = () => {
@@ -43,10 +49,17 @@ export class AdLoaispComponent implements OnInit {
     this.GioiThieu = "";
     this.btnText = "Thêm";
   }
-  getAll = () => {
-    this.loaisanpham.getLoaiSanPhamAll().subscribe(res => {
-      console.log(res)
-      this.loaisp = res;
+  getAll = (p: number) => {
+    const obj = {
+      page: p,
+      pageSize: this.pageSize,
+      tenLoaiSanPham: this.searchTerm
+    }
+    this.loaisanpham.getLoaiSanPhamAll(obj).subscribe(res => {
+      this.loaisp = res.data;
+      this.totalItems = res.totalItems;
+      this.p = p
+      // console.log(this.p)
     })
   }
   CreateUpdate = () => {
@@ -61,7 +74,7 @@ export class AdLoaispComponent implements OnInit {
           this.toastr.success('Thêm thành công', '', {
             progressBar: true,
           });
-          this.getAll();
+          this.getAll(this.p);
           const CreateUpdateModal = this.CreateUpdateModal.nativeElement;
           CreateUpdateModal.classList.remove('show');
           CreateUpdateModal.style.display = 'none';
@@ -78,7 +91,7 @@ export class AdLoaispComponent implements OnInit {
         this.toastr.success('cập nhật thành công', '', {
           progressBar: true,
         });
-        this.getAll();
+        this.getAll(this.p);
         const CreateUpdateModal = this.CreateUpdateModal.nativeElement;
         CreateUpdateModal.classList.remove('show');
         CreateUpdateModal.style.display = 'none';
@@ -98,28 +111,28 @@ export class AdLoaispComponent implements OnInit {
     this.TenLoaiSanPham = item.tenLoaiSanPham;
     this.GioiThieu = item.gioiThieu
   }
-  onDelete = (item: any) => {
-    this.MaLoaiSanPham = item.maLoaiSanPham;
-    this.deleteModal.nativeElement.classList.add('show');
-  }
+  // onDelete = (item: any) => {
+  //   this.MaLoaiSanPham = item.maLoaiSanPham;
+  //   this.deleteModal.nativeElement.classList.add('show');
+  // }
 
-  hanleDelete = () => {
-    // Thực hiện xóa dữ liệu
-    this.loaisanpham.Delete(this.MaLoaiSanPham).subscribe((res) => {
-      this.toastr.success('xóa thành công', '', {
-        progressBar: true,
-      });
-      this.getAll();
-      const deleteModal = this.deleteModal.nativeElement;
-      deleteModal.classList.remove('show');
-      deleteModal.style.display = 'none';
-      document.body.classList.remove('modal-open');
-      const modalBackdrop = document.getElementsByClassName('modal-backdrop');
-      for (let i = 0; i < modalBackdrop.length; i++) {
-        modalBackdrop[i].remove();
-      }
-    });
-  }
+  // hanleDelete = () => {
+  //   // Thực hiện xóa dữ liệu
+  //   this.loaisanpham.Delete(this.MaLoaiSanPham).subscribe((res) => {
+  //     this.toastr.success('xóa thành công', '', {
+  //       progressBar: true,
+  //     });
+  //     this.getAll();
+  //     const deleteModal = this.deleteModal.nativeElement;
+  //     deleteModal.classList.remove('show');
+  //     deleteModal.style.display = 'none';
+  //     document.body.classList.remove('modal-open');
+  //     const modalBackdrop = document.getElementsByClassName('modal-backdrop');
+  //     for (let i = 0; i < modalBackdrop.length; i++) {
+  //       modalBackdrop[i].remove();
+  //     }
+  //   });
+  // }
   private async loadJS(): Promise<void> {
     await this.load2.loadScript('/assets/JS/jquery-3.5.1.min.js')
     await this.load2.loadScript('/assets/JS/jquery.countup.min.js')

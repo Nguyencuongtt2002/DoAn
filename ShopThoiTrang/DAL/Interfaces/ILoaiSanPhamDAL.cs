@@ -9,7 +9,7 @@ namespace DAL
 {
     public partial interface ILoaiSanPhamDAL
     {
-        List<LoaiSanPhamModel> GetALL();
+        List<LoaiSanPhamModel> GetALL(int? page, int? pageSize, out int total, string? TenLoaiSanPham);
         bool Create(LoaiSanPhamModel them);
         bool Update(LoaiSanPhamModel sua);
         bool Delete(int ma);

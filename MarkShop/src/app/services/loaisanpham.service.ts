@@ -14,8 +14,8 @@ export class LoaisanphamService {
 
     constructor(private http: HttpClient) { }
 
-    getLoaiSanPhamAll(): Observable<any> {
-        return this.http.get<any>(_api + '/api/LoaiSanPham/get-all');
+    getLoaiSanPhamAll(obj: any): Observable<any> {
+        return this.http.post<any>(_api + '/api/LoaiSanPham/get-all', obj);
     }
     getSanPhamTheoLoai(page: number, pageSize: number, maLoaiSanPham: number): Observable<any> {
         return this.http.get(_api + `/api/SanPham/timkiem?page=${page}&pageSize=${pageSize}&maLoaiSanPham=${maLoaiSanPham}`)

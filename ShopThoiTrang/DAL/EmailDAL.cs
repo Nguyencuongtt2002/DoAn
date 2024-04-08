@@ -37,7 +37,7 @@ namespace DAL
         public void OrderEmail(string toEmail, string Ten, string HoTen,int? TongTien ,string DiaChi, string SDT, List<ChiTietDonHangModel> model)
         {
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress(_mailSettings.SenderName, _mailSettings.SenderEmail));
+            message.From.Add(new MailboxAddress(Ten + _mailSettings.SenderName, _mailSettings.SenderEmail));
             message.To.Add(new MailboxAddress("", toEmail));
             message.Subject = "Cảm ơn đã đặt hàng tại " + Ten;
 

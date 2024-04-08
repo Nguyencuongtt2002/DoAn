@@ -31,11 +31,19 @@ export class TimKiemComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loaisanpham.getLoaiSanPhamAll().subscribe((res) => {
-      this.loaisp = res;
-    });
+    this.getLoaiSanPhamAll();
     this.getsanphamsearch();
     this.loadJS();
+  }
+  getLoaiSanPhamAll = () => {
+    const obj = {
+      page: 1,
+      pageSize: 50,
+      tenLoaiSanPham: ""
+    }
+    this.loaisanpham.getLoaiSanPhamAll(obj).subscribe(res => {
+      this.loaisp = res.data;
+    })
   }
   private async loadJS(): Promise<void> {
     await this.load2.loadScript('/assets/JS/jquery-3.5.1.min.js')

@@ -181,49 +181,49 @@ export class AdNguoiDungComponent implements OnInit {
     }
   }
   //xóa 
-  onDelete = () => {
-    this.deleteModal.nativeElement.classList.add('show');
-  }
+  // onDelete = () => {
+  //   this.deleteModal.nativeElement.classList.add('show');
+  // }
 
-  hanleDelete = () => {
-    if (this.selectedRow) {
-      if (this.selectedRow.vaiTro === 'Admin') {
-        Swal.fire({
-          icon: 'warning',
-          title: 'Không thể xóa',
-          text: 'Không thể xóa tài khoản có vai trò là Admin!',
-          confirmButtonColor: '#3085d6',
-          confirmButtonText: 'OK'
-        });
-        this.selectedRow = null;
-        const deleteModal = this.deleteModal.nativeElement;
-        deleteModal.classList.remove('show');
-        deleteModal.style.display = 'none';
-        document.body.classList.remove('modal-open');
-        const modalBackdrop = document.getElementsByClassName('modal-backdrop');
-        for (let i = 0; i < modalBackdrop.length; i++) {
-          modalBackdrop[i].remove();
-        }
-      } else {
-        // Thực hiện xóa dữ liệu
-        this.nd.Delete(this.MaNguoiDung).subscribe((res) => {
-          this.toastr.success('Xóa thành công', '', {
-            progressBar: true,
-          });
-          this.getall(1);
-          this.selectedRow = null;
-          const deleteModal = this.deleteModal.nativeElement;
-          deleteModal.classList.remove('show');
-          deleteModal.style.display = 'none';
-          document.body.classList.remove('modal-open');
-          const modalBackdrop = document.getElementsByClassName('modal-backdrop');
-          for (let i = 0; i < modalBackdrop.length; i++) {
-            modalBackdrop[i].remove();
-          }
-        });
-      }
-    }
-  }
+  // hanleDelete = () => {
+  //   if (this.selectedRow) {
+  //     if (this.selectedRow.vaiTro === 'Admin') {
+  //       Swal.fire({
+  //         icon: 'warning',
+  //         title: 'Không thể xóa',
+  //         text: 'Không thể xóa tài khoản có vai trò là Admin!',
+  //         confirmButtonColor: '#3085d6',
+  //         confirmButtonText: 'OK'
+  //       });
+  //       this.selectedRow = null;
+  //       const deleteModal = this.deleteModal.nativeElement;
+  //       deleteModal.classList.remove('show');
+  //       deleteModal.style.display = 'none';
+  //       document.body.classList.remove('modal-open');
+  //       const modalBackdrop = document.getElementsByClassName('modal-backdrop');
+  //       for (let i = 0; i < modalBackdrop.length; i++) {
+  //         modalBackdrop[i].remove();
+  //       }
+  //     } else {
+  //       // Thực hiện xóa dữ liệu
+  //       this.nd.Delete(this.MaNguoiDung).subscribe((res) => {
+  //         this.toastr.success('Xóa thành công', '', {
+  //           progressBar: true,
+  //         });
+  //         this.getall(1);
+  //         this.selectedRow = null;
+  //         const deleteModal = this.deleteModal.nativeElement;
+  //         deleteModal.classList.remove('show');
+  //         deleteModal.style.display = 'none';
+  //         document.body.classList.remove('modal-open');
+  //         const modalBackdrop = document.getElementsByClassName('modal-backdrop');
+  //         for (let i = 0; i < modalBackdrop.length; i++) {
+  //           modalBackdrop[i].remove();
+  //         }
+  //       });
+  //     }
+  //   }
+  // }
 
   onReset = () => {
     this.resetModal.nativeElement.classList.add('show');

@@ -22,10 +22,19 @@ export class TinTucComponent implements OnInit {
     private loaisanpham: LoaisanphamService) { }
 
   ngOnInit(): void {
+    this.getLoaiSanPhamAll();
     this.getTinTucAll();
     this.loadJS();
-    this.loaisanpham.getLoaiSanPhamAll().subscribe(res => {
-      this.loaisp = res;
+
+  }
+  getLoaiSanPhamAll = () => {
+    const obj = {
+      page: 1,
+      pageSize: 50,
+      tenLoaiSanPham: ""
+    }
+    this.loaisanpham.getLoaiSanPhamAll(obj).subscribe(res => {
+      this.loaisp = res.data;
     })
   }
   getTinTucAll = () => {

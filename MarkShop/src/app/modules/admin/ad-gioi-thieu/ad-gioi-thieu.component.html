@@ -3,15 +3,15 @@
         <h3 class="text-center mb-3 font-weight-bold" data-aos="flip-right">Danh sách giới thiệu </h3>
         <!-- "Create New" button that triggers the modal -->
         <p class="text-muted font-13 m-b-30">
-            <button class="btn btn-success fa fa-plus" data-toggle="modal" (click)="taomoi()"
-                data-target="#exampleModal">Tạo mới</button>
+            <!-- <button class="btn btn-success fa fa-plus" data-toggle="modal" (click)="taomoi()"
+                data-target="#exampleModal">Tạo mới</button> -->
             <button class="btn btn-info btn-sm ml-2" data-toggle="modal" data-target="#exampleModal1">
                 <i class="fas fa-edit"></i> Cập nhật
             </button>
-            <button class="btn btn-info btn-sm ml-2" data-toggle="modal" data-target="#exampleModal3"
+            <!-- <button class="btn btn-info btn-sm ml-2" data-toggle="modal" data-target="#exampleModal3"
                 (click)="onDelete()">
                 <i class="fas fa-trash-alt"></i> Xóa
-            </button>
+            </button> -->
         </p>
         <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Tìm kiếm..." [(ngModel)]="searchTerm">
@@ -48,7 +48,7 @@
     </div>
 </div>
 
-<div #addModal class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<!-- <div #addModal class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" style="max-width: 600px;">
         <div class="modal-content">
@@ -97,7 +97,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <div #updateModal class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" style="max-width: 600px;">
@@ -152,7 +152,7 @@
         </div>
     </div>
 </div>
-<div #deleteModal class="modal" tabindex="-1" id="exampleModal3">
+<!-- <div #deleteModal class="modal" tabindex="-1" id="exampleModal3">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -170,4 +170,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

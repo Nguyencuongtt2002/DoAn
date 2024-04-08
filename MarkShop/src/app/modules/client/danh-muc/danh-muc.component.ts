@@ -34,8 +34,16 @@ export class DanhMucComponent implements OnInit {
         console.log(this.totalItems);
       });
     });
-    this.loaisanphamService.getLoaiSanPhamAll().subscribe(res => {
-      this.loaisp = res;
+
+    const obj = {
+      page: 1,
+      pageSize: 50,
+      tenLoaiSanPham: ""
+    }
+    this.loaisanphamService.getLoaiSanPhamAll(obj).subscribe(res => {
+
+      console.log(res)
+      this.loaisp = res.data;
     })
   }
   nuttimkiem = () => {

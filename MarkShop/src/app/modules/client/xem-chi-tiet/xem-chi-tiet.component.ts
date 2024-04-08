@@ -64,8 +64,13 @@ export class XemChiTietComponent implements OnInit {
         this.loadSanPhamCungLoai();
       });
     });
-    this.loaisanpham.getLoaiSanPhamAll().subscribe(res => {
-      this.loaisp = res;
+    const obj = {
+      page: 1,
+      pageSize: 50,
+      tenLoaiSanPham: ""
+    }
+    this.loaisanpham.getLoaiSanPhamAll(obj).subscribe(res => {
+      this.loaisp = res.data;
     })
 
   }

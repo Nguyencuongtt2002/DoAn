@@ -967,35 +967,15 @@
   },
   {
     "ContainingType": "ShopThoiTrang.Controllers.LoaiSanPhamController",
-    "Method": "GetALL",
+    "Method": "GetAll",
     "RelativePath": "api/LoaiSanPham/get-all",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Model.LoaiSanPhamModel, Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "ShopThoiTrang.Controllers.LoaiSanPhamController",
-    "Method": "Create",
-    "RelativePath": "api/LoaiSanPham/them",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "them",
-        "Type": "Model.LoaiSanPhamModel",
+        "Name": "formData",
+        "Type": "System.Collections.Generic.Dictionary\u00602[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": true
       }
     ],

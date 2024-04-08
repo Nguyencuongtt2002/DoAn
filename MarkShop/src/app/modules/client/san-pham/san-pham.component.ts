@@ -18,10 +18,15 @@ export class SanPhamComponent implements OnInit {
     this.getLoaiSanPhamAll();
     this.getSanPhamAll();
   }
-  getLoaiSanPhamAll() {
-    this.loaisanphamService.getLoaiSanPhamAll().subscribe(res => {
+  getLoaiSanPhamAll = () => {
+    const obj = {
+      page: 1,
+      pageSize: 50,
+      tenLoaiSanPham: ""
+    }
+    this.loaisanphamService.getLoaiSanPhamAll(obj).subscribe(res => {
       console.log(res);
-      this.listloai = res;
+      this.listloai = res.data;
     })
   }
   getSanPhamAll() {

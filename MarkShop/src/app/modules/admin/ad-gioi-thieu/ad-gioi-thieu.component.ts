@@ -49,38 +49,38 @@ export class AdGioiThieuComponent implements OnInit {
       this.gioithieu = res;
     })
   }
-  Them = () => {
-    const formData = new FormData();
-    formData.append('TieuDe', this.TieuDe);
-    formData.append('NoiDung', this.NoiDung);
-    formData.append('file', this.HinhAnh!);
+  // Them = () => {
+  //   const formData = new FormData();
+  //   formData.append('TieuDe', this.TieuDe);
+  //   formData.append('NoiDung', this.NoiDung);
+  //   formData.append('file', this.HinhAnh!);
 
-    this.gt.create(formData).subscribe(
-      (res) => {
-        if (res) {
-          this.toastr.success('Thêm thành công', '', {
-            progressBar: true,
-          });
-          this.getall();
-          const addModal = this.addModal.nativeElement;
-          addModal.classList.remove('show');
-          addModal.style.display = 'none';
-          document.body.classList.remove('modal-open');
+  //   this.gt.create(formData).subscribe(
+  //     (res) => {
+  //       if (res) {
+  //         this.toastr.success('Thêm thành công', '', {
+  //           progressBar: true,
+  //         });
+  //         this.getall();
+  //         const addModal = this.addModal.nativeElement;
+  //         addModal.classList.remove('show');
+  //         addModal.style.display = 'none';
+  //         document.body.classList.remove('modal-open');
 
-          const modalBackdrop = document.getElementsByClassName('modal-backdrop');
-          for (let i = 0; i < modalBackdrop.length; i++) {
-            modalBackdrop[i].remove();
-          }
-        }
-      },
-      (error) => {
-        this.toastr.error('Đã xảy ra lỗi khi thêm .', '', {
-          progressBar: true,
-        });;
+  //         const modalBackdrop = document.getElementsByClassName('modal-backdrop');
+  //         for (let i = 0; i < modalBackdrop.length; i++) {
+  //           modalBackdrop[i].remove();
+  //         }
+  //       }
+  //     },
+  //     (error) => {
+  //       this.toastr.error('Đã xảy ra lỗi khi thêm .', '', {
+  //         progressBar: true,
+  //       });;
 
-      }
-    );
-  }
+  //     }
+  //   );
+  // }
   selectedRow: Gioithieu | null = null;
 
   onRowClick = (gioithieu: Gioithieu) => {
@@ -122,30 +122,30 @@ export class AdGioiThieuComponent implements OnInit {
     }
   }
 
-  onDelete = () => {
-    this.deleteModal.nativeElement.classList.add('show');
-  }
+  // onDelete = () => {
+  //   this.deleteModal.nativeElement.classList.add('show');
+  // }
 
-  hanleDelete = () => {
-    if (this.selectedRow) {
-      // Thực hiện xóa dữ liệu
-      this.gt.Delete(this.MaGioiThieu).subscribe((res) => {
-        this.toastr.success('xóa thành công', '', {
-          progressBar: true,
-        });
-        this.getall();
-        const deleteModal = this.deleteModal.nativeElement;
-        deleteModal.classList.remove('show');
-        deleteModal.style.display = 'none';
-        document.body.classList.remove('modal-open');
-        const modalBackdrop = document.getElementsByClassName('modal-backdrop');
-        for (let i = 0; i < modalBackdrop.length; i++) {
-          modalBackdrop[i].remove();
-        }
-      });
-    }
+  // hanleDelete = () => {
+  //   if (this.selectedRow) {
+  //     // Thực hiện xóa dữ liệu
+  //     this.gt.Delete(this.MaGioiThieu).subscribe((res) => {
+  //       this.toastr.success('xóa thành công', '', {
+  //         progressBar: true,
+  //       });
+  //       this.getall();
+  //       const deleteModal = this.deleteModal.nativeElement;
+  //       deleteModal.classList.remove('show');
+  //       deleteModal.style.display = 'none';
+  //       document.body.classList.remove('modal-open');
+  //       const modalBackdrop = document.getElementsByClassName('modal-backdrop');
+  //       for (let i = 0; i < modalBackdrop.length; i++) {
+  //         modalBackdrop[i].remove();
+  //       }
+  //     });
+  //   }
 
-  }
+  // }
   //File
   onFileChange(event: any) {
     const fileList: FileList = event.target.files;

@@ -48,22 +48,48 @@ export class AdMenuComponent implements OnInit {
     this.btnText = "Thêm";
   }
 
-  CreateUpdate(): void {
+  CreateUpdate = () => {
     const obj = {
       MaMenu: this.MaMenu,
       TenMenu: this.TenMenu,
       Link: this.Link
     };
+    // if (this.btnText === "Thêm") {
+    //   this.mn.create(obj).subscribe(res => {
+    //     if (res) {
+    //       this.toastr.success('Thêm thành công', '', {
+    //         progressBar: true,
+    //       });
+    //       this.getAll(1);
+    //       const CreateUpdateModal = this.CreateUpdateModal.nativeElement;
+    //       CreateUpdateModal.classList.remove('show');
+    //       CreateUpdateModal.style.display = 'none';
+    //       document.body.classList.remove('modal-open');
 
-    const successMessage = this.btnText === "Thêm" ? 'Thêm thành công' : 'Cập nhật thành công';
+    //       const modalBackdrop = document.getElementsByClassName('modal-backdrop');
+    //       for (let i = 0; i < modalBackdrop.length; i++) {
+    //         modalBackdrop[i].remove();
+    //       }
+    //     }
+    //   });
+    // }
+    //else {
+    this.mn.update(obj).subscribe(res => {
+      this.toastr.success('cập nhật thành công', '', {
+        progressBar: true,
+      });
+      this.getAll(1);
+      const CreateUpdateModal = this.CreateUpdateModal.nativeElement;
+      CreateUpdateModal.classList.remove('show');
+      CreateUpdateModal.style.display = 'none';
+      document.body.classList.remove('modal-open');
 
-    (this.btnText === "Thêm" ? this.mn.create(obj) : this.mn.update(obj)).subscribe(res => {
-      if (res) {
-        this.toastr.success(successMessage, '', { progressBar: true });
-        this.getAll(1);
-        this.closeModal(this.CreateUpdateModal.nativeElement);
+      const modalBackdrop = document.getElementsByClassName('modal-backdrop');
+      for (let i = 0; i < modalBackdrop.length; i++) {
+        modalBackdrop[i].remove();
       }
     });
+    // }
   }
 
   CapNhat(item: any): void {
@@ -73,18 +99,18 @@ export class AdMenuComponent implements OnInit {
     this.Link = item.link;
   }
 
-  onDelete(item: any): void {
-    this.MaMenu = item.maMenu;
-    this.deleteModal.nativeElement.classList.add('show');
-  }
+  // onDelete(item: any): void {
+  //   this.MaMenu = item.maMenu;
+  //   this.deleteModal.nativeElement.classList.add('show');
+  // }
 
-  hanleDelete(): void {
-    this.mn.Delete(this.MaMenu).subscribe(() => {
-      this.toastr.success('Xóa thành công', '', { progressBar: true });
-      this.getAll(1);
-      this.closeModal(this.deleteModal.nativeElement);
-    });
-  }
+  // hanleDelete(): void {
+  //   this.mn.Delete(this.MaMenu).subscribe(() => {
+  //     this.toastr.success('Xóa thành công', '', { progressBar: true });
+  //     this.getAll(1);
+  //     this.closeModal(this.deleteModal.nativeElement);
+  //   });
+  // }
 
   private loadJS(): void {
     const scripts = [

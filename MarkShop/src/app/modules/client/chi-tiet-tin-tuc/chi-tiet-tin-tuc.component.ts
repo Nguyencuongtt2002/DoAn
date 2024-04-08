@@ -29,8 +29,17 @@ export class ChiTietTinTucComponent implements OnInit {
         this.tintuckhac = data.data;
       })
     });
-    this.loaisanphamService.getLoaiSanPhamAll().subscribe(res => {
-      this.loaisp = res;
+
+    this.getLoaiSanPhamAll();
+  }
+  getLoaiSanPhamAll = () => {
+    const obj = {
+      page: 1,
+      pageSize: 50,
+      tenLoaiSanPham: ""
+    }
+    this.loaisanphamService.getLoaiSanPhamAll(obj).subscribe(res => {
+      this.loaisp = res.data;
     })
   }
 }
