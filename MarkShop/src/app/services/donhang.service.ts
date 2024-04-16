@@ -20,11 +20,11 @@ export class DonhangService {
     getDonHangAll(): Observable<Array<Donhang>> {
         return this.http.get<Array<Donhang>>(_api + '/api/DonHang/get-all', { headers });
     }
-    getChiTietDonHangByDonHang(obj: any): Observable<any> {
-        return this.http.post(`${_api}/api/DonHang/getctdonhangbydonhang`, obj);
+    getChiTietDonHangByDonHang(id: number): Observable<any> {
+        return this.http.get(`${_api}/api/DonHang/getctdonhangbydonhang/${id}`,);
     }
-    DuyetDon(obj: any): Observable<any> {
-        return this.http.post(_api + '/api/DonHang/duyetdon', obj, { headers });
+    DuyetDon(ma: number): Observable<any> {
+        return this.http.get(`${_api}/api/DonHang/duyetdon/${ma}`, { headers });
     }
     getlienheAll(obj: any): Observable<any> {
         return this.http.post<any>(_api + '/api/LienHe/get-all', obj);
@@ -38,8 +38,8 @@ export class DonhangService {
     huyDon(obj: any): Observable<any> {
         return this.http.post<any>(_api + '/api/DonHang/huydon', obj);
     }
-    excel(obj: any): Observable<Blob> {
-        return this.http.post(`${_api}/api/DonHang/excel`, obj, { headers, responseType: 'blob' });
+    excel(MaDonHang: any): Observable<Blob> {
+        return this.http.get(`${_api}/api/DonHang/excel/${MaDonHang}`, { headers, responseType: 'blob' });
     }
 
     vnpay(obj: any): Observable<any> {
@@ -60,8 +60,11 @@ export class DonhangService {
     capNhatDonHang(obj: any): Observable<any> {
         return this.http.post<any>(_api + '/api/DonHang/capnhat-donhang', obj, { headers })
     }
-    capNhatDonHangKhiGiao(obj: any): Observable<any> {
-        return this.http.post<any>(_api + '/api/DonHang/capnhat-donhang-khigiao', obj, { headers })
+    getTheoMa(id: number): Observable<any> {
+        return this.http.get<any>(`${_api}/api/DonHang/getbyid/${id}`)
     }
+    // capNhatDonHangKhiGiao(obj: any): Observable<any> {
+    //     return this.http.post<any>(_api + '/api/DonHang/capnhat-donhang-khigiao', obj, { headers })
+    // }
 
 }

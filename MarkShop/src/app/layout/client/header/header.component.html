@@ -11,7 +11,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto d-flex justify-content-center align-items-center">
                 <li class="nav-item" *ngFor="let mn of menu">
-                    <a routerLink="{{mn.link}}">{{mn.tenMenu}}</a>
+                    <a [routerLink]="mn.link">{{mn.tenMenu}}</a>
                 </li>
                 <!-- Condition for unauthenticated user -->
                 <li class="nav-item position-relative login" *ngIf="!isLogin">

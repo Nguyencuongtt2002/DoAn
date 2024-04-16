@@ -36,33 +36,33 @@
                     <td>{{dh.soDienThoai}}</td>
 
                     <!-- Use Bootstrap styling for "Chưa thanh toán" -->
-                    <ng-container *ngIf="(dh.tinhTrang === 0 || dh.tinhTrang === 1 ) && dh.trangThai === 0">
+                    <ng-container *ngIf="dh.tinhTrang === 0">
                         <td class="badge badge-danger">Chờ duyệt</td>
                         <td style="width: 70px">
                             <button class="btn btn-warning btnDuyetDH" (click)="DuyetDon(dh)">Duyệt</button>
                         </td>
                     </ng-container>
 
-                    <ng-container *ngIf="dh.tinhTrang === 1  && dh.trangThai ==1">
+                    <ng-container *ngIf="dh.tinhTrang === 1 ">
                         <td class="badge badge-success">Đã duyệt</td>
                         <td></td>
                     </ng-container>
 
-                    <ng-container *ngIf="dh.trangThai === 2 && (dh.tinhTrang === 1 || dh.tinhTrang === 0)">
+                    <ng-container *ngIf="dh.tinhTrang === 2">
                         <td class="badge badge-secondary">Đã hủy</td>
                     </ng-container>
 
-                    <ng-container *ngIf="dh.trangThai === 3 && dh.tinhTrang === 3 ">
+                    <ng-container *ngIf="dh.tinhTrang === 3">
                         <td class="badge badge-primary">Chờ thanh toán</td>
                         <td></td>
                     </ng-container>
 
-                    <ng-container *ngIf="dh.trangThai === 4 && dh.tinhTrang === 4 ">
+                    <ng-container *ngIf="dh.tinhTrang === 4">
                         <td class="badge badge-info">Đã thanh toán</td>
                         <td></td>
                     </ng-container>
 
-                    <ng-container *ngIf="dh.trangThai === 5 && dh.tinhTrang === 5 ">
+                    <ng-container *ngIf="dh.tinhTrang === 5 ">
                         <td class="badge badge-warning">Đã hoàn thành</td>
                         <td></td>
                     </ng-container>
@@ -70,7 +70,7 @@
                 </tr>
             </tbody>
         </table>
-        <h3 class="font-weight-bold mt-5">Tổng doanh thu:{{TongTien| number: '1.0-0'}} VNĐ</h3>
+        <!-- <h3 class="font-weight-bold mt-5">Tổng doanh thu:{{TongTien| number: '1.0-0'}} VNĐ</h3> -->
     </div>
 </div>
 <div #ViewModal class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="detailModal"
@@ -116,13 +116,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="text-center">
-                            <td>{{MaDonHang}}</td>
-                            <td>{{TenSP}}</td>
-                            <td>{{SoLuong}}</td>
-                            <td>{{GiaTien| number: '1.0-0'}} VNĐ</td>
+                        <tr class="text-center" *ngFor="let ct of chitietdonhang">
+                            <td>{{ct.maDonHang}}</td>
+                            <td>{{ct.tenSP}}</td>
+                            <td>{{ct.soLuong}}</td>
+                            <td>{{ct.giaTien| number: '1.0-0'}} VNĐ</td>
                         </tr>
-
                         <!-- New row for total invoice -->
                         <tr>
                             <td colspan="3" class="text-right"><strong>Tổng hóa đơn:</strong></td>

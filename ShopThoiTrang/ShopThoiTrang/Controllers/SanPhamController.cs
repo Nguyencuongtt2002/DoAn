@@ -26,6 +26,7 @@ namespace ShopThoiTrang.Controllers
         {
             return _sanphamBus.GetTheoMa(ma);
         }
+        [AllowAnonymous]
         [Route("getnew")]
         [HttpGet]
         public SanPhamModel  GetNew()

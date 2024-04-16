@@ -49,9 +49,9 @@ namespace BLL
         {
             return _res.CapNhatDonHangKhiGiao(model);
         }
-        public bool DuyetDonHang(DonHangModel model)
+        public bool DuyetDonHang(int ma)
         {
-            return _res.DuyetDonHang(model);
+            return _res.DuyetDonHang(ma);
         }
         public bool HuyDonHang(DonHangModel model)
         {

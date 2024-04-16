@@ -20,14 +20,13 @@ export class AdDonHangComponent implements OnInit {
   NgayDat: Date = new Date();
   NgayGiao: Date = new Date();
   Tonghoadon: number = 0;
-  TongTien: number = 0;
-
   MaDonHang: number = 0;
   MaSanPham: number = 0;
-  TenSP: string = '';
-  SoLuong: number = 0;
-  GiaTien: number = 0
-  constructor(private _route: ActivatedRoute, private donhangSrv: DonhangService) { }
+  TongTien: number = 0;
+  constructor(
+    private _route: ActivatedRoute,
+    private donhangSrv: DonhangService
+  ) { }
 
   ngOnInit(): void {
     this.getDonHangAll();
@@ -49,44 +48,16 @@ export class AdDonHangComponent implements OnInit {
       this.donhang = res;
 
       // Tính tổng doanh thu sau khi lấy được danh sách đơn hàng
-      this.tongDoanhThu()
-    });
-  }
-  tongDoanhThu() {
-    // Duyệt qua mỗi đơn hàng trong mảng donhang
-    this.donhang.forEach(dh => {
-      // Kiểm tra điều kiện tinhTrang và trangThai
-      if (dh.tinhTrang === 5 && dh.trangThai === 5) {
-        const obj = {
-          maDonHang: dh.maDonHang,
-          maSanPham: dh.maSanPham
-        };
 
-        // Gọi service để lấy thông tin chi tiết đơn hàng
-        this.donhangSrv.getChiTietDonHangByDonHang(obj).subscribe(res => {
-          this.chitietdonhang = res.data;
-          this.GiaTien = this.chitietdonhang[0].giaTien;
-          this.Tonghoadon = this.GiaTien * this.chitietdonhang[0].soLuong;
-          console.log(res.data)
-          // Cộng giá trị tổng hóa đơn vào tổng doanh thu
-          this.TongTien += this.Tonghoadon;
-        });
-      }
     });
   }
-  getChiTietDonHang(MaDonHang: number, MaSanPham: number) {
-    const obj = {
-      maDonHang: MaDonHang,
-      maSanPham: MaSanPham
-    }
-    this.donhangSrv.getChiTietDonHangByDonHang(obj).subscribe(res => {
-      this.chitietdonhang = res.data;
-      console.log(this.chitietdonhang)
-      this.MaDonHang = this.chitietdonhang[0].maDonHang
-      this.TenSP = this.chitietdonhang[0].tenSP
-      this.SoLuong = this.chitietdonhang[0].soLuong
-      this.GiaTien = this.chitietdonhang[0].giaTien
-      this.Tonghoadon = this.GiaTien * this.SoLuong
+
+  getChiTietDonHang(MaDonHang: number) {
+    this.donhangSrv.getChiTietDonHangByDonHang(MaDonHang).subscribe(res => {
+      this.chitietdonhang = res?.data;
+      this.donhangSrv.getTheoMa(MaDonHang).subscribe(data => {
+        this.Tonghoadon = data.tongTien;
+      })
     });
   }
 
@@ -101,12 +72,7 @@ export class AdDonHangComponent implements OnInit {
       confirmButtonText: 'Duyệt'
     }).then((result) => {
       if (result.isConfirmed) {
-        // User clicked "Duyệt"
-        const obj = {
-          maDonHang: item.maDonHang,
-          maSanPham: item.maSanPham
-        }
-        this.donhangSrv.DuyetDon(obj).subscribe(res => {
+        this.donhangSrv.DuyetDon(item.maDonHang).subscribe(res => {
           // Assuming the AJAX request is successful
           Swal.fire({
             title: 'Thông báo',
@@ -128,18 +94,16 @@ export class AdDonHangComponent implements OnInit {
     this.DiaChi = this.selectedRow.diaChi;
     this.SoDienThoai = this.selectedRow.soDienThoai;
     // Clear previous total before calculating for the selected order
-    this.getChiTietDonHang(this.selectedRow.maDonHang, this.selectedRow.maSanPham)
+    this.getChiTietDonHang(this.selectedRow.maDonHang)
   }
 
   exportToExcel() {
     const maDonHang = Number(this.selectedRow?.maDonHang);
-    const maSanPham = Number(this.selectedRow?.maSanPham);
-    const obj = { maDonHang, maSanPham }
-    this.donhangSrv.excel(obj).subscribe((data: Blob) => {
+    this.donhangSrv.excel(maDonHang).subscribe((data: Blob) => {
       const url = window.URL.createObjectURL(data);
       const link = document.createElement('a');
       link.href = url;
-      link.download = `donhang${maSanPham}.xlsx`;
+      link.download = `donhang${maDonHang}.xlsx`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);

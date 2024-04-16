@@ -141,8 +141,7 @@ namespace DAL
             {
                 var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_capnhat_DonHang",
                 "@p_MaDonHang", model.MaDonHang,
-                "@p_TinhTrang", model.TinhTrang,
-                "@p_TrangThai",model.TrangThai);
+                "@p_TinhTrang", model.TinhTrang);
 
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
@@ -163,8 +162,7 @@ namespace DAL
                 var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_capnhatthanhtoankhigiao_DonHang",
                 "@p_MaDonHang", model.MaDonHang,
                 "@p_MaSanPham",model.MaSanPham,
-                "@p_TinhTrang", model.TinhTrang,
-                "@p_TrangThai",model.TrangThai);
+                "@p_TinhTrang", model.TinhTrang);
 
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
@@ -197,14 +195,13 @@ namespace DAL
                 throw ex;
             }
         }
-        public bool DuyetDonHang(DonHangModel model)
+        public bool DuyetDonHang(int ma)
         {
             string msgError = "";
             try
             {
                 var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_duyetdon_DonHang",
-                "@p_MaDonHang", model.MaDonHang,
-                "@p_MaSanPham",model.MaSanPham);
+                "@p_MaDonHang",ma);
 
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {

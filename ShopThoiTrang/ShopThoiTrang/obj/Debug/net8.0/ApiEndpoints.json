@@ -278,14 +278,14 @@
   {
     "ContainingType": "ShopThoiTrang.Controllers.DonHangController",
     "Method": "DuyetDonHang",
-    "RelativePath": "api/DonHang/duyetdon",
-    "HttpMethod": "POST",
+    "RelativePath": "api/DonHang/duyetdon/{ma}",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "model",
-        "Type": "Model.DonHangModel",
+        "Name": "ma",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -304,14 +304,14 @@
   {
     "ContainingType": "ShopThoiTrang.Controllers.DonHangController",
     "Method": "ExportToExcel",
-    "RelativePath": "api/DonHang/excel",
-    "HttpMethod": "POST",
+    "RelativePath": "api/DonHang/excel/{ma}",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "model",
-        "Type": "Model.ChiTietDonHangModel",
+        "Name": "ma",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -339,15 +339,41 @@
   },
   {
     "ContainingType": "ShopThoiTrang.Controllers.DonHangController",
-    "Method": "GetCTDonHangTheoDonHang",
-    "RelativePath": "api/DonHang/getctdonhangbydonhang",
+    "Method": "GetTheoMa",
+    "RelativePath": "api/DonHang/getbyid/{ma}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "model",
-        "Type": "Model.ChiTietDonHangModel",
+        "Name": "ma",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Model.DonHangModel",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ShopThoiTrang.Controllers.DonHangController",
+    "Method": "GetCTDonHangTheoDonHang",
+    "RelativePath": "api/DonHang/getctdonhangbydonhang/{ma}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ma",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],

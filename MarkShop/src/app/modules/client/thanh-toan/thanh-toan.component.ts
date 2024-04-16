@@ -84,7 +84,7 @@ export class ThanhToanComponent implements OnInit {
         tinhTrang: number,
         phuongThucThanhToan: string,
         ngayGiao: Date;
-        p_list_json_chitiet_hoadon: { maSanPham: number; soLuong: number; giaTien: number, trangThai: number }[];
+        p_list_json_chitiet_hoadon: { maSanPham: number; soLuong: number; giaTien: number }[];
       } = {
         hoTen: this.TenKhachHang,
         diaChi: this.DiaChi,
@@ -101,7 +101,6 @@ export class ThanhToanComponent implements OnInit {
           maSanPham: sanpham.MaSanPham,
           soLuong: sanpham.SoLuong,
           giaTien: sanpham.DonGia,
-          trangThai: this.phuongThucThanhToan === 'Chuyển khoản' ? 3 : 0,
         });
       }
       this.dh.thanhToan(obj).subscribe(

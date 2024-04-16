@@ -10,7 +10,7 @@ namespace BLL
         DonHangModel GetTheoMa(int? ma);
         List<DonHangModel> LichSuMuaHang(int MaNguoiDung);
         bool HuyDonHang(DonHangModel model);
-        bool DuyetDonHang(DonHangModel model);
+        bool DuyetDonHang(int ma);
         List<ChiTietDonHangModel> GetCTDonHangTheoDonHang(int? MaDonHang);
         List<LienHeModel> ThongTinLienHe();
         bool CapNhatDonHang(DonHangModel model);

@@ -17,7 +17,6 @@ namespace Model
         public string? PhuongThucThanhToan { get; set; }
         public int? MaNguoiDung { get; set; }
         public int? TinhTrang { get; set; }
-        public int? TrangThai { get; set; }
         public string? TenSP {  get; set; }
         public int? MaSanPham { get; set; }
         public int? SoLuong { get; set; }
@@ -34,8 +33,11 @@ namespace Model
         public int SoLuong { get; set; }
         public int GiaTien { get; set; }
         public int? TongTien { get; set; }
-        public int? TrangThai { get; set; }
         public string? TenSP { get; set; }
+        public int? TinhTrang { get; set; }
+        public string? HoTen { get; set; }
+        public string? DiaChi { get; set; }
+        public string? SoDienThoai { get; set; }
     }
 
 }

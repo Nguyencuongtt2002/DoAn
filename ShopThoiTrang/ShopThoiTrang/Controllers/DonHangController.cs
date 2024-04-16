@@ -31,13 +31,21 @@ namespace ShopThoiTrang.Controllers
             return _donhangBus.GetALL();
         }
         [AllowAnonymous]
-        [Route("getctdonhangbydonhang")]
+        [Route("getbyid/{ma}")]
         [HttpGet]
-        public IActionResult GetCTDonHangTheoDonHang([FromBody] ChiTietDonHangModel model)
+        public DonHangModel GetTheoMa(int ma)
+        {
+            return _donhangBus.GetTheoMa(ma);
+        }
+
+        [AllowAnonymous]
+        [Route("getctdonhangbydonhang/{ma}")]
+        [HttpGet]
+        public IActionResult GetCTDonHangTheoDonHang(int ma)
         {
             try
             {
-                var data = _donhangBus.GetCTDonHangTheoDonHang(model.MaDonHang);
+                var data = _donhangBus.GetCTDonHangTheoDonHang(ma);
                 if (data != null)
                 {
                     return Ok(new
@@ -150,25 +158,24 @@ namespace ShopThoiTrang.Controllers
             _donhangBus.HuyDonHang(model);
             return model;
         }
-        [Route("duyetdon")]
-        [HttpPost]
-        public bool DuyetDonHang([FromBody] DonHangModel model)
+        [Route("duyetdon/{ma}")]
+        [HttpGet]
+        public bool DuyetDonHang(int ma)
         {
-            return _donhangBus.DuyetDonHang(model);
+            return _donhangBus.DuyetDonHang(ma);
         }
-        
 
-        [Route("excel")]
-        [HttpPost]
-        public IActionResult ExportToExcel([FromBody] ChiTietDonHangModel model)
+
+        [Route("excel/{ma}")]
+        [HttpGet]
+        public IActionResult ExportToExcel(int ma)
         {
             try
             {
                 var lienhe = _donhangBus.ThongTinLienHe();
-                var donhang = _donhangBus.GetALL();
                 var thamso = _thamSoBus.GetTheoKyHieu("NAME");
                 // Lấy thông tin đơn hàng và chi tiết đơn hàng từ BLL
-                var chiTietDonHang = _donhangBus.GetCTDonHangTheoDonHang(model.MaDonHang);
+                var chiTietDonHang = _donhangBus.GetCTDonHangTheoDonHang(ma);
 
                 using (var package = new ExcelPackage())
                 {
@@ -176,16 +183,16 @@ namespace ShopThoiTrang.Controllers
                     var worksheet = package.Workbook.Worksheets.Add("Hoá Đơn");
 
                     // Thêm thông tin cửa hàng và hoá đơn vào các ô
-                    worksheet.Cells["A2"].Value = "Cửa hàng quần áo"+thamso.NoiDung;
+                    worksheet.Cells["A2"].Value = "Cửa hàng quần áo" + thamso.NoiDung;
                     worksheet.Cells["A3"].Value = "Địa chỉ : " + lienhe[0].DiaChi;
                     worksheet.Cells["A4"].Value = "Email: " + lienhe[0].Email;
                     worksheet.Cells["A5"].Value = "Số điện thoại: " + lienhe[0].SoDienThoai;
 
 
                     worksheet.Cells["D2"].Value = "Thông tin khách hàng ";
-                    worksheet.Cells["D3"].Value = "Tên khách hàng: " + donhang[0].HoTen;
-                    worksheet.Cells["D4"].Value = "Địa chỉ: " + donhang[0].DiaChi;
-                    worksheet.Cells["D5"].Value = "Số điện thoại: " + donhang[0].SoDienThoai;
+                    worksheet.Cells["D3"].Value = "Tên khách hàng: " + chiTietDonHang[0].HoTen;
+                    worksheet.Cells["D4"].Value = "Địa chỉ: " + chiTietDonHang[0].DiaChi;
+                    worksheet.Cells["D5"].Value = "Số điện thoại: " + chiTietDonHang[0].SoDienThoai;
 
                     worksheet.Cells["A7"].Value = "Mã ĐH";
                     worksheet.Cells["B7"].Value = "Tên sản phẩm";
@@ -221,8 +228,15 @@ namespace ShopThoiTrang.Controllers
                     worksheet.Cells["D2:F2"].Style.Font.Bold = true; // Đặt in đậm cho tiêu đề các cột
                     worksheet.Cells["A7:F7"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
-                    // Đặt giá trị cho ô "Tổng hoá đơn" sau khi đã lặp qua danh sách chi tiết hoá đơn nhập
-                    worksheet.Cells["A" + rowIndex].Value = "Tổng hoá đơn: " + donhang[0].TongTien?.ToString("#,##0") + " VNĐ";
+                    // Tính tổng 
+                    int? total = 0;
+                    foreach (var dh in chiTietDonHang)
+                    {
+                        total += dh.TongTien;
+                    }
+
+                    // Đặt giá trị cho ô "Tổng hoá đơn" sau khi đã lặp qua danh sách các đơn hàng
+                    worksheet.Cells["A" + rowIndex].Value = "Tổng hoá đơn: " + total?.ToString("#,##0") + " VNĐ";
                     worksheet.Cells["A" + rowIndex + ":D" + rowIndex].Merge = true; // Gộp ô từ A đến E tại hàng cuối cùng
                     worksheet.Cells["A" + rowIndex].Style.Font.Bold = true;
 

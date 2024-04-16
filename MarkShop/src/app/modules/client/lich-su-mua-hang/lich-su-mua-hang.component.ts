@@ -19,9 +19,7 @@ export class LichSuMuaHangComponent implements OnInit {
   SoDienThoai: string = "";
   Tonghoadon: number = 0;
   MaDonHang: number = 0;
-  TenSP: string = '';
-  SoLuong: number = 0;
-  GiaTien: number = 0;
+  chitietdonhang: any[] = [];
   TinhTrang: number = 0;
   lienhe: Array<Lienhe> = new Array<Lienhe>();
   constructor(private donhangService: DonhangService, private loaisanpham: LoaisanphamService, private nd: NguoidungService) { }
@@ -50,31 +48,41 @@ export class LichSuMuaHangComponent implements OnInit {
       console.log('Người dùng chưa đăng nhập');
     }
   }
-  huyDon(MaDonHang: number, MaSanPham: number) {
+  huyDon = (item: any) => {
+    console.log(item)
     const obj = {
-      maDonHang: MaDonHang,
-      maSanPham: MaSanPham
+      maDonHang: item.maDonHang,
+      maSanPham: item.maSanPham
     };
-    console.log(obj)
     Swal.fire({
       title: 'Thông báo',
-      text: 'Bạn có chắc chắn muốn xoá đơn hàng  này không?',
+      text: 'Bạn có chắc chắn muốn hủy đơn hàng  này không?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Xoá'
+      confirmButtonText: 'Hủy'
     }).then((result) => {
       if (result.isConfirmed) {
         this.donhangService.huyDon(obj).subscribe((res) => {
           console.log(res)
           Swal.fire({
             title: 'Thông báo',
-            text: 'đơn hàng đã xoá khỏi hệ thống',
+            text: 'đơn hàng đã hủy khỏi hệ thống',
             icon: 'success'
           }).then(() => {
-            // Sau khi xác nhận thông báo, cập nhật lại lịch sử mua hàng
-            this.lichsumuahang();
+            this.donhangService.getChiTietDonHangByDonHang(item.maDonHang).subscribe(data => {
+              this.chitietdonhang = data?.data
+              if (this.chitietdonhang.length === 0) {
+                this.Tonghoadon = 0;
+              }
+              else {
+                this.donhangService.getTheoMa(item.maDonHang).subscribe(data => {
+                  this.Tonghoadon = data.tongTien;
+                })
+              }
+              this.lichsumuahang();
+            })
           });
         });
       }
@@ -97,17 +105,12 @@ export class LichSuMuaHangComponent implements OnInit {
       this.lienhe = res.data;
     })
 
-    const obj = {
-      maDonHang: donhang.maDonHang,
-      maSanPham: donhang.maSanPham
-    }
-    this.donhangService.getChiTietDonHangByDonHang(obj).subscribe(data => {
-      console.log(data.data)
-      this.MaDonHang = data?.data[0].maDonHang
-      this.TenSP = data?.data[0].tenSP;
-      this.SoLuong = data?.data[0].soLuong;
-      this.GiaTien = data?.data[0].giaTien;
-      this.Tonghoadon = this.SoLuong * this.GiaTien;
+    this.donhangService.getChiTietDonHangByDonHang(donhang.maDonHang).subscribe(data => {
+      console.log(data?.data)
+      this.chitietdonhang = data?.data
+      this.donhangService.getTheoMa(donhang.maDonHang).subscribe(data => {
+        this.Tonghoadon = data.tongTien;
+      })
     })
 
 
@@ -120,28 +123,28 @@ export class LichSuMuaHangComponent implements OnInit {
       trangThai: 5
     }
 
-    Swal.fire({
-      title: 'Xác nhận',
-      text: `Bạn có chắc chắn muốn nhận  sản phẩm có mã ${MaSanPham} của đơn hàng ${MaDonHang} này?`,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Có',
-      cancelButtonText: 'Hủy',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.donhangService.capNhatDonHangKhiGiao(obj).subscribe(res => {
-          Swal.fire({
-            title: 'Thông báo',
-            text: 'Cảm ơn bạn đã mua hàng tại shop',
-            icon: 'success'
-          }).then(() => {
-            this.lichsumuahang();
-          });
-        })
-      }
-    })
+    // Swal.fire({
+    //   title: 'Xác nhận',
+    //   text: `Bạn có chắc chắn muốn nhận  sản phẩm có mã ${MaSanPham} của đơn hàng ${MaDonHang} này?`,
+    //   icon: 'warning',
+    //   showCancelButton: true,
+    //   confirmButtonColor: '#3085d6',
+    //   cancelButtonColor: '#d33',
+    //   confirmButtonText: 'Có',
+    //   cancelButtonText: 'Hủy',
+    // }).then((result) => {
+    //   if (result.isConfirmed) {
+    //     this.donhangService.capNhatDonHangKhiGiao(obj).subscribe(res => {
+    //       Swal.fire({
+    //         title: 'Thông báo',
+    //         text: 'Cảm ơn bạn đã mua hàng tại shop',
+    //         icon: 'success'
+    //       }).then(() => {
+    //         this.lichsumuahang();
+    //       });
+    //     })
+    //   }
+    // })
   }
   //Thanh toán online
   vnPay = (id: number) => {

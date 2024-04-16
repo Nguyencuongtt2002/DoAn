@@ -26,7 +26,7 @@
                                 <th>Mã HD</th>
                                 <th>Ngày đặt</th>
                                 <th>Ngày giao</th>
-                                <th>Tên SP</th>
+                                <th>Họ Tên</th>
                                 <th>Tình trạng</th>
                                 <th></th>
                             </tr>
@@ -42,47 +42,24 @@
                                     <td>{{donHang.maDonHang}}</td>
                                     <td>{{donHang.ngayDat | date: 'dd/MM/yyyy'}}</td>
                                     <td>{{donHang.ngayGiao | date: 'dd/MM/yyyy'}}</td>
-                                    <td>{{donHang.tenSP}}</td>
+                                    <td>{{donHang.hoTen}}</td>
                                     <td>
-                                        <span
-                                            *ngIf="(donHang.tinhTrang === 5 ||donHang.tinhTrang === 4) && donHang.trangThai === 4"
-                                            class="badge badge-success">Đã thanh
+
+                                        <span *ngIf="donHang.tinhTrang === 0" class="badge badge-success">Chờ xử
+                                            lý</span>
+                                        <span *ngIf="donHang.tinhTrang === 1 " class="badge badge-warning">Đã
+                                            duyệt</span>
+                                        <span *ngIf="donHang.tinhTrang === 2" class="badge badge-info">Đã hủy</span>
+                                        <span *ngIf="donHang.tinhTrang === 3 " class="badge badge-danger">Chờ thanh
                                             toán</span>
-                                        <span *ngIf="donHang.tinhTrang === 3 && donHang.trangThai === 3"
-                                            class="badge badge-warning">Chờ thanh
+                                        <span *ngIf="donHang.tinhTrang === 4 " class="badge badge-primary">Đã thanh
                                             toán</span>
-                                        <span *ngIf="donHang.tinhTrang === 5 && donHang.trangThai === 5"
-                                            class="badge badge-info">Đã hoàn thành</span>
-                                        <span *ngIf="donHang.tinhTrang === 0 && donHang.trangThai === 2"
-                                            class="badge badge-danger">Đã hủy</span>
-                                        <span
-                                            *ngIf="(donHang.tinhTrang === 1 || donHang.tinhTrang === 5) && donHang.trangThai === 1"
-                                            class="badge badge-primary">Đang giao</span>
-                                        <span *ngIf="donHang.tinhTrang === 0 && donHang.trangThai === 0"
-                                            class="badge badge-secondary">Chờ xử lý</span>
                                     </td>
 
                                     <td>
-                                        <button
-                                            *ngIf="(donHang.tinhTrang === 0 && donHang.trangThai === 0) || (donHang.tinhTrang === 3 && donHang.trangThai === 3)"
-                                            class="btn btn-danger btnHuyDon"
-                                            (click)="huyDon(donHang.maDonHang, donHang.maSanPham)">
-                                            Huỷ đơn
-                                        </button>
-                                        <button
-                                            *ngIf="!(donHang.tinhTrang === 0 && donHang.trangThai === 0) && !(donHang.tinhTrang === 3 && donHang.trangThai === 3)"
-                                            class="btn btn-danger btnHuyDon" disabled>
-                                            Huỷ đơn
-                                        </button>
                                         <button class="btn btnXemChiTiet btn-primary" data-toggle="modal"
                                             data-target="#exampleModal" (click)="XemChiTiet(donHang)">
                                             <i class="fas fa-eye"></i> Xem
-                                        </button>
-                                        <button style="margin-top: 5px;" *ngIf="(donHang.tinhTrang === 5 && donHang.trangThai === 1) || (donHang.tinhTrang === 1 && donHang.trangThai === 1) || (donHang.tinhTrang === 4 && donHang.trangThai === 4) 
-                                            || (donHang.tinhTrang === 5 && donHang.trangThai === 4)"
-                                            class="btn btn-success"
-                                            (click)="daNhanHang(donHang.maDonHang, donHang.maSanPham)">
-                                            Đã nhận hàng
                                         </button>
                                     </td>
                                 </tr>
@@ -130,18 +107,24 @@
                 <table class="table table-striped table-bordered table-hover">
                     <thead>
                         <tr class="text-center">
-                            <th style="width:8%;">Mã Đơn Hàng</th>
+                            <th style="width:8%;">Mã ĐH</th>
                             <th style="width: 40%;">Tên sản phẩm</th>
                             <th style="width: 10%;">Số lượng</th>
                             <th style="width: 20%;">Giá tiền</th>
+                            <th>thao tác</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="text-center">
-                            <td>{{MaDonHang}}</td>
-                            <td>{{TenSP}}</td>
-                            <td>{{SoLuong}}</td>
-                            <td>{{GiaTien| number: '1.0-0'}} VNĐ</td>
+                        <tr class="text-center" *ngFor="let ct of chitietdonhang">
+                            <td>{{ct.maDonHang}}</td>
+                            <td>{{ct.tenSP}}</td>
+                            <td>{{ct.soLuong}}</td>
+                            <td>{{ct.giaTien| number: '1.0-0'}} VNĐ</td>
+                            <td>
+                                <button class="btn btn-danger" *ngIf="ct.tinhTrang === 0 || ct.tinhTrang === 3"
+                                    (click)="huyDon(ct)">Hủy
+                                    đơn hàng</button>
+                            </td>
                         </tr>
 
                         <!-- New row for total invoice -->
@@ -150,6 +133,7 @@
                             <td class="text-center">{{Tonghoadon| number: '1.0-0'}} VNĐ</td>
                         </tr>
                     </tbody>
+
                 </table>
             </div>
 

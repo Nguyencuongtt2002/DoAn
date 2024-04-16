@@ -3,36 +3,20 @@
   "WorkspaceRootPath": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CFB2A9B4-D719-4B4E-9631-8F31A475CDD4}|DAL\\DAL.csproj|d:\\\u0111\u1ED3 \u00E1n\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\shopthoitrang\\dal\\loaisanphamdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CFB2A9B4-D719-4B4E-9631-8F31A475CDD4}|DAL\\DAL.csproj|solutionrelative:dal\\loaisanphamdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5FC4DC8C-CD83-4C38-8ED1-596240E0501E}|ShopThoiTrang\\ShopThoiTrang.csproj|d:\\\u0111\u1ED3 \u00E1n\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\shopthoitrang\\shopthoitrang\\controllers\\loaisanphamcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5FC4DC8C-CD83-4C38-8ED1-596240E0501E}|ShopThoiTrang\\ShopThoiTrang.csproj|solutionrelative:shopthoitrang\\controllers\\loaisanphamcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DF5A2FD7-88CF-4D45-B4C0-B3382614E636}|BLL\\BLL.csproj|d:\\\u0111\u1ED3 \u00E1n\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\shopthoitrang\\bll\\loaisanphambus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DF5A2FD7-88CF-4D45-B4C0-B3382614E636}|BLL\\BLL.csproj|solutionrelative:bll\\loaisanphambus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DF5A2FD7-88CF-4D45-B4C0-B3382614E636}|BLL\\BLL.csproj|d:\\\u0111\u1ED3 \u00E1n\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\shopthoitrang\\bll\\interfaces\\iloaisanphambus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DF5A2FD7-88CF-4D45-B4C0-B3382614E636}|BLL\\BLL.csproj|solutionrelative:bll\\interfaces\\iloaisanphambus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CFB2A9B4-D719-4B4E-9631-8F31A475CDD4}|DAL\\DAL.csproj|d:\\\u0111\u1ED3 \u00E1n\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\shopthoitrang\\dal\\interfaces\\iloaisanphamdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CFB2A9B4-D719-4B4E-9631-8F31A475CDD4}|DAL\\DAL.csproj|solutionrelative:dal\\interfaces\\iloaisanphamdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5FC4DC8C-CD83-4C38-8ED1-596240E0501E}|ShopThoiTrang\\ShopThoiTrang.csproj|d:\\\u0111\u1ED3 \u00E1n\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\shopthoitrang\\shopthoitrang\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{5FC4DC8C-CD83-4C38-8ED1-596240E0501E}|ShopThoiTrang\\ShopThoiTrang.csproj|solutionrelative:shopthoitrang\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{5FC4DC8C-CD83-4C38-8ED1-596240E0501E}|ShopThoiTrang\\ShopThoiTrang.csproj|d:\\\u0111\u1ED3 \u00E1n\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\shopthoitrang\\shopthoitrang\\controllers\\donhangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5FC4DC8C-CD83-4C38-8ED1-596240E0501E}|ShopThoiTrang\\ShopThoiTrang.csproj|solutionrelative:shopthoitrang\\controllers\\donhangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CFB2A9B4-D719-4B4E-9631-8F31A475CDD4}|DAL\\DAL.csproj|d:\\\u0111\u1ED3 \u00E1n\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\shopthoitrang\\dal\\emaildal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CFB2A9B4-D719-4B4E-9631-8F31A475CDD4}|DAL\\DAL.csproj|solutionrelative:dal\\emaildal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{54951F11-0D1E-4532-99CC-167AE9814292}|Model\\Model.csproj|d:\\\u0111\u1ED3 \u00E1n\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\shopthoitrang\\model\\donhangmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{54951F11-0D1E-4532-99CC-167AE9814292}|Model\\Model.csproj|solutionrelative:model\\donhangmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5FC4DC8C-CD83-4C38-8ED1-596240E0501E}|ShopThoiTrang\\ShopThoiTrang.csproj|d:\\\u0111\u1ED3 \u00E1n\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\shopthoitrang\\shopthoitrang\\controllers\\sanphamcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5FC4DC8C-CD83-4C38-8ED1-596240E0501E}|ShopThoiTrang\\ShopThoiTrang.csproj|solutionrelative:shopthoitrang\\controllers\\sanphamcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CFB2A9B4-D719-4B4E-9631-8F31A475CDD4}|DAL\\DAL.csproj|d:\\\u0111\u1ED3 \u00E1n\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\shopthoitrang\\dal\\gioithieudal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CFB2A9B4-D719-4B4E-9631-8F31A475CDD4}|DAL\\DAL.csproj|solutionrelative:dal\\gioithieudal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,108 +26,58 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "LoaiSanPhamController.cs",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\ShopThoiTrang\\Controllers\\LoaiSanPhamController.cs",
-              "RelativeDocumentMoniker": "ShopThoiTrang\\Controllers\\LoaiSanPhamController.cs",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\ShopThoiTrang\\Controllers\\LoaiSanPhamController.cs",
-              "RelativeToolTip": "ShopThoiTrang\\Controllers\\LoaiSanPhamController.cs",
-              "ViewState": "AQIAABYAAAAAAAAAAAAkwCQAAAAiAAAA",
+              "Title": "DonHangModel.cs",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\Model\\DonHangModel.cs",
+              "RelativeDocumentMoniker": "Model\\DonHangModel.cs",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\Model\\DonHangModel.cs",
+              "RelativeToolTip": "Model\\DonHangModel.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAxwCUAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-08T04:52:05.623Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "LoaiSanPhamBus.cs",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\BLL\\LoaiSanPhamBus.cs",
-              "RelativeDocumentMoniker": "BLL\\LoaiSanPhamBus.cs",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\BLL\\LoaiSanPhamBus.cs",
-              "RelativeToolTip": "BLL\\LoaiSanPhamBus.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAABUAAABMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-08T04:50:51.93Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ILoaiSanPhamBus.cs",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\BLL\\Interfaces\\ILoaiSanPhamBus.cs",
-              "RelativeDocumentMoniker": "BLL\\Interfaces\\ILoaiSanPhamBus.cs",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\BLL\\Interfaces\\ILoaiSanPhamBus.cs",
-              "RelativeToolTip": "BLL\\Interfaces\\ILoaiSanPhamBus.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-08T04:50:14.027Z",
+              "WhenOpened": "2024-04-16T05:27:40.664Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "LoaiSanPhamDAL.cs",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\DAL\\LoaiSanPhamDAL.cs",
-              "RelativeDocumentMoniker": "DAL\\LoaiSanPhamDAL.cs",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\DAL\\LoaiSanPhamDAL.cs",
-              "RelativeToolTip": "DAL\\LoaiSanPhamDAL.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAADwvxgAAABoAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-08T04:48:13.872Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ILoaiSanPhamDAL.cs",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\DAL\\Interfaces\\ILoaiSanPhamDAL.cs",
-              "RelativeDocumentMoniker": "DAL\\Interfaces\\ILoaiSanPhamDAL.cs",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\DAL\\Interfaces\\ILoaiSanPhamDAL.cs",
-              "RelativeToolTip": "DAL\\Interfaces\\ILoaiSanPhamDAL.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAABnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-08T04:43:43.65Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
               "Title": "DonHangController.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\ShopThoiTrang\\Controllers\\DonHangController.cs",
               "RelativeDocumentMoniker": "ShopThoiTrang\\Controllers\\DonHangController.cs",
               "ToolTip": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\ShopThoiTrang\\Controllers\\DonHangController.cs",
               "RelativeToolTip": "ShopThoiTrang\\Controllers\\DonHangController.cs",
-              "ViewState": "AQIAAHMAAAAAAAAAAADwv4sAAAANAAAA",
+              "ViewState": "AQIAANAAAAAAAAAAAAAqwN0AAAA6AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-08T02:35:31.591Z"
+              "WhenOpened": "2024-04-16T04:55:31.197Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "EmailDAL.cs",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\DAL\\EmailDAL.cs",
-              "RelativeDocumentMoniker": "DAL\\EmailDAL.cs",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\DAL\\EmailDAL.cs",
-              "RelativeToolTip": "DAL\\EmailDAL.cs",
-              "ViewState": "AQIAABgAAAAAAAAAAAAYwCoAAAAAAAAA",
+              "DocumentIndex": 2,
+              "Title": "SanPhamController.cs",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\ShopThoiTrang\\Controllers\\SanPhamController.cs",
+              "RelativeDocumentMoniker": "ShopThoiTrang\\Controllers\\SanPhamController.cs",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\ShopThoiTrang\\Controllers\\SanPhamController.cs",
+              "RelativeToolTip": "ShopThoiTrang\\Controllers\\SanPhamController.cs",
+              "ViewState": "AQIAAHsAAAAAAAAAAAAQwG0AAAA3AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-08T02:34:28.277Z"
+              "WhenOpened": "2024-04-16T00:18:30.021Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\ShopThoiTrang\\appsettings.json",
-              "RelativeDocumentMoniker": "ShopThoiTrang\\appsettings.json",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\ShopThoiTrang\\appsettings.json",
-              "RelativeToolTip": "ShopThoiTrang\\appsettings.json",
-              "ViewState": "AQIAAAMAAAAAAAAAAADwvxsAAAAQAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-04-08T02:32:40.417Z",
+              "DocumentIndex": 3,
+              "Title": "GioiThieuDAL.cs",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\DAL\\GioiThieuDAL.cs",
+              "RelativeDocumentMoniker": "DAL\\GioiThieuDAL.cs",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\DAL\\GioiThieuDAL.cs",
+              "RelativeToolTip": "DAL\\GioiThieuDAL.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-14T19:00:18.235Z",
               "EditorCaption": ""
             }
           ]
