@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Model;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Authorization;
+using System.Drawing;
 
 namespace ShopThoiTrang.Controllers
 {
@@ -119,15 +120,38 @@ namespace ShopThoiTrang.Controllers
         }
         [AllowAnonymous]
         [Route("timkiem")]
-        [HttpGet]
-        public IActionResult SearchGet(
-         int page, int pageSize, int? maSanPham = null, string tenSP = "",
-         string tenThuongHieu = "", string tenLoaiSanPham = "", int? minGia = null,
-         int? maxGia = null, int? maLoaiSanPham = null, int? maThuongHieu = null)
+        [HttpPost]
+        public IActionResult TimKiem( [FromBody] Dictionary<string, object> formData)
         {
             try
             {
+                var page = int.Parse(formData["page"].ToString());
+                var pageSize = int.Parse(formData["pageSize"].ToString());
+                int? maSanPham = null;
+                if (formData.Keys.Contains("maSanPham") && !string.IsNullOrEmpty(Convert.ToString(formData["maSanPham"]))) { maSanPham = int.Parse(formData["maSanPham"].ToString()); }
+                string tenSP = "";
+                if (formData.Keys.Contains("tenSP") && !string.IsNullOrEmpty(Convert.ToString(formData["tenSP"]))) { tenSP = Convert.ToString(formData["tenSP"]); }
+                string tenThuongHieu = "";
+                if (formData.Keys.Contains("tenThuongHieu") && !string.IsNullOrEmpty(formData["tenThuongHieu"].ToString()))
+                {
+                    tenThuongHieu = formData["tenThuongHieu"].ToString();
+                }
+                string tenLoaiSanPham = "";
+                if (formData.Keys.Contains("tenLoaiSanPham") && !string.IsNullOrEmpty(formData["tenLoaiSanPham"].ToString()))
+                {
+                    tenLoaiSanPham = formData["tenLoaiSanPham"].ToString();
+                }
+
+                int? minGia = null;
+                if (formData.Keys.Contains("minGia") && !string.IsNullOrEmpty(Convert.ToString(formData["minGia"]))) { minGia = int.Parse(formData["minGia"].ToString()); }
+                int? maxGia = null;
+                if (formData.Keys.Contains("maxGia") && !string.IsNullOrEmpty(Convert.ToString(formData["maxGia"]))) { maxGia = int.Parse(formData["maxGia"].ToString()); }
+                int? maLoaiSanPham = null;
+                if (formData.Keys.Contains("maLoaiSanPham") && !string.IsNullOrEmpty(Convert.ToString(formData["maLoaiSanPham"]))) { maLoaiSanPham = int.Parse(formData["maLoaiSanPham"].ToString()); }
+                int? maThuongHieu = null;
+                if (formData.Keys.Contains("maThuongHieu") && !string.IsNullOrEmpty(Convert.ToString(formData["maThuongHieu"]))) { maThuongHieu = int.Parse(formData["maThuongHieu"].ToString()); };
                 int total = 0;
+
                 var data = _sanphamBus.TimKiem(page, pageSize, out total, maSanPham, tenSP, tenThuongHieu, tenLoaiSanPham, minGia, maxGia, maLoaiSanPham, maThuongHieu);
 
                 var response = new
@@ -141,7 +165,6 @@ namespace ShopThoiTrang.Controllers
                 };
 
                 return Ok(response);
-
             }
             catch (Exception ex)
             {

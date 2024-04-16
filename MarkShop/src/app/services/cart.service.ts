@@ -32,7 +32,18 @@ export class CartService {
 
             //Đã tồn tại thì + 1, chưa thì thêm mới
             if (check) {
-                check.SoLuong += soluong;
+                if ((check.SoLuong + soluong) <= 10) {
+                    check.SoLuong += soluong;
+                } else {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Thông báo',
+                        text: 'Số lượng sản phẩm đặt mua không được vượt quá 5 sản phẩm',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK'
+                    });
+                    return; // Dừng việc thêm sản phẩm vào giỏ hàng nếu vượt quá giới hạn
+                }
             } else {
                 cart.push({ ...sanpham });
             }
@@ -66,10 +77,21 @@ export class CartService {
         const item = cart.find(item => item.MaSanPham === MaSanPham);
 
         if (item) {
+            if (item.SoLuong >= 10) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Thông báo',
+                    text: 'Số lượng sản phẩm đặt mua không được vượt quá 5 sản phẩm',
+                    confirmButtonColor: 'green',
+                    confirmButtonText: 'OK'
+                });
+                return;
+            }
             item.SoLuong += 1;
             localStorage.setItem('cart', JSON.stringify(cart));
             this.cartUpdated.next();
         }
+
     }
 
     // Giảm số lượng sản phẩm trong giỏ hàng

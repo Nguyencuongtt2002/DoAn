@@ -17,8 +17,8 @@ export class ThuongHieuService {
     getThuongHieuAll(): Observable<any> {
         return this.http.get<any>(_api + '/api/ThuongHieu/get-all');
     }
-    getSanPhamTheoTH(page: number, pageSize: number, maThuongHieu: number): Observable<any> {
-        return this.http.get(_api + `/api/SanPham/timkiem?page=${page}&pageSize=${pageSize}&maThuongHieu=${maThuongHieu}`)
+    getSanPhamTheoTH(obj: any): Observable<any> {
+        return this.http.post(_api + '/api/SanPham/timkiem', obj);;
     }
     create(thuonghieu: any): Observable<any> {
         return this.http.post(`${_api}/api/ThuongHieu/them`, thuonghieu, { headers: headers });

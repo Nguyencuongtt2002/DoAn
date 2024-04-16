@@ -25,7 +25,20 @@ export class ThuongHieuComponent implements OnInit {
   LoadSPtheoTH = (page: number) => {
     this.route.params.subscribe(params => {
       const ma = +params['id'];
-      this.thuonghieuService.getSanPhamTheoTH(page, this.pageSize, ma).subscribe(res => {
+
+      const obj = {
+        page: this.p,
+        pageSize: this.pageSize,
+        maSanPham: null,
+        tenSP: '',
+        tenThuongHieu: '',
+        tenLoaiSanPham: '',
+        minGia: null,
+        maxGia: null,
+        maLoaiSanPham: null,
+        maThuongHieu: ma,
+      };
+      this.thuonghieuService.getSanPhamTheoTH(obj).subscribe(res => {
         this.listSPtheoTH = res.data;
         console.log(this.listSPtheoTH)
         this.p = page;

@@ -85,25 +85,14 @@ export class XemChiTietComponent implements OnInit {
     });
   }
   Themvaogio = (res: any, soluong: number) => {
-    console.log(res);
-    if (soluong <= res.soLuong) {
+    if (soluong <= 10) {
       this.cartSrv.Themvaogio(res.maSanPham, soluong);
     }
-    else if (res.soLuong == 0) {
-      Swal.fire({
-        icon: 'info',
-        title: 'Sản phẩm đã hết hàng',
-        text: 'Xin lỗi, sản phẩm này đã hết hàng. Vui lòng chọn sản phẩm khác.',
-        confirmButtonColor: '#3085d6',
-        confirmButtonText: 'OK'
-      });
-    }
     else {
-      // Use Swal to show a warning message
       Swal.fire({
         icon: 'warning',
-        title: 'Số lượng không hợp lệ',
-        text: 'Không được mua vượt quá số lượng sản phẩm!',
+        title: 'Thông báo',
+        text: 'Số lượng sản phẩm đặt mua không được vượt quá 5 sản phẩm',
         confirmButtonColor: '#3085d6',
         confirmButtonText: 'OK'
       });
