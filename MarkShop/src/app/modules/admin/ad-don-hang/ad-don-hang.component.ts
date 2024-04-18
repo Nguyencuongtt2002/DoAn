@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class AdDonHangComponent implements OnInit {
   donhang: Array<Donhang> = new Array<Donhang>();
-  lienhe: any;
+  lienhe: Array<Lienhe> = new Array<Lienhe>();
   HoTen: string = "";
   DiaChi: string = "";
   SoDienThoai: string = "";
@@ -46,9 +46,6 @@ export class AdDonHangComponent implements OnInit {
   getDonHangAll() {
     this.donhangSrv.getDonHangAll().subscribe(res => {
       this.donhang = res;
-
-      // Tính tổng doanh thu sau khi lấy được danh sách đơn hàng
-
     });
   }
 

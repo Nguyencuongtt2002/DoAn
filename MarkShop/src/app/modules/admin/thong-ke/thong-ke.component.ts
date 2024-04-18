@@ -32,6 +32,21 @@ export class ThongKeComponent implements OnInit {
     this.LoadThongKeDoanhThuTheoNam();
     this.LoadThongKeSoLuong();
   }
+
+  ngOnDestroy(): void {
+    if (this.chart1) {
+      this.chart1.destroy();
+    }
+    if (this.chart2) {
+      this.chart2.destroy();
+    }
+    if (this.chart3) {
+      this.chart3.destroy();
+    }
+    if (this.chart4) {
+      this.chart4.destroy();
+    }
+  }
   formatDate(date: string): string {
     const originalDate = new Date(date);
     const month = originalDate.getMonth() + 1;

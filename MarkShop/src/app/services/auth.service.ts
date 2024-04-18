@@ -43,4 +43,19 @@ export class AuthService {
         this.currentUser = storedUser ? JSON.parse(storedUser) : null;
         return this.currentUser;
     }
+    isTokenValid(): boolean {
+        const user = this.getCurrentUser();
+        if (user && user.token) {
+            const loginTime = user.loginTime;
+            const tokenExpirationTime = loginTime + (60 * 60 * 1000); // 1 giờ
+            const currentTime = new Date().getTime();
+            if (currentTime > tokenExpirationTime) {
+                this.logout();
+                return false;
+            }
+            return true;
+        }
+        return false;
+    }
+
 }
