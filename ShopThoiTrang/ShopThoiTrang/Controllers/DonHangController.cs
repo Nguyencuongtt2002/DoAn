@@ -79,7 +79,7 @@ namespace ShopThoiTrang.Controllers
         {
             return _donhangBus.GetNew();
         }
-        [AllowAnonymous]
+       
         [Route("them")]
         [HttpPost]
         public DonHangModel CreateDonHang([FromBody] DonHangModel model)

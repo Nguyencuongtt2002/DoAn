@@ -6,6 +6,7 @@ import { Sanpham } from 'src/app/models/sanpham';
 import { Loaisanpham } from 'src/app/models/loaisanpham';
 import { Router } from '@angular/router';
 import { LoadScriptService } from 'src/app/services/loadscript.service';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-tim-kiem',
@@ -27,7 +28,9 @@ export class TimKiemComponent implements OnInit {
     private sp: SanphamService,
     private loaisanpham: LoaisanphamService,
     private router: Router,
-    private load2: LoadScriptService
+    private load2: LoadScriptService,
+    private cartSrv: CartService,
+
   ) { }
 
   ngOnInit(): void {
@@ -74,6 +77,9 @@ export class TimKiemComponent implements OnInit {
         console.log(this.listSanPhamSearch);
       });
     });
+  }
+  Themvaogio = (MaSanPham: number) => {
+    this.cartSrv.Themvaogio(MaSanPham, 1)
   }
 
   nuttimkiem() {

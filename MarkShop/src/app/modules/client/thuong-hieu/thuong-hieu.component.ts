@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ThuongHieuService } from 'src/app/services/thuonghieu.service';
 import { Sanpham } from 'src/app/models/sanpham';
 import { ThuongHieu } from 'src/app/models/thuonghieu';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-thuong-hieu',
@@ -16,7 +17,11 @@ export class ThuongHieuComponent implements OnInit {
   p: number = 1;
   pageSize: number = 3;
   totalItems: number = 0;
-  constructor(private route: ActivatedRoute, private thuonghieuService: ThuongHieuService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private thuonghieuService: ThuongHieuService,
+    private cartSrv: CartService,
+  ) { }
 
   ngOnInit(): void {
     this.LoadSPtheoTH(1);
@@ -51,4 +56,8 @@ export class ThuongHieuComponent implements OnInit {
       this.thuonghieu = res;
     })
   }
+  Themvaogio = (MaSanPham: number) => {
+    this.cartSrv.Themvaogio(MaSanPham, 1)
+  }
+
 }
