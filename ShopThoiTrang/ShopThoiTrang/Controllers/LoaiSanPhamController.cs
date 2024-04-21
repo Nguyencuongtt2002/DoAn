@@ -51,6 +51,20 @@ namespace ShopThoiTrang.Controllers
                 return BadRequest(new { success = false, message = ex.Message });
             }
         }
+        [Route("them")]
+        [HttpPost]
+        public IActionResult Create([FromBody] LoaiSanPhamModel them)
+        {
+            try
+            {
+                _loaisanphamBus.Create(them);
+                return Ok(new { message = "Đã thêm thành công", results = true, status = 200 });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Đã xảy ra lỗi:" + ex.Message);
+            }
+        }
         [Route("update")]
         [HttpPut]
         public IActionResult Update([FromBody] LoaiSanPhamModel sua)

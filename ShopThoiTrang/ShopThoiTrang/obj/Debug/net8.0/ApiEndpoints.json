@@ -1009,6 +1009,22 @@
   },
   {
     "ContainingType": "ShopThoiTrang.Controllers.LoaiSanPhamController",
+    "Method": "Create",
+    "RelativePath": "api/LoaiSanPham/them",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "them",
+        "Type": "Model.LoaiSanPhamModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ShopThoiTrang.Controllers.LoaiSanPhamController",
     "Method": "Update",
     "RelativePath": "api/LoaiSanPham/update",
     "HttpMethod": "PUT",

@@ -33,7 +33,7 @@ export class DonhangService {
         return this.http.post(_api + '/api/DonHang/them', obj, { headers });
     }
     getLichSuMuaHang(userId: number): Observable<any> {
-        return this.http.get<any>(`${_api}/api/DonHang/lichsumuahang/` + userId);
+        return this.http.get<any>(`${_api}/api/DonHang/lichsumuahang/` + userId, { headers });
     }
     huyDon(obj: any): Observable<any> {
         return this.http.post<any>(_api + '/api/DonHang/huydon', obj);

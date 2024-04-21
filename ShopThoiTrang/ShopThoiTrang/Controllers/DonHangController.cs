@@ -103,7 +103,6 @@ namespace ShopThoiTrang.Controllers
             _donhangBus.CapNhatDonHangKhiGiao(model);
             return model;
         }
-        [AllowAnonymous]
         [Route("lichsumuahang/{MaNguoiDung}")]
         [HttpGet]
         public IActionResult LichSuMuaHang(int MaNguoiDung)
