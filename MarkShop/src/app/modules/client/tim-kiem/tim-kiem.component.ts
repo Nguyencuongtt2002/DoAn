@@ -14,15 +14,14 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./tim-kiem.component.css']
 })
 export class TimKiemComponent implements OnInit {
-  product: Array<Sanpham> = [];
   loaisp: Array<Loaisanpham> = [];
-  p: number = 1;
   timkiem: string = '';
-  listSanPhamSearch: Sanpham[] = [];
-  pageSize: number = 9;
+  listSanPhamSearch: any;
   MinGia: any;
   MaxGia: any;
-
+  p: number = 1;
+  pageSize: number = 9;
+  totalItems: number = 0;
   constructor(
     private _route: ActivatedRoute,
     private sp: SanphamService,
@@ -35,7 +34,7 @@ export class TimKiemComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLoaiSanPhamAll();
-    this.getsanphamsearch();
+    this.getsanphamsearch(this.p);
     this.loadJS();
   }
   getLoaiSanPhamAll = () => {
@@ -53,14 +52,14 @@ export class TimKiemComponent implements OnInit {
     await this.load2.loadScript('/assets/JS/index.js')
   }
   // Lấy sản phẩm tìm kiếm
-  getsanphamsearch() {
+  getsanphamsearch = (p: number) => {
     this._route.queryParams.subscribe((params) => {
       this.timkiem = params['tensanpham'];
       this.MinGia = params['MinGia'];
       this.MaxGia = params['MaxGia'];
 
       const obj = {
-        page: 1,
+        page: p,
         pageSize: this.pageSize,
         maSanPham: null,
         tenSP: this.timkiem || '',
@@ -71,10 +70,12 @@ export class TimKiemComponent implements OnInit {
         maLoaiSanPham: null,
         maThuongHieu: null,
       };
-      console.log(obj);
       this.sp.TimKiem(obj).subscribe((res) => {
-        this.listSanPhamSearch = res.data;
-        console.log(this.listSanPhamSearch);
+        console.log(res)
+        this.listSanPhamSearch = res?.data;
+        this.totalItems = res.totalItems;
+        this.p = p
+        console.log(this.p)
       });
     });
   }

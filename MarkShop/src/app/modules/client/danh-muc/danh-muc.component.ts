@@ -60,8 +60,8 @@ export class DanhMucComponent implements OnInit {
     this._router.navigate(['/tim-kiem'], { queryParams: { 'tensanpham': this.timkiem } });
   }
   searchGia = (MinGia: any, MaxGia: any) => {
-    if (MinGia == 0) { MinGia = null }
-    if (MaxGia == 0) { MaxGia = null }
+    if (MinGia == 0 || MinGia == null) { MinGia = null }
+    if (MaxGia == 0 || MaxGia == null) { MaxGia = null }
     this._router.navigate(['/tim-kiem'], { queryParams: { 'MinGia': MinGia, 'MaxGia': MaxGia } });
   }
 }

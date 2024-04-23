@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-4 {
+    margin-top: 1rem;
+}
+
+.pagination-controls {
+    /* Thêm kiểu CSS tùy chỉnh cho lớp pagination-controls */
+    /* Ví dụ: */
+    padding: 0.5rem;
+    border-radius: 5px;
+}

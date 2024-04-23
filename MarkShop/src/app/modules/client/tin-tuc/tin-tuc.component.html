@@ -20,12 +20,12 @@
                 <span class="page-heading-title"><i class="fa fa-newspaper" style="margin-right: 10px;"></i>News</span>
             </h2>
             <div class="row mb-4 mt-3" *ngFor="let tt of tintuc | paginate: { itemsPerPage: pageSize, currentPage: p }">
-                <div class="col-md-4 text-center" data-aos="flip-right">
+                <div class="col-md-4 text-center">
                     <a routerLink="" data-lightbox="listImg">
                         <img src="/assets/Images/{{tt.anhTinTuc}}" class="img-fluid" />
                     </a>
                 </div>
-                <div class="col-md-6" data-aos="fade-left" data-aos-duration="1000">
+                <div class="col-md-6">
                     <h3 class="entry-title"><a routerLink=""
                             style="text-decoration: none; color:#666;">{{tt.tieuDe}}</a></h3>
                     <div class="entry-meta-data">

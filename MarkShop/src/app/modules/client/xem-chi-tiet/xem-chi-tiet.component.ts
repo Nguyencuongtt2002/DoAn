@@ -24,6 +24,7 @@ export class XemChiTietComponent implements OnInit {
     autoplay: true,
     autoplayHoverPause: true,
     autoplayTimeout: 3000,
+    smartSpeed: 1000,
     dots: false,
     navText: ['<span><i class="fas fa-chevron-left"></i></span>', '<span><i class="fas fa-chevron-right"></i></span>'],
     responsive: {

@@ -147,8 +147,8 @@ namespace DAL
                     "@p_TenLoaiSanPham", TenLoaiSanPham,
                     "@p_MinGia", MinGia,
                     "@p_MaxGia", MaxGia,
-                    "@p_MaThuongHieu", MaLoaiSanPham,
-                    "@p_MaLoaiSanPham", MaThuongHieu);
+                    "@p_MaThuongHieu", MaThuongHieu,
+                    "@p_MaLoaiSanPham", MaLoaiSanPham);
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
                 if (dt.Rows.Count > 0) total = (int)dt.Rows[0]["TotalCount"];
