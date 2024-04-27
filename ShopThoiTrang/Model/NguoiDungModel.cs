@@ -18,7 +18,7 @@ namespace Model
         public string? GioiTinh { get; set; }
         public string? DiaChi { get; set; }
         public string? SoDienThoai { get; set; }
-        public string? AnhDaiDien { get; set; }
+        public byte[]? AnhDaiDien { get; set; }
         public string? VaiTro { get; set; }
         public IFormFile? File { get; set; }
         public string? Token { get; set; }

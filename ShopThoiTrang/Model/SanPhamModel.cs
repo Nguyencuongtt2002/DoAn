@@ -11,7 +11,7 @@ namespace Model
     {
         public int MaSanPham { get; set; }
         public string? TenSP { get; set; }
-        public string? AnhDaiDien { get; set; }
+        public byte[]? AnhDaiDien { get; set; }
         public string? MoTa { get; set; }
         public DateTime? NgayTao { get; set; }
         public int? MaSize { get; set; }

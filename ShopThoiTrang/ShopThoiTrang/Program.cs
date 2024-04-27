@@ -9,6 +9,8 @@ using Model;
 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.WebHost.UseUrls("https://localhost:44377");
+
 // Cấu hình xác thực người dùng
 builder.Services.AddCors(options =>
 {

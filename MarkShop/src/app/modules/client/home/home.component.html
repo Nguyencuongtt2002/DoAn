@@ -3,7 +3,7 @@
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item" *ngFor="let s of slides; let i = index" [class.active]="i === 0">
-                    <img class="d-block w-100" src="/assets/Images/{{s.anh}}" alt="Slide {{i + 1}}">
+                    <img class="d-block w-100" [src]="'data:image/jpg;base64,' + s.anh" alt="Slide {{i + 1}}">
                 </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -56,7 +56,7 @@
                                         <ng-template carouselSlide *ngFor="let s of sanphammoi">
                                             <div class="item" style="box-shadow: 0 0 8px 2px rgba(0,0,0,0.2)">
                                                 <a href="/XemChiTiet/{{s.maSanPham}}">
-                                                    <img src="/assets/Images/{{ s.anhDaiDien }}"
+                                                    <img [src]="'data:image/jpg;base64,' + s.anhDaiDien"
                                                         style="width:100%;height:300px ;" />
                                                     <div id="label">New</div>
                                                 </a>
@@ -122,7 +122,7 @@
                                         <ng-template carouselSlide *ngFor="let sp of sanphambanchay">
                                             <div class="item" style="box-shadow: 0 0 8px 2px rgba(0,0,0,0.2)">
                                                 <a href="/XemChiTiet/{{sp.maSanPham}}">
-                                                    <img src="/assets/Images/{{ sp.anhDaiDien }}"
+                                                    <img [src]="'data:image/jpg;base64,' + sp.anhDaiDien"
                                                         style="width:100%;height:300px ;" />
                                                     <div *ngIf="sp.phanTram == null">
                                                         <div id="label">New</div>
@@ -193,7 +193,7 @@
                                         <ng-template carouselSlide *ngFor="let sp of sanphamgiamgia">
                                             <div class="item" style="box-shadow: 0 0 8px 2px rgba(0,0,0,0.2)">
                                                 <a href="/XemChiTiet/{{sp.maSanPham}}">
-                                                    <img src="/assets/Images/{{ sp.anhDaiDien }}"
+                                                    <img [src]="'data:image/jpg;base64,' + sp.anhDaiDien"
                                                         style="width:100%;height:300px ;" />
                                                     <div id="label">giảm: {{sp.phanTram}}%</div>
                                                 </a>

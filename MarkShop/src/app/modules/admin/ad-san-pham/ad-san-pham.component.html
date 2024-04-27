@@ -26,7 +26,7 @@
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="Tìm kiếm..." [(ngModel)]="searchTerm">
                             <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" (click)="getSPALL(1)">Tìm
+                                <button class="btn btn-outline-secondary" type="button" (click)="getListSPALL(1)">Tìm
                                     kiếm</button>
                             </div>
                         </div>
@@ -42,7 +42,7 @@
                                 </tr>
                             </thead>
                             <tbody
-                                *ngFor="let sp of listsanpham | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: totalItems };let i = index">
+                                *ngFor="let sp of listsanpham | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: totalItems } ; let i = index">
                                 <tr (click)="onRowClick(sp)" [class.selected]="selectedRow === sp">
                                     <td>{{ sp.maSanPham }}</td>
                                     <td>{{ sp.tenSP }}</td>
@@ -50,7 +50,7 @@
                                     <td>{{ sp.tenLoaiSanPham }}</td>
                                     <td>{{ sp.tenThuongHieu }}</td>
                                     <td>
-                                        <img src="assets/Images/{{ sp.anhDaiDien }}" class="img-thumbnail"
+                                        <img [src]="'data:image/jpg;base64,' + sp.anhDaiDien" class="img-thumbnail"
                                             style="max-width: 70px; max-height: 70px;">
                                     </td>
                                 </tr>
@@ -58,8 +58,8 @@
                         </table>
                     </div>
                     <div class="text-center mt-4">
-                        <pagination-controls class="pagination-controls" (pageChange)="getSPALL($event)"
-                            (pageBoundsCorrection)="getSPALL($event)" previousLabel="Trước"
+                        <pagination-controls class="pagination-controls" (pageChange)="getListSPALL($event)"
+                            (pageBoundsCorrection)="getListSPALL($event)" previousLabel="Trước"
                             nextLabel="Sau"></pagination-controls>
                     </div>
                 </div>

@@ -2,7 +2,7 @@
     <div class="container__custom">
         <div class="row">
             <div class="col-md-3">
-                <img src="assets/Images/{{logo.anh}}" style="width: 190px" />
+                <img [src]="'data:image/jpg;base64,' + logo.anh" style="width: 190px" />
                 <p>{{diaChi.noiDung}}</p>
                 <p>Email: {{email.noiDung}}</p>
                 <p>Điện thoại:{{sdt.noiDung}}</p>
@@ -40,6 +40,6 @@
 <div class="copyright text-center py-2 text-white">
     <p class="m-0">
         © All rights reserved. Contact us
-        <img src="assets/Images/{{logo.anh}}" style="width: 83px; height: 30px;" />
+        <img [src]="'data:image/jpg;base64,' + logo.anh" style="width: 83px; height: 30px;" />
     </p>
 </div>

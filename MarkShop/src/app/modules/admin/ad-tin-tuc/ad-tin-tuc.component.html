@@ -1,6 +1,6 @@
 <div class="content" style="max-width:1250px;">
     <div class="layout-page-customer">
-        <h3 class="text-center mb-3 font-weight-bold" data-aos="flip-right">Danh sách liên hệ </h3>
+        <h3 class="text-center mb-3 font-weight-bold" data-aos="flip-right">Danh sách tin tức </h3>
         <!-- "Create New" button that triggers the modal -->
         <p class="text-muted font-13 m-b-30">
             <button class="btn btn-success fa fa-plus" data-toggle="modal" (click)="taomoi()"
@@ -39,7 +39,7 @@
                         <td>{{tt.noiDung}}</td>
                         <td>{{tt.ngayDang| date:"dd/MM/yyyy"}}</td>
                         <td>
-                            <img src="/assets/Images/{{tt.anhTinTuc}}" style="width: 150px;height: 150px;" />
+                            <img [src]="'data:image/jpg;base64,' + tt.anhTinTuc" style="width: 150px;height: 150px;" />
                         </td>
                         <td>{{tt.hoTen}}</td>
                     </tr>

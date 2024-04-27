@@ -37,6 +37,7 @@ import { SanPhamComponent } from './modules/client/san-pham/san-pham.component';
 import { ErrorComponentComponent } from './error-component/error-component.component';
 import { CamOnComponent } from './modules/client/cam-on/cam-on.component';
 import { ConfirmComponent } from './modules/client/confirm/confirm.component';
+import { AdThamSoComponent } from './modules/admin/ad-tham-so/ad-tham-so.component';
 
 
 const routes: Routes = [
@@ -194,6 +195,11 @@ const routes: Routes = [
       {
         path: 'ad-hoadonnhap',
         component: AdHoaDonNhapComponent,
+        title: 'Admin'
+      },
+      {
+        path: 'ad-thamso',
+        component: AdThamSoComponent,
         title: 'Admin'
       }
     ],

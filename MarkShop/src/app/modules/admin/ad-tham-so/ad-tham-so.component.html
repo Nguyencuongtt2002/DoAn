@@ -1,0 +1,192 @@
+<div class="content" style="max-width:1250px;">
+    <div class="layout-page-customer">
+        <h3 class="text-center mb-3 font-weight-bold" data-aos="flip-right">Danh sách tham số </h3>
+        <!-- "Create New" button that triggers the modal -->
+        <p class="text-muted font-13 m-b-30">
+            <button class="btn btn-success fa fa-plus" data-toggle="modal" (click)="taomoi()"
+                data-target="#exampleModal">Tạo mới</button>
+            <button class="btn btn-info btn-sm ml-2" data-toggle="modal" data-target="#exampleModal1"
+                [disabled]="!selectedRow">
+                <i class="fas fa-edit"></i> Cập nhật
+            </button>
+            <!-- <button class="btn btn-info btn-sm ml-2" data-toggle="modal" data-target="#exampleModal3"
+                (click)="onDelete()">
+                <i class="fas fa-trash-alt"></i> Xóa
+            </button> -->
+            <!-- <button class="btn btn-danger btn-sm ml-2" data-toggle="modal" data-target="#exampleModal2"
+                [disabled]="!selectedRow">
+                Chi Tiết
+            </button> -->
+        </p>
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr class="text-center">
+                    <th style="width: 5%;">STT</th>
+                    <th style="width: 15%;">Tên tham số</th>
+                    <th style="width: 25%;">ký hiệu </th>
+                    <th style="width: 15%;">Nội Dung</th>
+                    <th style="width: 15%;">Ảnh</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let ts of Listthamso; let i = index">
+                <tr (click)="onRowClick(ts)" [class.selected]="selectedRow === ts">
+                    <td>{{i+1}}</td>
+                    <td>{{ts.tenThamSo}}</td>
+                    <td>{{ts.kyHieu}}</td>
+                    <td>{{ts.noiDung}}</td>
+                    <td>
+                        <img [src]="'data:image/jpg;base64,' + ts.anh" style="width: 150px;height: 150px;" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+<div #addModal class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 600px;">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">Tham Số</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form novalidate name="frmLoaiSP" id="frmLoaiSP" class="form-horizontal row-border">
+                    <div class="form-group row">
+                        <label class="col-md-12 control-label" for="idTenLoaiSanPham">Tên tham số : </label>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <input type="text" id="idTenLoaiSanPham" [(ngModel)]="TenThamSo" class="form-control"
+                                name="TenThamSo" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-12 control-label" for="idTenLoaiSanPham">Ký hiệu : </label>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <input type="text" id="idTenLoaiSanPham" [(ngModel)]="KyHieu" class="form-control"
+                                name="KyHieu" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-12 control-label" for="idTenLoaiSanPham">Nội Dung : </label>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <input type="text" id="idTenLoaiSanPham" [(ngModel)]="NoiDung" class="form-control"
+                                name="NoiDung" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-12 control-label" for="idTenLoaiSanPham">Ảnh: </label>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <input type="file" (change)="onFileChange($event)" [(ngModel)]="Anh" name="Anh"
+                                id="idTenLoaiSanPham1" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12 text-center">
+                            <button id="save" class="btn btn-success" type="submit" (click)="Them()">
+                                <i class="icon-save"></i> Thêm
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+<div #updateModal class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 600px;">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">Liên hệ</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form novalidate name="frmLoaiSP" id="frmLoaiSP" class="form-horizontal row-border">
+                    <div class="form-group row">
+                        <label class="col-md-12 control-label" for="idTenLoaiSanPham">Tên tham số : </label>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <input type="text" id="idTenLoaiSanPham" [(ngModel)]="TenThamSo" class="form-control"
+                                name="TenThamSo" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-12 control-label" for="idTenLoaiSanPham">Ký hiệu : </label>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <input type="text" id="idTenLoaiSanPham" [(ngModel)]="KyHieu" class="form-control"
+                                name="KyHieu" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-12 control-label" for="idTenLoaiSanPham">Nội Dung : </label>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <input type="text" id="idTenLoaiSanPham" [(ngModel)]="NoiDung" class="form-control"
+                                name="NoiDung" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-12 control-label" for="idTenLoaiSanPham">Ảnh: </label>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <input type="file" (change)="onFileChange($event)" [(ngModel)]="Anh" name="Anh"
+                                id="idTenLoaiSanPham1" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12 text-center">
+                            <button id="save" class="btn btn-success" type="submit" (click)="update()">
+                                <i class="icon-save"></i> Sửa
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div #deleteModal class="modal" tabindex="-1" id="exampleModal3">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Liên hệ </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc chắn xóa không ?.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="hanleDelete()">Xóa</button>
+            </div>
+        </div>
+    </div>
+</div> -->

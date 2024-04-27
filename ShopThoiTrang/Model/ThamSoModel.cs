@@ -13,8 +13,10 @@ namespace Model
         public string? TenThamSo { get; set; }
         public string? KyHieu { get; set; }
         public string? NoiDung { get; set; }
-        public string? Anh { get; set; }
+        public byte[]? Anh { get; set; }
         public IFormFile? File { get; set; }
+
+       
     }
 
 }

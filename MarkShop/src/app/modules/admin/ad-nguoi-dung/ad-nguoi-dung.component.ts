@@ -127,7 +127,6 @@ export class AdNguoiDungComponent implements OnInit {
     this.AnhDaiDien = this.selectedRow.anhDaiDien;
     this.VaiTro = this.selectedRow.vaiTro;
     this.MatKhauMoi = ''
-    console.log(this.AnhDaiDien)
   }
   formatDate(date: string): string {
     const originalDate = new Date(date);

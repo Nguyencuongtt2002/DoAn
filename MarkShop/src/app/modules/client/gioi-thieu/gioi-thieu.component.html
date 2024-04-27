@@ -16,7 +16,8 @@
                     </div>
                     <div class="col-md-6" data-aos="fade-left" data-aos-duration="500" *ngIf="gioithieu[1]">
                         <div class="bg-image">
-                            <img src="assets/Images/{{gioithieu[1].hinhAnh}}" alt="Background Image" class="bg-img">
+                            <img [src]="'data:image/jpg;base64,' + gioithieu[1].hinhAnh" alt="Background Image"
+                                class="bg-img">
                             <div class="sub-content">
                                 <div class="sub-content-item">
                                     <p><strong>5.000.000</strong> Sơ mi nam, nữ / năm</p>

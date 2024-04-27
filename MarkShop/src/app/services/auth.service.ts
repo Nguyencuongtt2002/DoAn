@@ -47,7 +47,7 @@ export class AuthService {
         const user = this.getCurrentUser();
         if (user && user.token) {
             const loginTime = user.loginTime;
-            const tokenExpirationTime = loginTime + (60 * 60 * 1000); // 1 giờ
+            const tokenExpirationTime = loginTime + (12 * 60 * 60 * 1000); // 1 giờ
             const currentTime = new Date().getTime();
             if (currentTime > tokenExpirationTime) {
                 this.logout();

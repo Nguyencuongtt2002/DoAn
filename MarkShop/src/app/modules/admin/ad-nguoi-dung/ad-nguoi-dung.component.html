@@ -48,7 +48,7 @@
                         <td>{{i+1}}</td>
                         <td>{{nd.taiKhoan}}</td>
                         <td>
-                            <img src="/assets/Images/{{nd.anhDaiDien}}" style="width: 150px;height: 150px;" />
+                            <img [src]="'data:image/jpg;base64,' + nd.anhDaiDien" style="width: 150px;height: 150px;" />
                         </td>
                         <td>{{nd.hoTen}}</td>
                         <td>{{nd.soDienThoai}}</td>

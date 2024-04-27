@@ -22,7 +22,7 @@
             <div class="row mb-4 mt-3" *ngFor="let tt of tintuc | paginate: { itemsPerPage: pageSize, currentPage: p }">
                 <div class="col-md-4 text-center">
                     <a routerLink="" data-lightbox="listImg">
-                        <img src="/assets/Images/{{tt.anhTinTuc}}" class="img-fluid" />
+                        <img [src]="'data:image/jpg;base64,' + tt.anhTinTuc" class="img-fluid" />
                     </a>
                 </div>
                 <div class="col-md-6">

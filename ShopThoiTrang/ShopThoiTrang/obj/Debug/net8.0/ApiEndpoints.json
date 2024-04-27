@@ -734,7 +734,7 @@
       },
       {
         "Name": "HinhAnh",
-        "Type": "System.String",
+        "Type": "System.Byte[]",
         "IsRequired": false
       },
       {
@@ -770,7 +770,7 @@
       },
       {
         "Name": "HinhAnh",
-        "Type": "System.String",
+        "Type": "System.Byte[]",
         "IsRequired": false
       },
       {
@@ -1220,7 +1220,7 @@
       },
       {
         "Name": "AnhDaiDien",
-        "Type": "System.String",
+        "Type": "System.Byte[]",
         "IsRequired": false
       },
       {
@@ -1401,7 +1401,7 @@
       },
       {
         "Name": "AnhDaiDien",
-        "Type": "System.String",
+        "Type": "System.Byte[]",
         "IsRequired": false
       },
       {
@@ -1492,7 +1492,7 @@
       },
       {
         "Name": "AnhDaiDien",
-        "Type": "System.String",
+        "Type": "System.Byte[]",
         "IsRequired": false
       },
       {
@@ -1798,7 +1798,7 @@
       },
       {
         "Name": "AnhDaiDien",
-        "Type": "System.String",
+        "Type": "System.Byte[]",
         "IsRequired": false
       },
       {
@@ -1910,7 +1910,7 @@
       },
       {
         "Name": "AnhDaiDien",
-        "Type": "System.String",
+        "Type": "System.Byte[]",
         "IsRequired": false
       },
       {
@@ -1982,22 +1982,6 @@
         "Name": "File",
         "Type": "Microsoft.AspNetCore.Http.IFormFile",
         "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "ShopThoiTrang.Controllers.SanPhamController",
-    "Method": "Xoa",
-    "RelativePath": "api/SanPham/xoa/{ma}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "ma",
-        "Type": "System.Int32",
-        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -2141,7 +2125,7 @@
       },
       {
         "Name": "Anh",
-        "Type": "System.String",
+        "Type": "System.Byte[]",
         "IsRequired": false
       },
       {
@@ -2167,7 +2151,7 @@
       },
       {
         "Name": "Anh",
-        "Type": "System.String",
+        "Type": "System.Byte[]",
         "IsRequired": false
       },
       {
@@ -2296,7 +2280,7 @@
       },
       {
         "Name": "Anh",
-        "Type": "System.String",
+        "Type": "System.Byte[]",
         "IsRequired": false
       },
       {
@@ -2337,7 +2321,7 @@
       },
       {
         "Name": "Anh",
-        "Type": "System.String",
+        "Type": "System.Byte[]",
         "IsRequired": false
       },
       {
@@ -2724,7 +2708,7 @@
       },
       {
         "Name": "AnhTinTuc",
-        "Type": "System.String",
+        "Type": "System.Byte[]",
         "IsRequired": false
       },
       {
@@ -2780,7 +2764,7 @@
       },
       {
         "Name": "AnhTinTuc",
-        "Type": "System.String",
+        "Type": "System.Byte[]",
         "IsRequired": false
       },
       {

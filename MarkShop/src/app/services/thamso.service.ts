@@ -17,4 +17,18 @@ export class ThamSoService {
     getByKyHieu(KyHieu: string): Observable<any> {
         return this.http.get(`${_api}/api/ThamSo/getbykyhieu/${KyHieu}`);
     }
+    getThamSoALL(): Observable<any> {
+        return this.http.get(`${_api}/api/ThamSo/get-all`);
+    }
+    create(obj: any): Observable<any> {
+        return this.http.post(`${_api}/api/ThamSo/them`, obj, { headers: headers });
+    }
+
+    Delete(id: number): Observable<any> {
+        return this.http.delete<any>(`${_api}/api/ThamSo/xoa/` + id, { headers: headers });
+    }
+
+    update(obj: any): Observable<any> {
+        return this.http.put(`${_api}/api/ThamSo/update`, obj, { headers: headers });
+    }
 }

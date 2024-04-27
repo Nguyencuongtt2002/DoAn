@@ -94,8 +94,8 @@ export class AdSanPhamComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getSPALL(this.p);
-
+    this.getListSPALL(this.p);
+    this.getLoaiSanPhamAll();
     this.th.getThuongHieuAll().subscribe(res => {
       this.thuonghieu = res;
     })
@@ -110,7 +110,8 @@ export class AdSanPhamComponent implements OnInit {
       tenLoaiSanPham: ""
     }
     this.loaisp.getLoaiSanPhamAll(obj).subscribe(res => {
-      this.loaisp = res.data;
+      this.loaisanpham = res.data
+      console.log(this.loaisp)
     })
   }
   taomoi() {
@@ -133,17 +134,17 @@ export class AdSanPhamComponent implements OnInit {
     this.thongSo.splice(0, this.thongSo.length);
     this.selectedRow = null
   }
-  getSPALL(p: number) {
+  getListSPALL(p: number) {
     const obj = {
-      page: this.p,
+      page: p,
       pageSize: this.pageSize,
       tenSP: this.searchTerm
     }
     this.sp.getSPAll(obj).subscribe(res => {
       this.listsanpham = res.data;
       this.totalItems = res.totalItems;
-      this.p = p
-      console.log(this.totalItems)
+      this.p = p;
+      console.log(this.p)
     })
   }
 
@@ -187,13 +188,13 @@ export class AdSanPhamComponent implements OnInit {
                     moTa: this.thongSo[i].moTa,
                     maSanPham: res.maSanPham,
                   }
-                  this.ts.create(thongso).subscribe(res => { this.getSPALL(this.p); });
+                  this.ts.create(thongso).subscribe(res => { this.getListSPALL(this.p); });
                 }
               }
 
             });
 
-            this.getSPALL(this.p);
+            this.getListSPALL(this.p);
             const addModal = this.addModal.nativeElement;
             addModal.classList.remove('show');
             addModal.style.display = 'none';
@@ -287,7 +288,7 @@ export class AdSanPhamComponent implements OnInit {
     if (this.selectedRow) {
       // Tạo một đối tượng từ dữ liệu được chọn
       const formData = new FormData();
-      formData.append('maSanPham', String(this.MaSanPham));
+      formData.append('maSanPham', this.MaSanPham);
       formData.append('tenSP', this.TenSP);
       formData.append('moTa', this.MoTa);
       formData.append('maSize', this.MaSize)
@@ -304,7 +305,7 @@ export class AdSanPhamComponent implements OnInit {
       }).then((result) => {
         if (result.isConfirmed) {
           this.sp.update(formData).subscribe(res => {
-            this.getSPALL(this.p);
+            this.getListSPALL(this.p);
             // Đóng modal khi tạo thành công
             const updateModal = this.updateModal.nativeElement;
             updateModal.classList.remove('show');
@@ -396,7 +397,7 @@ export class AdSanPhamComponent implements OnInit {
             this.gia.ngayBD = '';
             this.gia.ngayKT = '';
             this.gia.donGia = 0;
-            this.getSPALL(this.p);
+            this.getListSPALL(this.p);
           });
         });
       }
@@ -452,7 +453,7 @@ export class AdSanPhamComponent implements OnInit {
             this.giamgia.ngayBD = '';
             this.giamgia.ngayKT = '';
             this.giamgia.phanTram = 0;
-            this.getSPALL(this.p);
+            this.getListSPALL(this.p);
           });
         });
       }
@@ -483,7 +484,7 @@ export class AdSanPhamComponent implements OnInit {
               confirmButtonText: 'OK',
             }).then(() => {
               // Cập nhật danh sách sau khi xóa
-              this.getSPALL(this.p);
+              this.getListSPALL(this.p);
             });
           });
         }

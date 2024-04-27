@@ -24,7 +24,7 @@
                 <tr>
                     <td>{{ i + 1 }}</td>
                     <td class="text-center">
-                        <img src="/assets/Images/{{sl.anh}}" style="width: 150px;height: 150px;" />
+                        <img [src]="'data:image/jpg;base64,' + sl.anh" style="width: 150px;height: 150px;" />
                     </td>
                     <td class="w-100 " colspan="2">
                         <div class="btn-group" role="group">
