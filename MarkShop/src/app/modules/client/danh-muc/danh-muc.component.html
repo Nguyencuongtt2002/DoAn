@@ -42,7 +42,7 @@
                 <div class="col-md-4 mb-3" style="box-shadow: 0 0 8px rgba(0,0,0,0.2)"
                     *ngFor="let sp of listSPtheoloai| paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: totalItems }">
                     <a routerLink="" style="position: relative; display: block;">
-                        <img src="/assets/Images/{{sp.anhDaiDien}}" style="width:100%;height:300px ;" />
+                        <img [src]="'data:image/jpg;base64,' + sp.anhDaiDien" style="width:100%;height:300px ;" />
                         <div *ngIf="sp.phanTram == null">
                             <div id="label">New</div>
                         </div>
