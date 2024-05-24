@@ -10,6 +10,9 @@ namespace DAL
     public partial interface IAnhDAL
     {
         List<AnhModel> GetALL();
+        bool Create(AnhModel them);
+        bool Update(AnhModel sua);
+        bool Delete(int ma);
 
     }
 }

@@ -11,9 +11,11 @@ namespace ShopThoiTrang.Controllers
     public class AnhController : ControllerBase
     {
         private IAnhBus _Bus;
-        public AnhController(IAnhBus Bus)
+        private string _path;
+        public AnhController(IAnhBus Bus, IConfiguration configuration)
         {
             _Bus = Bus;
+            _path = configuration["AppSettings:PATH_Anh"];
         }
         [AllowAnonymous]
         [Route("get-all")]
@@ -22,7 +24,119 @@ namespace ShopThoiTrang.Controllers
         {
             return _Bus.GetALL();
         }
-        
+
+        [Route("them")]
+        [HttpPost]
+        public IActionResult Create([FromForm] AnhModel model)
+        {
+            try
+            {
+                if (model.File != null && model.File.Length > 0)
+                {
+                    if (model.File.Length > 5 * 1024 * 1024) // Kiểm tra kích thước tệp, 5MB
+                    {
+                        return BadRequest(new { success = false, message = "Kích thước tệp ảnh không được vượt quá 5MB." });
+                    }
+
+                    // Tạo tên file duy nhất bằng cách kết hợp GUID và tên file gốc
+                    string uniqueFileName = Guid.NewGuid().ToString() + "_" + model.File.FileName;
+
+                    // Kết hợp đường dẫn thư mục lưu trữ ảnh và tên file duy nhất để tạo đường dẫn đầy đủ
+                    string filePath = Path.Combine(_path, uniqueFileName);
+
+                    // Lưu file ảnh vào thư mục được chỉ định
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        model.File.CopyTo(stream); // Copy dữ liệu file vào stream
+                    }
+
+                    // Tạo đối tượng Model mới với các thông tin
+                    var Model = new AnhModel
+                    {
+                        TenHinhAnh = model.TenHinhAnh,
+                        HinhAnh = System.IO.File.ReadAllBytes(filePath), // Đường dẫn tương đối của ảnh
+                    };
+
+                    // Xoá file ảnh theo tên từ thư mục lưu trữ
+                    if (!string.IsNullOrEmpty(uniqueFileName))
+                    {
+                        string filePathDelete = Path.Combine(_path, uniqueFileName);
+                        if (System.IO.File.Exists(filePathDelete))
+                        {
+                            System.IO.File.Delete(filePathDelete);
+                        }
+                    }
+                    _Bus.Create(Model);
+
+                    return Ok(new { success = true, message = "Tạo mới thành công" });
+                }
+                else
+                {
+                    return BadRequest(new { success = false, message = "Vui lòng chọn một tệp ảnh." });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                // Nếu có lỗi xảy ra, trả về mã lỗi 500 và thông báo lỗi
+                return StatusCode(500, new { success = false, message = "Đã xảy ra lỗi: " + ex.Message });
+            }
+        }
+        [Route("update")]
+        [HttpPut]
+        public IActionResult Update([FromForm] AnhModel model)
+        {
+            try
+            {
+                // Kiểm tra xem người dùng có tải lên một ảnh mới không
+                if (model.File != null && model.File.Length > 0)
+                {
+                    if (model.File.Length > 5 * 1024 * 1024) // Kiểm tra kích thước tệp, 5MB
+                    {
+                        return BadRequest(new { success = false, message = "Kích thước tệp ảnh không được vượt quá 5MB." });
+                    }
+
+                    // Tạo tên file duy nhất bằng cách kết hợp GUID và tên file gốc
+                    string uniqueFileName = Guid.NewGuid().ToString() + "_" + model.File.FileName;
+
+                    // Kết hợp đường dẫn thư mục lưu trữ ảnh và tên file duy nhất để tạo đường dẫn đầy đủ
+                    string filePath = Path.Combine(_path, uniqueFileName);
+
+                    // Lưu file ảnh vào thư mục được chỉ định
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        model.File.CopyTo(stream); // Copy dữ liệu file vào stream
+                    }
+
+                    model.HinhAnh = System.IO.File.ReadAllBytes(filePath);
+                    // Xoá file ảnh theo tên từ thư mục lưu trữ
+                    if (!string.IsNullOrEmpty(uniqueFileName))
+                    {
+                        string filePathDelete = Path.Combine(_path, uniqueFileName);
+                        if (System.IO.File.Exists(filePathDelete))
+                        {
+                            System.IO.File.Delete(filePathDelete);
+                        }
+                    }
+                }
+
+                // Gọi phương thức cập nhật từ BLL với thông tin mới
+                _Bus.Update(model);
+
+                return Ok(new { success = true, message = "Cập nhật thành công" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { success = false, message = "Đã xảy ra lỗi: " + ex.Message });
+            }
+        }
+
+        [Route("xoa/{ma}")]
+        [HttpDelete]
+        public bool Xoa(int ma)
+        {
+            return _Bus.Delete(ma);
+        }
     }
 
 

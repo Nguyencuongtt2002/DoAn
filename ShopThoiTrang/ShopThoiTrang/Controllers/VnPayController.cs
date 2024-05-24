@@ -6,7 +6,7 @@ using Model;
 
 namespace ShopThoiTrang.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class VnPayController : ControllerBase

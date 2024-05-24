@@ -38,6 +38,7 @@ import { ErrorComponentComponent } from './error-component/error-component.compo
 import { CamOnComponent } from './modules/client/cam-on/cam-on.component';
 import { ConfirmComponent } from './modules/client/confirm/confirm.component';
 import { AdThamSoComponent } from './modules/admin/ad-tham-so/ad-tham-so.component';
+import { AdAnhComponent } from './modules/admin/ad-anh/ad-anh.component';
 
 
 const routes: Routes = [
@@ -200,6 +201,12 @@ const routes: Routes = [
       {
         path: 'ad-thamso',
         component: AdThamSoComponent,
+        title: 'Admin'
+      },
+      {
+        path: 'ad-anh',
+        component: AdAnhComponent
+        ,
         title: 'Admin'
       }
     ],

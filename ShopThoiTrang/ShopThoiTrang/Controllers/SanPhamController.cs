@@ -8,7 +8,7 @@ using System.Drawing;
 
 namespace ShopThoiTrang.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     [Route("api/[controller]")]
     [ApiController]
     public class SanPhamController : ControllerBase
@@ -222,18 +222,7 @@ namespace ShopThoiTrang.Controllers
                 }
                 else
                 {
-                    var Model = new SanPhamModel
-                    {
-                        TenSP = model.TenSP,
-                        MoTa = model.MoTa,
-                        MaLoaiSanPham = model.MaLoaiSanPham,
-                        MaThuongHieu = model.MaThuongHieu,
-                        MaSize = model.MaSize,
-                        AnhDaiDien = new byte[0], // Mảng byte rỗng
-                    };
-                    _sanphamBus.Create(Model);
-
-                    return Ok(new { success = true, message = "Tạo mới thành công" });
+                    return BadRequest(new { success = false, message = "Vui lòng chọn một tệp ảnh." });
                 }
 
             }

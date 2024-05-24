@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 using K4os.Compression.LZ4.Internal;
 namespace ShopThoiTrang.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     [Route("api/[controller]")]
     [ApiController]
     public class DonHangController : ControllerBase
@@ -79,7 +79,7 @@ namespace ShopThoiTrang.Controllers
         {
             return _donhangBus.GetNew();
         }
-       
+        [Authorize]
         [Route("them")]
         [HttpPost]
         public DonHangModel CreateDonHang([FromBody] DonHangModel model)
@@ -103,6 +103,7 @@ namespace ShopThoiTrang.Controllers
             _donhangBus.CapNhatDonHangKhiGiao(model);
             return model;
         }
+        [Authorize]
         [Route("lichsumuahang/{MaNguoiDung}")]
         [HttpGet]
         public IActionResult LichSuMuaHang(int MaNguoiDung)
@@ -123,7 +124,7 @@ namespace ShopThoiTrang.Controllers
                 throw new Exception(ex.Message);
             }
         }
-        [AllowAnonymous]
+        [Authorize]
         [Route("order-email")]
         [HttpPost]
         public IActionResult OrderEmail([FromBody] NguoiDungModel model)
@@ -149,7 +150,7 @@ namespace ShopThoiTrang.Controllers
             }
         }
 
-        [AllowAnonymous]
+        [Authorize]
         [Route("huydon")]
         [HttpPost]
         public DonHangModel HuyDonHang([FromBody] DonHangModel model)
@@ -163,8 +164,6 @@ namespace ShopThoiTrang.Controllers
         {
             return _donhangBus.DuyetDonHang(ma);
         }
-
-
         [Route("excel/{ma}")]
         [HttpGet]
         public IActionResult ExportToExcel(int ma)

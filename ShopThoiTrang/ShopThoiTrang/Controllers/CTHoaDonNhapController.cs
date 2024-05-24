@@ -7,7 +7,7 @@ using OfficeOpenXml;
 
 namespace ShopThoiTrang.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     [Route("api/[controller]")]
     [ApiController]
     public class CTHoaDonNhapController : ControllerBase

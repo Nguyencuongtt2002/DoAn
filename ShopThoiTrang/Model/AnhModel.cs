@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace Model
     {
         public int? MaAnh { get; set; }
         public string? TenHinhAnh { get; set; }
-        public string? HinhAnh { get; set; }
+        public byte[]? HinhAnh { get; set; }
+        public IFormFile? File { get; set; }
     }
 }

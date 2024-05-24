@@ -4,6 +4,7 @@ import { Sanpham } from 'src/app/models/sanpham'
 import { Loaisanpham } from 'src/app/models/loaisanpham';
 import { LoaisanphamService } from 'src/app/services/loaisanpham.service';
 import { CartService } from 'src/app/services/cart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-san-pham',
@@ -12,13 +13,14 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class SanPhamComponent implements OnInit {
   p: number = 1;
+  timkiem: string = '';
   listloai: Loaisanpham[] = [];
   listSPALL: Sanpham[] = [];
   constructor(
     private sanphamSrv: SanphamService,
     private loaisanphamService: LoaisanphamService,
-    private cartSrv: CartService
-    ,
+    private cartSrv: CartService,
+    private _router: Router
   ) { }
   ngOnInit(): void {
     this.getLoaiSanPhamAll();
@@ -48,5 +50,13 @@ export class SanPhamComponent implements OnInit {
   //Thêm vào giỏ hàng
   Themvaogio = (MaSanPham: number) => {
     this.cartSrv.Themvaogio(MaSanPham, 1)
+  }
+  nuttimkiem = () => {
+    this._router.navigate(['/tim-kiem'], { queryParams: { 'tensanpham': this.timkiem } });
+  }
+  searchGia = (MinGia: any, MaxGia: any) => {
+    if (MinGia == 0 || MinGia == null) { MinGia = null }
+    if (MaxGia == 0 || MaxGia == null) { MaxGia = null }
+    this._router.navigate(['/tim-kiem'], { queryParams: { 'MinGia': MinGia, 'MaxGia': MaxGia } });
   }
 }

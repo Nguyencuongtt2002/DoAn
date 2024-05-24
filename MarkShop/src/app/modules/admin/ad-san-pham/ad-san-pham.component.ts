@@ -14,6 +14,7 @@ import { ThongSoService } from 'src/app/services/thongso.service';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { SizeService } from 'src/app/services/size.service';
 import { Size } from 'src/app/models/size';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-ad-san-pham',
   templateUrl: './ad-san-pham.component.html',
@@ -91,6 +92,7 @@ export class AdSanPhamComponent implements OnInit {
     private loaisp: LoaisanphamService,
     private ts: ThongSoService,
     private sz: SizeService,
+    private toastr: ToastrService,
   ) { }
 
   ngOnInit(): void {
@@ -111,7 +113,6 @@ export class AdSanPhamComponent implements OnInit {
     }
     this.loaisp.getLoaiSanPhamAll(obj).subscribe(res => {
       this.loaisanpham = res.data
-      console.log(this.loaisp)
     })
   }
   taomoi() {
@@ -134,7 +135,7 @@ export class AdSanPhamComponent implements OnInit {
     this.thongSo.splice(0, this.thongSo.length);
     this.selectedRow = null
   }
-  getListSPALL(p: number) {
+  getListSPALL = (p: number) => {
     const obj = {
       page: p,
       pageSize: this.pageSize,
@@ -144,11 +145,15 @@ export class AdSanPhamComponent implements OnInit {
       this.listsanpham = res.data;
       this.totalItems = res.totalItems;
       this.p = p;
-      console.log(this.p)
     })
   }
 
   Them() {
+
+    if (!this.AnhDaiDien) {
+      this.toastr.error('Lỗi!', 'Vui lòng chọn ảnh sản phẩm.');
+      return;
+    }
     const formData = new FormData();
     formData.append('tenSP', this.TenSP);
     formData.append('moTa', this.MoTa);
@@ -156,65 +161,56 @@ export class AdSanPhamComponent implements OnInit {
     formData.append('maLoaiSanPham', String(this.MaLoaiSanPham));
     formData.append('maThuongHieu', String(this.MaThuongHieu))
     formData.append('file', this.AnhDaiDien!);
-    Swal.fire({
-      icon: 'success',
-      title: 'Thành công!',
-      text: 'sản phẩm đã được thêm thành công!',
-      confirmButtonColor: '#3085d6',
-      confirmButtonText: 'OK',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.sp.create(formData).subscribe(
-          (res) => {
-            this.sp.getNewSanPham().subscribe(res => {
-              const giasanpham: any = {
-                ngayBD: this.NgayBD,
-                ngayKT: this.NgayKT,
-                donGia: this.DonGia,
-                maSanPham: res.maSanPham,
-              }
-              this.g.create(giasanpham).subscribe(res => { });
-              if (this.PhanTram && this.NgayBatDau !== undefined && this.NgayKetThuc !== undefined && this.NgayBatDau.trim() !== '' && this.NgayKetThuc.trim() !== '') {
-                const giamgia: any = {
-                  ngayBD: this.NgayBatDau,
-                  ngayKT: this.NgayKetThuc,
-                  phanTram: this.PhanTram,
-                  maSanPham: res.maSanPham,
-                };
-                this.gg.create(giamgia).subscribe(res => { });
-                for (let i = 0; i < this.thongSo.length; i++) {
-                  const thongso: any = {
-                    tenThongSo: this.thongSo[i].tenThongSo,
-                    moTa: this.thongSo[i].moTa,
-                    maSanPham: res.maSanPham,
-                  }
-                  this.ts.create(thongso).subscribe(res => { this.getListSPALL(this.p); });
-                }
-              }
 
-            });
-
-            this.getListSPALL(this.p);
-            const addModal = this.addModal.nativeElement;
-            addModal.classList.remove('show');
-            addModal.style.display = 'none';
-            document.body.classList.remove('modal-open');
-
-            const modalBackdrop = document.getElementsByClassName('modal-backdrop');
-            for (let i = 0; i < modalBackdrop.length; i++) {
-              modalBackdrop[i].remove();
-            }
-          },
-          (error) => {
-            Swal.fire({
-              icon: 'error',
-              title: 'Lỗi!',
-              text: 'Đã xảy ra lỗi khi thêm sản phẩm.',
-            });
-          }
-        );
-      }
+    this.toastr.success('Thêm thành công', '', {
+      progressBar: true,
     });
+    this.sp.create(formData).subscribe(
+      (res) => {
+        if (res) {
+          this.sp.getNewSanPham().subscribe(res => {
+            const giasanpham: any = {
+              ngayBD: this.NgayBD,
+              ngayKT: this.NgayKT,
+              donGia: this.DonGia,
+              maSanPham: res.maSanPham,
+            }
+            this.g.create(giasanpham).subscribe(res => { });
+            if (this.PhanTram && this.NgayBatDau !== undefined && this.NgayKetThuc !== undefined && this.NgayBatDau.trim() !== '' && this.NgayKetThuc.trim() !== '') {
+              const giamgia: any = {
+                ngayBD: this.NgayBatDau,
+                ngayKT: this.NgayKetThuc,
+                phanTram: this.PhanTram,
+                maSanPham: res.maSanPham,
+              };
+              this.gg.create(giamgia).subscribe(res => { });
+              for (let i = 0; i < this.thongSo.length; i++) {
+                const thongso: any = {
+                  tenThongSo: this.thongSo[i].tenThongSo,
+                  moTa: this.thongSo[i].moTa,
+                  maSanPham: res.maSanPham,
+                }
+                this.ts.create(thongso).subscribe(res => { this.getListSPALL(this.p); });
+              }
+            }
+
+          });
+          this.getListSPALL(1);
+          const addModal = this.addModal.nativeElement;
+          addModal.classList.remove('show');
+          addModal.style.display = 'none';
+          document.body.classList.remove('modal-open');
+
+          const modalBackdrop = document.getElementsByClassName('modal-backdrop');
+          for (let i = 0; i < modalBackdrop.length; i++) {
+            modalBackdrop[i].remove();
+          }
+        }
+      },
+      (error) => {
+        this.toastr.error('Lỗi!', 'Đã xảy ra lỗi khi thêm sản phẩm.');
+      }
+    );
   }
 
   //Thêm thông số 
@@ -476,6 +472,7 @@ export class AdSanPhamComponent implements OnInit {
         if (result.isConfirmed) {
           // Nếu người dùng chọn Xóa, thực hiện hành động xóa
           this.sp.Delete(this.MaSanPham).subscribe(res => {
+            console.log(res)
             Swal.fire({
               icon: 'success',
               title: 'Thành công!',

@@ -22,6 +22,18 @@ namespace BLL
         {
             return _res.GetALL();
         }
-       
+        public bool Create(AnhModel them)
+        {
+            return _res.Create(them);
+        }
+        public bool Update(AnhModel sua)
+        {
+            return _res.Update(sua);
+        }
+        public bool Delete(int ma)
+        {
+            return _res.Delete(ma);
+        }
+
     }
 }

@@ -50,9 +50,16 @@
                                     <td>{{ sp.tenLoaiSanPham }}</td>
                                     <td>{{ sp.tenThuongHieu }}</td>
                                     <td>
-                                        <img [src]="'data:image/jpg;base64,' + sp.anhDaiDien" class="img-thumbnail"
-                                            style="max-width: 70px; max-height: 70px;">
+                                        <ng-container *ngIf="sp.anhDaiDien && sp.anhDaiDien.length > 0">
+                                            <img [src]="'data:image/jpg;base64,' + sp.anhDaiDien" class="img-thumbnail"
+                                                style="max-width: 70px; max-height: 70px;">
+                                        </ng-container>
+                                        <ng-container *ngIf="!sp.anhDaiDien || sp.anhDaiDien.length === 0">
+                                            <img src="/assets/Images/sanpham/anh-mac-dinh.jpg" class="img-thumbnail"
+                                                style="max-width: 70px; max-height: 70px;">
+                                        </ng-container>
                                     </td>
+
                                 </tr>
                             </tbody>
                         </table>

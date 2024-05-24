@@ -104,6 +104,7 @@ namespace ShopThoiTrang.Controllers
                 return BadRequest(new { success = false, message = ex.Message });
             }
         }
+        [Authorize]
         [Route("resetmatkhau")]
         [HttpPost]
         public IActionResult ResetMatKhau([FromBody] NguoiDungModel model)

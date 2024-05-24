@@ -18,4 +18,14 @@ export class AnhService {
         return this.http.get<any>(_api + '/api/Anh/get-all');
     }
 
+    create(obj: any): Observable<any> {
+        return this.http.post(`${_api}/api/Anh/them`, obj, { headers: headers });
+    }
+    Delete(id: number): Observable<any> {
+        return this.http.delete<any>(`${_api}/api/Anh/xoa/` + id, { headers: headers });
+    }
+    update(obj: any): Observable<any> {
+        return this.http.put(`${_api}/api/Anh/update`, obj, { headers: headers });
+    }
+
 }
