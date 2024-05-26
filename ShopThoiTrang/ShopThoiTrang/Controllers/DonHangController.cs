@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 using K4os.Compression.LZ4.Internal;
 namespace ShopThoiTrang.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class DonHangController : ControllerBase
@@ -79,7 +79,6 @@ namespace ShopThoiTrang.Controllers
         {
             return _donhangBus.GetNew();
         }
-        [Authorize]
         [Route("them")]
         [HttpPost]
         public DonHangModel CreateDonHang([FromBody] DonHangModel model)
@@ -124,7 +123,6 @@ namespace ShopThoiTrang.Controllers
                 throw new Exception(ex.Message);
             }
         }
-        [Authorize]
         [Route("order-email")]
         [HttpPost]
         public IActionResult OrderEmail([FromBody] NguoiDungModel model)
@@ -138,7 +136,8 @@ namespace ShopThoiTrang.Controllers
                 {
                     TenSP = chitiet.TenSP,
                     SoLuong = chitiet.SoLuong,
-                    GiaTien = chitiet.GiaTien
+                    GiaTien = chitiet.GiaTien,
+                    TongTien= chitiet.TongTien,
                 }).ToList();
 
                 _emailBus.OrderEmail(model.Email, thamso.NoiDung, donhang.HoTen, donhang.TongTien,donhang.DiaChi, donhang.SoDienThoai, listchitietModel);
@@ -149,8 +148,6 @@ namespace ShopThoiTrang.Controllers
                 return StatusCode(500, new { success = false, message = "Đã xảy ra lỗi: " + ex.Message });
             }
         }
-
-        [Authorize]
         [Route("huydon")]
         [HttpPost]
         public DonHangModel HuyDonHang([FromBody] DonHangModel model)

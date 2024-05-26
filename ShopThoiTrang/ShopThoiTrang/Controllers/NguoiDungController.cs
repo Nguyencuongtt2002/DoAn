@@ -127,8 +127,13 @@ namespace ShopThoiTrang.Controllers
         {
             try
             {
-
+                var kq = _nguoidungBus.CheckTaiKhoan(model.TaiKhoan, model.MatKhau);
+                if(kq != null)
+                {
+                    return Ok(new { success = false, message = "Tài khoản và mật khẩu đã tồn tại trong hệ thống", data = kq });
+                }
                 model.MatKhau = CalculateMD5Hash(model.MatKhau);
+
 
                 if (model.File != null && model.File.Length > 0)
                 {
@@ -167,6 +172,10 @@ namespace ShopThoiTrang.Controllers
 
 
                     _nguoidungBus.Create(Model);
+
+                    var thamso = _thamSoBus.GetTheoKyHieu("NAME");
+                    _emailBus.SendConfirmationEmail(model.Email, model.ConfirmationLink, Model.Token, thamso.NoiDung);
+
                     // Xoá file ảnh theo tên từ thư mục lưu trữ
                     if (!string.IsNullOrEmpty(uniqueFileName))
                     {
@@ -176,7 +185,7 @@ namespace ShopThoiTrang.Controllers
                             System.IO.File.Delete(filePathDelete);
                         }
                     }
-                    return Ok(new { success = true, message = "Tạo mới thành công" });
+                    return Ok(new { success = true, message = "Tạo mới thành công,Email xác nhận đã được gửi !" });
                 }
                 else
                 {
@@ -198,8 +207,9 @@ namespace ShopThoiTrang.Controllers
                     };
 
                     _nguoidungBus.Create(Model);
-
-                    return Ok(new { success = true, message = "Tạo mới thành công" });
+                    var thamso = _thamSoBus.GetTheoKyHieu("NAME");
+                    _emailBus.SendConfirmationEmail(model.Email, model.ConfirmationLink,Model.Token, thamso.NoiDung);
+                    return Ok(new { success = true, message = "Tạo mới thành công,Email xác nhận đã được gửi !" });
                 }
 
 

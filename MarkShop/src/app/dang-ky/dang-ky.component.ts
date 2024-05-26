@@ -47,9 +47,9 @@ export class DangKyComponent implements OnInit {
     formData.append('gioiTinh', this.GioiTinh);
     formData.append('diaChi', this.DiaChi);
     formData.append('SoDienThoai', this.SoDienThoai);
-    formData.append('anhDaiDien', 'avatar.jpg');
     formData.append('vaiTro', this.VaiTro)
     const confirmationLink = `${window.location.origin}/confirm`;
+    console.log(confirmationLink)
     formData.append('confirmationLink', confirmationLink);
 
     this.nd.kiemtra(formData).subscribe(res => {
