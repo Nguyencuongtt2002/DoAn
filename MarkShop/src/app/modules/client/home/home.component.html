@@ -55,7 +55,7 @@
                                     <owl-carousel-o [options]="customOptions">
                                         <ng-template carouselSlide *ngFor="let s of sanphammoi">
                                             <div class="item" style="box-shadow: 0 0 8px 2px rgba(0,0,0,0.2)">
-                                                <a href="/XemChiTiet/{{s.maSanPham}}">
+                                                <a routerLink="/XemChiTiet/{{s.maSanPham}}">
                                                     <img [src]="'data:image/jpg;base64,' + s.anhDaiDien"
                                                         style="width:100%;height:300px ;" />
                                                     <div id="label">New</div>
@@ -121,7 +121,7 @@
                                     <owl-carousel-o [options]="customOptions">
                                         <ng-template carouselSlide *ngFor="let sp of sanphambanchay">
                                             <div class="item" style="box-shadow: 0 0 8px 2px rgba(0,0,0,0.2)">
-                                                <a href="/XemChiTiet/{{sp.maSanPham}}">
+                                                <a routerLink="/XemChiTiet/{{sp.maSanPham}}">
                                                     <img [src]="'data:image/jpg;base64,' + sp.anhDaiDien"
                                                         style="width:100%;height:300px ;" />
                                                     <div *ngIf="sp.phanTram == null">
@@ -192,7 +192,7 @@
                                     <owl-carousel-o [options]="customOptions">
                                         <ng-template carouselSlide *ngFor="let sp of sanphamgiamgia">
                                             <div class="item" style="box-shadow: 0 0 8px 2px rgba(0,0,0,0.2)">
-                                                <a href="/XemChiTiet/{{sp.maSanPham}}">
+                                                <a routerLink="/XemChiTiet/{{sp.maSanPham}}">
                                                     <img [src]="'data:image/jpg;base64,' + sp.anhDaiDien"
                                                         style="width:100%;height:300px ;" />
                                                     <div id="label">giảm: {{sp.phanTram}}%</div>

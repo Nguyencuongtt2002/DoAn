@@ -5,7 +5,8 @@ import { Loaisanpham } from 'src/app/models/loaisanpham';
 import { LoaisanphamService } from 'src/app/services/loaisanpham.service';
 import { CartService } from 'src/app/services/cart.service';
 import { Router } from '@angular/router';
-
+import { LoadScriptService } from 'src/app/services/loadscript.service';
+import * as AOS from 'aos';
 @Component({
   selector: 'app-san-pham',
   templateUrl: './san-pham.component.html',
@@ -20,11 +21,14 @@ export class SanPhamComponent implements OnInit {
     private sanphamSrv: SanphamService,
     private loaisanphamService: LoaisanphamService,
     private cartSrv: CartService,
-    private _router: Router
+    private _router: Router,
+    private load2: LoadScriptService,
   ) { }
   ngOnInit(): void {
     this.getLoaiSanPhamAll();
     this.getSanPhamAll();
+    this.loadJS();
+    AOS.init();
   }
   getLoaiSanPhamAll = () => {
     const obj = {
@@ -57,5 +61,10 @@ export class SanPhamComponent implements OnInit {
     if (MinGia == 0 || MinGia == null) { MinGia = null }
     if (MaxGia == 0 || MaxGia == null) { MaxGia = null }
     this._router.navigate(['/tim-kiem'], { queryParams: { 'MinGia': MinGia, 'MaxGia': MaxGia } });
+  }
+
+  private async loadJS(): Promise<void> {
+    await this.load2.loadScript('/assets/JS/jquery-3.5.1.min.js')
+    await this.load2.loadScript('/assets/JS/index.js')
   }
 }

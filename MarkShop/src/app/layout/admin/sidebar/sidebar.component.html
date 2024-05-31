@@ -13,19 +13,23 @@
             <p class="mb-0" (click)="nguoidung()"><i class="fas fa-user pr-3"></i>Người dùng</p>
         </li>
         <li>
-            <p class="sanpham-btn mb-0">
-                <i class="fas fa-tshirt pr-3"></i>Sản phẩm <span class="fas fa-caret-down first"></span>
+            <p class="sanpham-btn mb-0" (click)="toggleSanpham()">
+                <i class="fas fa-tshirt pr-3"></i>Sản phẩm <span class="first">
+                    <i class="fas fa-caret-down" [class.rotate]="isSanphamActive"></i>
+                </span>
             </p>
-            <ul class="sanpham-show">
+            <ul class="sanpham-show" [class.show2]="isSanphamActive">
                 <li><a routerLink="/admin/ad-sanpham">Quản lý sản phẩm</a></li>
                 <li><a routerLink="/admin/ad-size">Quản lý size</a></li>
             </ul>
         </li>
         <li>
-            <p class="feat-btn mb-0">
-                <i class="fas fa-store pr-3"></i>Quản lý trang<span class="fas fa-caret-down Second"></span>
+            <p class="feat-btn mb-0" (click)="toggleFeat()">
+                <i class="fas fa-store pr-3"></i>Quản lý trang<span class="Second">
+                    <i class="fas fa-caret-down" [class.rotate]="isFeatActive"></i>
+                </span>
             </p>
-            <ul class="feat-show">
+            <ul class="feat-show" [class.show]="isFeatActive">
                 <li><a routerLink="/admin/ad-menu">Quản lý menu</a></li>
                 <li><a routerLink="/admin/ad-slide">Quản lý slide</a></li>
                 <li><a routerLink="/admin/ad-anh">Quản lý ảnh</a></li>
@@ -35,20 +39,24 @@
             </ul>
         </li>
         <li>
-            <p class="donvi-btn mb-0">
-                <i class="fas fa-building pr-3"></i>Đơn vị <span class="fas fa-caret-down Third"></span>
+            <p class="donvi-btn mb-0" (click)="toggleDonvi()">
+                <i class="fas fa-building pr-3"></i>Đơn vị <span class="Third">
+                    <i class="fas fa-caret-down" [class.rotate]="isDonviActive"></i>
+                </span>
             </p>
-            <ul class="donvi-show">
+            <ul class="donvi-show" [class.show3]="isDonviActive">
                 <li><a routerLink="/admin/ad-nhacungcap">Quản lý nhà cung cấp</a></li>
                 <li><a routerLink="/admin/ad-loaisp">Quản lý loại sản phẩm</a></li>
                 <li><a routerLink="/admin/ad-thuonghieu">Quản lý thương hiệu</a></li>
             </ul>
         </li>
         <li>
-            <p class="serv-btn mb-0"> <i class="fas fa-file-invoice pr-3"></i> Hóa đơn
-                <span class="fas fa-caret-down Final"></span>
+            <p class="serv-btn mb-0" (click)="toggleServ()"> <i class="fas fa-file-invoice pr-3"></i> Hóa đơn
+                <span class="Final">
+                    <i class="fas fa-caret-down" [class.rotate]="isServActive"></i>
+                </span>
             </p>
-            <ul class="serv-show">
+            <ul class="serv-show" [class.show1]="isServActive">
                 <li><a routerLink="/admin/ad-hoadonnhap">Quản lý hóa đơn nhập</a></li>
                 <li><a routerLink="/admin/ad-donhang">Quản lý đơn hàng</a></li>
             </ul>

@@ -20,6 +20,11 @@
             "polyfills": [
               "zone.js"
             ],
+            "allowedCommonJsDependencies": [
+              "crypto-js",
+              "aos",
+              "sweetalert2"
+            ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
@@ -35,6 +40,7 @@
               "src/assets/Lightbox/lightbox.min.css",
               "src/assets/aos-library/aos.css",
               "src/assets/Style.css",
+              "node_modules/aos/dist/aos.css",
               "src/styles.css"
             ],
             "scripts": [
@@ -51,6 +57,7 @@
               "src/assets/JS/jquery.validate.min.js",
               "src/assets/JS/jquery.validate.unobtrusive.min.js",
               "src/assets/JS/sweetalert2@10.js",
+              "node_modules/aos/dist/aos.js",
               "src/assets/JS/index.js"
             ]
           },
@@ -59,8 +66,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "5mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",

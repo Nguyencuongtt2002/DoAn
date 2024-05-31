@@ -28,7 +28,7 @@ export class AdNguoiDungComponent implements OnInit {
 
 
   p: number = 1;
-  pageSize: number = 3;
+  pageSize: number = 10;
   totalItems: number = 0;
   searchTerm: string = '';
 

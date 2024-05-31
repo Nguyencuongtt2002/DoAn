@@ -111,28 +111,28 @@ export class AdLoaispComponent implements OnInit {
     this.TenLoaiSanPham = item.tenLoaiSanPham;
     this.GioiThieu = item.gioiThieu
   }
-  // onDelete = (item: any) => {
-  //   this.MaLoaiSanPham = item.maLoaiSanPham;
-  //   this.deleteModal.nativeElement.classList.add('show');
-  // }
+  onDelete = (item: any) => {
+    this.MaLoaiSanPham = item.maLoaiSanPham;
+    this.deleteModal.nativeElement.classList.add('show');
+  }
 
-  // hanleDelete = () => {
-  //   // Thực hiện xóa dữ liệu
-  //   this.loaisanpham.Delete(this.MaLoaiSanPham).subscribe((res) => {
-  //     this.toastr.success('xóa thành công', '', {
-  //       progressBar: true,
-  //     });
-  //     this.getAll();
-  //     const deleteModal = this.deleteModal.nativeElement;
-  //     deleteModal.classList.remove('show');
-  //     deleteModal.style.display = 'none';
-  //     document.body.classList.remove('modal-open');
-  //     const modalBackdrop = document.getElementsByClassName('modal-backdrop');
-  //     for (let i = 0; i < modalBackdrop.length; i++) {
-  //       modalBackdrop[i].remove();
-  //     }
-  //   });
-  // }
+  hanleDelete = () => {
+    // Thực hiện xóa dữ liệu
+    this.loaisanpham.Delete(this.MaLoaiSanPham).subscribe((res) => {
+      this.toastr.success('xóa thành công', '', {
+        progressBar: true,
+      });
+      this.getAll(this.p);
+      const deleteModal = this.deleteModal.nativeElement;
+      deleteModal.classList.remove('show');
+      deleteModal.style.display = 'none';
+      document.body.classList.remove('modal-open');
+      const modalBackdrop = document.getElementsByClassName('modal-backdrop');
+      for (let i = 0; i < modalBackdrop.length; i++) {
+        modalBackdrop[i].remove();
+      }
+    });
+  }
   private async loadJS(): Promise<void> {
     await this.load2.loadScript('/assets/JS/jquery-3.5.1.min.js')
     await this.load2.loadScript('/assets/JS/jquery.countup.min.js')
