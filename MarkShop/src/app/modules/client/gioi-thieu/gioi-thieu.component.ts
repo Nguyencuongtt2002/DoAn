@@ -13,11 +13,10 @@ export class GioiThieuComponent implements OnInit {
   constructor(private gt: GioiThieuService) { }
 
   ngOnInit(): void {
-    this, this.getGioiThieuAll();
+    this.getGioiThieuAll();
   }
   getGioiThieuAll = () => {
     this.gt.getGioiThieuAll().subscribe(res => {
-      console.log(res);
       this.gioithieu = res;
     })
   }

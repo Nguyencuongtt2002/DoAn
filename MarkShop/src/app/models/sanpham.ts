@@ -13,6 +13,7 @@ export interface Sanpham {
     soLuong: number;
     tenLoaiSanPham: string;
     tenThuongHieu: string;
+    tenSize: string;
     listjson_thongso: ThongSoSanPham[];
 }
 export interface ThongSoSanPham {

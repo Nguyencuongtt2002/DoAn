@@ -77,8 +77,7 @@ export class AdNguoiDungComponent implements OnInit {
       formData.append('ngaySinh', '2002-07-14');
       formData.append('gioiTinh', 'Nam');
       formData.append('diaChi', 'Thái Bình');
-      formData.append('SoDienThoai', this.SoDienThoai);
-      formData.append('anhDaiDien', 'avatar.jpg');
+      formData.append('SoDienThoai', '0123456789');
       formData.append('vaiTro', this.VaiTro);
       const confirmationLink = `${window.location.origin}/confirm`;
       formData.append('confirmationLink', confirmationLink);

@@ -339,32 +339,6 @@
   },
   {
     "ContainingType": "ShopThoiTrang.Controllers.DonHangController",
-    "Method": "CapNhatDonHangKhiGiao",
-    "RelativePath": "api/DonHang/capnhat-donhang-khigiao",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "model",
-        "Type": "Model.DonHangModel",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "Model.DonHangModel",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "ShopThoiTrang.Controllers.DonHangController",
     "Method": "DuyetDonHang",
     "RelativePath": "api/DonHang/duyetdon/{ma}",
     "HttpMethod": "GET",
@@ -2070,6 +2044,22 @@
         "Name": "File",
         "Type": "Microsoft.AspNetCore.Http.IFormFile",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ShopThoiTrang.Controllers.SanPhamController",
+    "Method": "Xoa",
+    "RelativePath": "api/SanPham/xoa/{ma}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ma",
+        "Type": "System.Int32",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

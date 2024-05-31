@@ -15,9 +15,9 @@
                         <button class="btn btn-warning btn-sm ml-2" data-toggle="modal" data-target="#exampleModal1">
                             <i class="fas fa-edit"></i> Cập nhật
                         </button>
-                        <button class="btn btn-danger btn-sm ml-2" (click)="xoa()">
+                        <!-- <button class="btn btn-danger btn-sm ml-2" (click)="xoa()">
                             <i class="fas fa-trash-alt"></i> Xóa
-                        </button>
+                        </button> -->
                         <button class="btn btn-success btn-sm ml-2" data-toggle="modal" data-target="#exampleModal2">
                             Chi Tiết
                         </button>
@@ -108,7 +108,7 @@
                     <div class="form-group row">
                         <div class="col-md-12 d-flex justify-content-center">
                             <button id="btnCapNhat" class="btn btn-primary mr-2" (click)="CapNhatGia()">
-                                <i class="icon-save"></i> Cập nhật
+                                <i class="icon-save"></i> {{btnText}}
                             </button>
                             <button id="btnXoa" class="btn btn-danger" (click)="XoaGia()">
                                 <i class="icon-delete"></i> Xóa
@@ -154,7 +154,7 @@
                     <div class="form-group row">
                         <div class="col-md-12 d-flex justify-content-center">
                             <button id="btnCapNhat" class="btn btn-primary mr-2" (click)="CapNhatGiamGia()">
-                                <i class="icon-save"></i> Cập nhật
+                                <i class="icon-save"></i> {{btnText1}}
                             </button>
                             <button id="btnXoa" class="btn btn-danger" (click)="XoaGiamGia()">
                                 <i class="icon-delete"></i> Xóa
@@ -557,13 +557,14 @@
                     <div class="row">
                         <!-- Image Column -->
                         <div class="col-md-4">
-                            <img src="assets/Images/{{AnhDaiDien}}" alt="Ảnh Sản Phẩm" class="img-fluid rounded">
+                            <img [src]="'data:image/jpg;base64,' + AnhDaiDien" alt="Ảnh Sản Phẩm"
+                                class="img-fluid rounded">
                         </div>
                         <!-- Details Column -->
                         <div class="col-md-8">
                             <h3>Tên Sản Phẩm: {{TenSP}}</h3>
                             <p><strong>Mô tả:</strong>{{MoTa}}.</p>
-                            <p><strong>Size:</strong>{{MaSize}}</p>
+                            <p><strong>Size:</strong>{{TenSize}}</p>
                             <p><strong>Tên loại:</strong>{{TenLoaiSanPham}}</p>
                             <p><strong>Tên thương hiệu:</strong>{{TenThuongHieu}}</p>
                             <p><strong>Giá:</strong>{{GiaMoiKhiGiam| number: '1.0-0'}} VNĐ</p>

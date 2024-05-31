@@ -71,11 +71,9 @@ export class TimKiemComponent implements OnInit {
         maThuongHieu: null,
       };
       this.sp.TimKiem(obj).subscribe((res) => {
-        console.log(res)
         this.listSanPhamSearch = res?.data;
         this.totalItems = res.totalItems;
         this.p = p
-        console.log(this.p)
       });
     });
   }

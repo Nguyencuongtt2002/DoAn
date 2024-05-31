@@ -280,7 +280,42 @@ namespace ShopThoiTrang.Controllers
                 return StatusCode(500, new { success = false, message = "Đã xảy ra lỗi: " + ex.Message });
             }
         }
-       
+
+        [Route("xoa/{ma}")]
+        [HttpDelete]
+        public IActionResult Xoa(int ma)
+        {
+            try
+            {
+                // Lấy thông tin từ cơ sở dữ liệu
+                var model = _sanphamBus.GetTheoMa(ma);
+
+                if (model == null)
+                {
+                    return NotFound(new { success = false, message = "Sản phẩm không tồn tại" });
+                }
+
+                // Xoá từ cơ sở dữ liệu
+                bool result = _sanphamBus.Delete(ma);
+
+                if (result)
+                {
+                    return Ok(new { success = true, message = "Xóa thành công" });
+                }
+                else
+                {
+                    return NotFound(new { success = false, message = "Không thể xoá" });
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { success = false, message = "Đã xảy ra lỗi: " + ex.Message });
+            }
+        }
+
+
+
+
 
     }
 }

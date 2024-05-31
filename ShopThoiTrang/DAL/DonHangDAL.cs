@@ -154,27 +154,6 @@ namespace DAL
                 throw ex;
             }
         }
-        public bool CapNhatDonHangKhiGiao(DonHangModel model)
-        {
-            string msgError = "";
-            try
-            {
-                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_capnhatthanhtoankhigiao_DonHang",
-                "@p_MaDonHang", model.MaDonHang,
-                "@p_MaSanPham",model.MaSanPham,
-                "@p_TinhTrang", model.TinhTrang);
-
-                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
-                {
-                    throw new Exception(Convert.ToString(result) + msgError);
-                }
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
         public bool HuyDonHang(DonHangModel model)
         {
             string msgError = "";

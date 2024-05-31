@@ -99,6 +99,7 @@ export class AdHoaDonNhapComponent implements OnInit {
         this.toastr.success('Thêm thành công', '', {
           progressBar: true,
         });
+
         this.hdn.getNewHoaDonNhap().subscribe(res => {
           for (let i = 0; i < this.chitiethoadonnhap.length; i++) {
             const obj: any = {
@@ -207,7 +208,7 @@ export class AdHoaDonNhapComponent implements OnInit {
   }
   getChiTietHDN(id: number) {
     this.ct.getcthoadonnhapByhoadonnhap(id).subscribe(res => {
-      console.log(res)
+
       this.listchitiethoadonnhap = res.data;
     });
   }
@@ -219,7 +220,6 @@ export class AdHoaDonNhapComponent implements OnInit {
   }
 
   deleteCThoadonUpdate(chitiet: any): void {
-    console.log(chitiet)
     if (confirm('Bạn có muốn xóa chi tiết này không')) {
       this.ct.Delete(chitiet.maChiTiet).subscribe(res => { this.loadCTHoaDonNhap(); });
     }
@@ -268,30 +268,30 @@ export class AdHoaDonNhapComponent implements OnInit {
 
     }
   }
-  onDelete = () => {
-    this.deleteModal.nativeElement.classList.add('show');
-  }
+  // onDelete = () => {
+  //   this.deleteModal.nativeElement.classList.add('show');
+  // }
 
-  hanleDelete = () => {
-    if (this.selectedRow) {
-      // Thực hiện xóa dữ liệu
-      this.hdn.Delete(this.MaHDN).subscribe((res) => {
-        this.toastr.success('xóa thành công', '', {
-          progressBar: true,
-        });
-        this.getallhdn();
-        const deleteModal = this.deleteModal.nativeElement;
-        deleteModal.classList.remove('show');
-        deleteModal.style.display = 'none';
-        document.body.classList.remove('modal-open');
-        const modalBackdrop = document.getElementsByClassName('modal-backdrop');
-        for (let i = 0; i < modalBackdrop.length; i++) {
-          modalBackdrop[i].remove();
-        }
-      });
-    }
+  // hanleDelete = () => {
+  //   if (this.selectedRow) {
+  //     // Thực hiện xóa dữ liệu
+  //     this.hdn.Delete(this.MaHDN).subscribe((res) => {
+  //       this.toastr.success('xóa thành công', '', {
+  //         progressBar: true,
+  //       });
+  //       this.getallhdn();
+  //       const deleteModal = this.deleteModal.nativeElement;
+  //       deleteModal.classList.remove('show');
+  //       deleteModal.style.display = 'none';
+  //       document.body.classList.remove('modal-open');
+  //       const modalBackdrop = document.getElementsByClassName('modal-backdrop');
+  //       for (let i = 0; i < modalBackdrop.length; i++) {
+  //         modalBackdrop[i].remove();
+  //       }
+  //     });
+  //   }
 
-  }
+  // }
   exportToExcel() {
     const id = Number(this.selectedRow?.maHDN);
     this.ct.excel(id).subscribe((data: Blob) => {

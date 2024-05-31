@@ -33,7 +33,6 @@ export class SanPhamComponent implements OnInit {
       tenLoaiSanPham: ""
     }
     this.loaisanphamService.getLoaiSanPhamAll(obj).subscribe(res => {
-      console.log(res);
       this.listloai = res.data;
     })
   }

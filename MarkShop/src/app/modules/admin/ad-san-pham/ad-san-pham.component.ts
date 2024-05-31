@@ -47,6 +47,7 @@ export class AdSanPhamComponent implements OnInit {
   TenSP: string = '';
   MoTa: string = '';
   MaSize: any = '';
+  TenSize: string = '';
   TenLoaiSanPham: string = '';
   TenThuongHieu: string = '';
   MaLoaiSanPham: any = '';
@@ -72,6 +73,8 @@ export class AdSanPhamComponent implements OnInit {
   totalItems: number = 0;
   searchTerm: string = '';
 
+  btnText: string = "Thêm mới";
+  btnText1: string = "Thêm mới";
   editorConfig: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
@@ -105,7 +108,7 @@ export class AdSanPhamComponent implements OnInit {
       this.listsize = res;
     })
   }
-  getLoaiSanPhamAll = () => {
+  getLoaiSanPhamAll() {
     const obj = {
       page: 1,
       pageSize: 50,
@@ -135,7 +138,7 @@ export class AdSanPhamComponent implements OnInit {
     this.thongSo.splice(0, this.thongSo.length);
     this.selectedRow = null
   }
-  getListSPALL = (p: number) => {
+  getListSPALL(p: number) {
     const obj = {
       page: p,
       pageSize: this.pageSize,
@@ -149,7 +152,6 @@ export class AdSanPhamComponent implements OnInit {
   }
 
   Them() {
-
     if (!this.AnhDaiDien) {
       this.toastr.error('Lỗi!', 'Vui lòng chọn ảnh sản phẩm.');
       return;
@@ -162,12 +164,14 @@ export class AdSanPhamComponent implements OnInit {
     formData.append('maThuongHieu', String(this.MaThuongHieu))
     formData.append('file', this.AnhDaiDien!);
 
-    this.toastr.success('Thêm thành công', '', {
-      progressBar: true,
-    });
+
     this.sp.create(formData).subscribe(
       (res) => {
         if (res) {
+          this.toastr.success('Thêm thành công', '', {
+            progressBar: true,
+          });
+          this.getListSPALL(1);
           this.sp.getNewSanPham().subscribe(res => {
             const giasanpham: any = {
               ngayBD: this.NgayBD,
@@ -175,7 +179,7 @@ export class AdSanPhamComponent implements OnInit {
               donGia: this.DonGia,
               maSanPham: res.maSanPham,
             }
-            this.g.create(giasanpham).subscribe(res => { });
+            this.g.create(giasanpham).subscribe(res => { this.getListSPALL(this.p); });
             if (this.PhanTram && this.NgayBatDau !== undefined && this.NgayKetThuc !== undefined && this.NgayBatDau.trim() !== '' && this.NgayKetThuc.trim() !== '') {
               const giamgia: any = {
                 ngayBD: this.NgayBatDau,
@@ -183,7 +187,7 @@ export class AdSanPhamComponent implements OnInit {
                 phanTram: this.PhanTram,
                 maSanPham: res.maSanPham,
               };
-              this.gg.create(giamgia).subscribe(res => { });
+              this.gg.create(giamgia).subscribe(res => { this.getListSPALL(this.p); });
               for (let i = 0; i < this.thongSo.length; i++) {
                 const thongso: any = {
                   tenThongSo: this.thongSo[i].tenThongSo,
@@ -195,7 +199,7 @@ export class AdSanPhamComponent implements OnInit {
             }
 
           });
-          this.getListSPALL(1);
+
           const addModal = this.addModal.nativeElement;
           addModal.classList.remove('show');
           addModal.style.display = 'none';
@@ -212,6 +216,7 @@ export class AdSanPhamComponent implements OnInit {
       }
     );
   }
+
 
   //Thêm thông số 
   addThongSo() {
@@ -239,18 +244,22 @@ export class AdSanPhamComponent implements OnInit {
     this.TenLoaiSanPham = this.selectedRow.tenLoaiSanPham;
     this.TenThuongHieu = this.selectedRow.tenThuongHieu;
     this.DonGia = this.selectedRow.donGia;
-    this.GiaMoiKhiGiam = this.selectedRow.giaMoiKhiGiam;
+    this.GiaMoiKhiGiam = (this.selectedRow as Sanpham).giaMoiKhiGiam || (this.selectedRow as Sanpham).donGia || 0;
     this.AnhDaiDien = this.selectedRow.anhDaiDien;
-    this.PhanTram = this.selectedRow.phanTram;
+    this.PhanTram = this.selectedRow.phanTram ?? 0;
+    this.TenSize = this.selectedRow.tenSize
+    console.log(this.selectedRow)
 
     this.g.getgiaBySanPham(this.selectedRow.maSanPham).subscribe(res => {
       if (!res.data || res.data.length === 0) {
+        this.btnText = "Thêm mới"
         this.gia.ngayBD = '';
         this.gia.ngayKT = '';
         this.gia.donGia = 0;
       } else {
         // Gán dữ liệu từ API cho biến 'gia'
         this.gia = res.data; // Đảm bảo 'res.data' có cùng cấu trúc với 'gia'
+        this.btnText = "Cập nhật"
         // Kiểm tra và định dạng ngày thành định dạng mong muốn
         this.gia.ngayBD = this.formatDate(this.gia.ngayBD);
         this.gia.ngayKT = this.formatDate(this.gia.ngayKT);
@@ -260,12 +269,14 @@ export class AdSanPhamComponent implements OnInit {
     this.gg.getGiamGiaBySanPham(this.selectedRow.maSanPham).subscribe(
       (res: any) => {
         if (!res.data || res.data.length === 0) {
+          this.btnText1 = "Thêm mới"
           this.giamgia.ngayBD = '';
           this.giamgia.ngayKT = '';
           this.giamgia.phanTram = 0;
         } else {
           // Gán dữ liệu từ API cho biến 'giamgia'
           this.giamgia = res.data; // Đảm bảo 'res.data' có cùng cấu trúc với 'giamgia'
+          this.btnText1 = "Cập nhật"
           // Kiểm tra và định dạng ngày thành định dạng mong muốn
           this.giamgia.ngayBD = this.formatDate(this.giamgia.ngayBD);
           this.giamgia.ngayKT = this.formatDate(this.giamgia.ngayKT);
@@ -354,6 +365,7 @@ export class AdSanPhamComponent implements OnInit {
         };
         this.g.create(gia).subscribe(res => {
           Swal.fire('Thành công', 'Thêm  giá thành công', 'success');
+          this.getListSPALL(this.p);
         });
       } else {
         const gia: any = {
@@ -365,6 +377,7 @@ export class AdSanPhamComponent implements OnInit {
         };
         this.g.update(gia).subscribe(res => {
           Swal.fire('Thành công', 'Cập nhật  giá thành công', 'success');
+          this.getListSPALL(this.p);
         });
       }
     });
@@ -400,30 +413,35 @@ export class AdSanPhamComponent implements OnInit {
     });
   }
   CapNhatGiamGia() {
-    this.gg.getGiamGiaBySanPham(this.MaSanPham).subscribe(res => {
-      if (!res.data || res.data.length === 0) {
-        const giamgia: any = {
-          ngayBD: this.giamgia.ngayBD,
-          ngayKT: this.giamgia.ngayKT,
-          phanTram: this.giamgia.phanTram,
-          maSanPham: this.selectedRow?.maSanPham,
-        };
-        this.gg.create(giamgia).subscribe(res => {
-          Swal.fire('Thành công', 'Thêm giảm giá thành công', 'success');
-        });
-      } else {
-        const giamgia: any = {
-          maGiamGia: this.giamgia.maGiamGia,
-          ngayBD: this.giamgia.ngayBD,
-          ngayKT: this.giamgia.ngayKT,
-          phanTram: this.giamgia.phanTram,
-          maSanPham: this.selectedRow?.maSanPham,
-        };
-        this.gg.update(giamgia).subscribe(res => {
-          Swal.fire('Thành công', 'Cập nhật giảm giá thành công', 'success');
-        });
-      }
-    });
+    if (this.MaSanPham) {
+      this.gg.getGiamGiaBySanPham(this.MaSanPham).subscribe(res => {
+        if (!res.data || res.data.length === 0) {
+          const giamgia: any = {
+            ngayBD: this.giamgia.ngayBD,
+            ngayKT: this.giamgia.ngayKT,
+            phanTram: this.giamgia.phanTram,
+            maSanPham: this.selectedRow?.maSanPham,
+          };
+          this.gg.create(giamgia).subscribe(res => {
+            Swal.fire('Thành công', 'Thêm giảm giá thành công', 'success');
+            this.getListSPALL(this.p);
+          });
+        } else {
+          const giamgia: any = {
+            maGiamGia: this.giamgia.maGiamGia,
+            ngayBD: this.giamgia.ngayBD,
+            ngayKT: this.giamgia.ngayKT,
+            phanTram: this.giamgia.phanTram,
+            maSanPham: this.selectedRow?.maSanPham,
+          };
+          this.gg.update(giamgia).subscribe(res => {
+            Swal.fire('Thành công', 'Cập nhật giảm giá thành công', 'success');
+            this.getListSPALL(this.p);
+          });
+        }
+      });
+    }
+
   }
   XoaGiamGia() {
     Swal.fire({
@@ -456,39 +474,38 @@ export class AdSanPhamComponent implements OnInit {
     });
   }
   //xóa 
-  xoa() {
-    // Sử dụng Swal để xác nhận việc xóa
-    if (this.selectedRow) {
-      Swal.fire({
-        icon: 'question',
-        title: 'Xác nhận',
-        text: 'Bạn có chắc muốn xóa sản phẩm này ko  này không ?',
-        showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#3085d6',
-        confirmButtonText: 'Xóa',
-        cancelButtonText: 'Hủy'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          // Nếu người dùng chọn Xóa, thực hiện hành động xóa
-          this.sp.Delete(this.MaSanPham).subscribe(res => {
-            console.log(res)
-            Swal.fire({
-              icon: 'success',
-              title: 'Thành công!',
-              text: 'Xóa sản phẩm thành công!',
-              confirmButtonColor: '#3085d6',
-              confirmButtonText: 'OK',
-            }).then(() => {
-              // Cập nhật danh sách sau khi xóa
-              this.getListSPALL(this.p);
-            });
-          });
-        }
-      });
-    }
-  }
-
+  // xoa() {
+  //   // Sử dụng Swal để xác nhận việc xóa
+  //   if (this.selectedRow) {
+  //     Swal.fire({
+  //       icon: 'question',
+  //       title: 'Xác nhận',
+  //       text: 'Bạn có chắc muốn xóa sản phẩm này ko  này không ?',
+  //       showCancelButton: true,
+  //       confirmButtonColor: '#d33',
+  //       cancelButtonColor: '#3085d6',
+  //       confirmButtonText: 'Xóa',
+  //       cancelButtonText: 'Hủy'
+  //     }).then((result) => {
+  //       if (result.isConfirmed) {
+  //         // Nếu người dùng chọn Xóa, thực hiện hành động xóa
+  //         this.sp.Delete(this.MaSanPham).subscribe(res => {
+  //           console.log(res)
+  //           Swal.fire({
+  //             icon: 'success',
+  //             title: 'Thành công!',
+  //             text: 'Xóa sản phẩm thành công!',
+  //             confirmButtonColor: '#3085d6',
+  //             confirmButtonText: 'OK',
+  //           }).then(() => {
+  //             // Cập nhật danh sách sau khi xóa
+  //             this.getListSPALL(this.p);
+  //           });
+  //         });
+  //       }
+  //     });
+  //   }
+  // }
   //File
   onFileChange(event: any) {
     const fileList: FileList = event.target.files;

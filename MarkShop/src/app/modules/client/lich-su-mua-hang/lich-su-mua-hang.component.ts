@@ -49,7 +49,6 @@ export class LichSuMuaHangComponent implements OnInit {
     }
   }
   huyDon = (item: any) => {
-    console.log(item)
     const obj = {
       maDonHang: item.maDonHang,
       maSanPham: item.maSanPham
@@ -65,7 +64,6 @@ export class LichSuMuaHangComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.donhangService.huyDon(obj).subscribe((res) => {
-          console.log(res)
           Swal.fire({
             title: 'Thông báo',
             text: 'đơn hàng đã hủy khỏi hệ thống',
@@ -106,7 +104,6 @@ export class LichSuMuaHangComponent implements OnInit {
     })
 
     this.donhangService.getChiTietDonHangByDonHang(donhang.maDonHang).subscribe(data => {
-      console.log(data?.data)
       this.chitietdonhang = data?.data
       this.donhangService.getTheoMa(donhang.maDonHang).subscribe(data => {
         this.Tonghoadon = data.tongTien;

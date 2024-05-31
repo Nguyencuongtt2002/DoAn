@@ -94,14 +94,6 @@ namespace ShopThoiTrang.Controllers
             _donhangBus.CapNhatDonHang(model);
             return model;
         }
-        [AllowAnonymous]
-        [Route("capnhat-donhang-khigiao")]
-        [HttpPost]
-        public DonHangModel CapNhatDonHangKhiGiao([FromBody] DonHangModel model)
-        {
-            _donhangBus.CapNhatDonHangKhiGiao(model);
-            return model;
-        }
         [Authorize]
         [Route("lichsumuahang/{MaNguoiDung}")]
         [HttpGet]

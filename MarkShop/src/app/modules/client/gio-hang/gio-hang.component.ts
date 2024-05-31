@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { IListGioHang } from 'src/app/models/giohang';
 @Component({
   selector: 'app-gio-hang',
   templateUrl: './gio-hang.component.html',
   styleUrls: ['./gio-hang.component.css']
 })
 export class GioHangComponent implements OnInit {
-  ListGioHang: any[] = [];
+  ListGioHang: IListGioHang[] = [];
   SoLuong: number = 0;
   TongGia: number = 0;
-  constructor(private cartSrv: CartService) { }
+  constructor(private cartSrv: CartService, private router: Router) { }
   ngOnInit(): void {
     this.cartSrv.cartUpdated.subscribe(() => {
       this.loadGioHang();
@@ -19,7 +21,7 @@ export class GioHangComponent implements OnInit {
   }
   //Load giỏ hàng
   loadGioHang() {
-    var cart = this.cartSrv.loadGioHang();
+    const cart = this.cartSrv.loadGioHang();
     this.ListGioHang = cart.cart;
     this.SoLuong = cart.SoLuong;
     this.TongGia = cart.TongGia;
@@ -64,7 +66,7 @@ export class GioHangComponent implements OnInit {
       return;
     }
 
-    location.assign('http://localhost:4200/thanh-toan');
+    this.router.navigate(['/thanh-toan']);
   }
 
 }

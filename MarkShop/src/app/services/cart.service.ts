@@ -38,7 +38,7 @@ export class CartService {
                     Swal.fire({
                         icon: 'warning',
                         title: 'Thông báo',
-                        text: 'Số lượng sản phẩm đặt mua không được vượt quá 5 sản phẩm',
+                        text: 'Số lượng sản phẩm đặt mua không được vượt quá 10 sản phẩm',
                         confirmButtonColor: '#3085d6',
                         confirmButtonText: 'OK'
                     });
@@ -166,5 +166,8 @@ export class CartService {
                 });
             }
         });
+    }
+    loadThanhToan = () => {
+        this.cartUpdated.next();
     }
 }

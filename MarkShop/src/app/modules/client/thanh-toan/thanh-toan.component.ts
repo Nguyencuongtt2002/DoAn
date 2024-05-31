@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { NguoidungService } from 'src/app/services/nguoidung.service';
 import { DonhangService } from 'src/app/services/donhang.service';
 import { Nguoidung } from 'src/app/models/nguoidung';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { PaymentInformation } from 'src/app/models/vnpay';
+import { CartService } from 'src/app/services/cart.service';
 @Component({
   selector: 'app-thanh-toan',
   templateUrl: './thanh-toan.component.html',
@@ -22,7 +24,12 @@ export class ThanhToanComponent implements OnInit {
   SoLuong: number = 0;
   TongGia: number = 0;
 
-  constructor(private nd: NguoidungService, private dh: DonhangService) { }
+  constructor(
+    private nd: NguoidungService,
+    private dh: DonhangService,
+    private router: Router,
+    private cartSrv: CartService,
+  ) { }
 
   ngOnInit(): void {
     this.loadGioHang();
@@ -114,6 +121,7 @@ export class ThanhToanComponent implements OnInit {
           }).then((result) => {
             if (result.isConfirmed) {
               localStorage.removeItem('cart');
+              this.cartSrv.loadThanhToan()
               if (this.phuongThucThanhToan === 'Thanh toán khi giao hàng') {
                 this.dh.getNewDonHang().subscribe((res) => {
                   const email: any = {
@@ -121,7 +129,7 @@ export class ThanhToanComponent implements OnInit {
                     maDonHang: res.maDonHang
                   };
                   this.dh.orderEmail(email).subscribe(res => { });
-                  location.href = '/'
+                  this.router.navigate(['/']);
                 });
               }
               else if (this.phuongThucThanhToan === 'Chuyển khoản') {

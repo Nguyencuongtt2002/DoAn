@@ -56,7 +56,6 @@ export class TaiKhoanComponent implements OnInit {
       };
 
       this.nd.login(check).subscribe(res => {
-        console.log(res)
         if (res.code === 404) {
           Swal.fire({
             icon: 'error',

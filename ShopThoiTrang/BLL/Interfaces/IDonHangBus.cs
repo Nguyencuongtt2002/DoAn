@@ -14,7 +14,6 @@ namespace BLL
         List<ChiTietDonHangModel> GetCTDonHangTheoDonHang(int? MaDonHang);
         List<LienHeModel> ThongTinLienHe();
         bool CapNhatDonHang(DonHangModel model);
-        bool CapNhatDonHangKhiGiao(DonHangModel model);
 
     }
 }

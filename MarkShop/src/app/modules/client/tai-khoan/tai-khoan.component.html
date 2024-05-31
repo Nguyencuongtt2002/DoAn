@@ -3,14 +3,14 @@
     <div class="row">
         <div class="col-md-4">
             <div class="card user-card" style="box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.2);">
-                <img src="assets/Images/{{customerInfo.anhDaiDien}}" name="anhDaiDien" class="card-img-top"
+                <img [src]="'data:image/jpg;base64,' + customerInfo.anhDaiDien" name="anhDaiDien" class="card-img-top"
                     alt="User Avatar">
                 <div class="card-body text-center">
-                    <h5 class="card-title">{{customerInfo.HoTen}}</h5>
+                    <h5 class="card-title">{{ customerInfo.HoTen }}</h5>
                     <div class="card-info">
-                        <p class="card-text"><strong>Email:</strong> {{ customerInfo.email}}</p>
-                        <p class="card-text"><strong>Địa chỉ:</strong> {{customerInfo.diaChi}}</p>
-                        <p class="card-text"><strong>Số điện thoại:</strong> {{customerInfo.soDienThoai}}</p>
+                        <p class="card-text"><strong>Email:</strong> {{ customerInfo.email }}</p>
+                        <p class="card-text"><strong>Địa chỉ:</strong> {{ customerInfo.diaChi }}</p>
+                        <p class="card-text"><strong>Số điện thoại:</strong> {{ customerInfo.soDienThoai }}</p>
                     </div>
                 </div>
             </div>

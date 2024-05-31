@@ -16,7 +16,7 @@ export class AdLienHeComponent implements OnInit {
   searchTerm: string = '';
 
   p: number = 1;
-  pageSize: number = 1;
+  pageSize: number = 10;
   totalItems: number = 0;
   @ViewChild('addModal') addModal!: ElementRef;
   @ViewChild('updateModal') updateModal!: ElementRef;
