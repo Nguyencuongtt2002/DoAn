@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { PaymentInformation } from 'src/app/models/vnpay';
 import { CartService } from 'src/app/services/cart.service';
+import { SanphamService } from 'src/app/services/sanpham.service';
 @Component({
   selector: 'app-thanh-toan',
   templateUrl: './thanh-toan.component.html',
@@ -29,6 +30,7 @@ export class ThanhToanComponent implements OnInit {
     private dh: DonhangService,
     private router: Router,
     private cartSrv: CartService,
+    private service: SanphamService,
   ) { }
 
   ngOnInit(): void {
@@ -48,7 +50,6 @@ export class ThanhToanComponent implements OnInit {
     this.ListGioHang = cart;
     this.SoLuong = cart.reduce((total, item) => total + item.SoLuong, 0);
     this.TongGia = cart.reduce((total, item) => total + (item.DonGia * item.SoLuong), 0);
-
     if (this.SoLuong === 0) {
       Swal.fire({
         title: "Thông báo",
@@ -80,9 +81,9 @@ export class ThanhToanComponent implements OnInit {
     }
     return true;
   }
-
-  ThanhToan = () => {
+  ThanhToan = async () => {
     if (this.KiemTraThongTin()) {
+      await this.KiemTraSoLuongSanPham();
       const obj: {
         hoTen: string,
         diaChi: string,
@@ -110,45 +111,56 @@ export class ThanhToanComponent implements OnInit {
           giaTien: sanpham.DonGia,
         });
       }
-      this.dh.thanhToan(obj).subscribe(
-        () => {
-          Swal.fire({
-            title: 'Thông báo',
-            text: 'Cảm ơn quý khách đã tin tưởng sản phẩm của shop.',
-            icon: 'success',
-            showCancelButton: false,
-            confirmButtonText: 'OK'
-          }).then((result) => {
-            if (result.isConfirmed) {
-              localStorage.removeItem('cart');
-              this.cartSrv.loadThanhToan()
-              if (this.phuongThucThanhToan === 'Thanh toán khi giao hàng') {
-                this.dh.getNewDonHang().subscribe((res) => {
-                  const email: any = {
-                    email: this.customerInfo.email,
-                    maDonHang: res.maDonHang
-                  };
-                  this.dh.orderEmail(email).subscribe(res => { });
-                  this.router.navigate(['/']);
-                });
-              }
-              else if (this.phuongThucThanhToan === 'Chuyển khoản') {
-                this.dh.getNewDonHang().subscribe((res) => {
-                  const email: any = {
-                    email: this.customerInfo.email,
-                    maDonHang: res.maDonHang
-                  };
-                  this.dh.orderEmail(email).subscribe(res => { });
-                  this.vnPay(res.maDonHang);
-                });
-              }
-            }
-          });
-        },
-        error => {
-          Swal.fire('Lỗi', 'Đã xảy ra lỗi trong quá trình thanh toán', 'error');
+
+      await this.dh.thanhToan(obj).toPromise();
+      Swal.fire({
+        title: 'Thông báo',
+        text: 'Đặt hàng thành công.',
+        icon: 'success',
+        showCancelButton: false,
+        confirmButtonText: 'OK'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          localStorage.removeItem('cart');
+          this.cartSrv.loadThanhToan()
+          if (this.phuongThucThanhToan === 'Thanh toán khi giao hàng') {
+            this.dh.getNewDonHang().subscribe((res) => {
+              const email: any = {
+                email: this.customerInfo.email,
+                maDonHang: res.maDonHang
+              };
+              this.dh.orderEmail(email).subscribe(res => { });
+              this.router.navigate(['/']);
+            });
+          }
+          else if (this.phuongThucThanhToan === 'Chuyển khoản') {
+            this.dh.getNewDonHang().subscribe((res) => {
+              const email: any = {
+                email: this.customerInfo.email,
+                maDonHang: res.maDonHang
+              };
+              this.dh.orderEmail(email).subscribe(res => { });
+              this.vnPay(res.maDonHang);
+            });
+          }
         }
-      );
+      });
+    }
+  }
+
+  KiemTraSoLuongSanPham = async () => {
+    for (let item of this.ListGioHang) {
+      const res = await this.service.getOne(item.MaSanPham).toPromise();
+      if (item.SoLuong > res.soLuong) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Cảnh báo',
+          text: 'Một số sản phẩm trong giỏ hàng không có đủ số lượng. Vui lòng kiểm tra lại giỏ hàng của bạn.'
+        }).then(() => {
+          this.router.navigate(['/gio-hang']);
+        });
+        throw new Error('Sản phẩm không đủ số lượng');
+      }
     }
   }
 

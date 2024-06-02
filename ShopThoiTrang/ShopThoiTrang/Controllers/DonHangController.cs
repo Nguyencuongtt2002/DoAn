@@ -94,7 +94,6 @@ namespace ShopThoiTrang.Controllers
             _donhangBus.CapNhatDonHang(model);
             return model;
         }
-        [Authorize]
         [Route("lichsumuahang/{MaNguoiDung}")]
         [HttpGet]
         public IActionResult LichSuMuaHang(int MaNguoiDung)

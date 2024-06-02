@@ -36,7 +36,7 @@ export class DonhangService {
         return this.http.get<any>(`${_api}/api/DonHang/lichsumuahang/` + userId, { headers });
     }
     huyDon(obj: any): Observable<any> {
-        return this.http.post<any>(_api + '/api/DonHang/huydon', obj);
+        return this.http.post<any>(_api + '/api/DonHang/huydon', obj, { headers });
     }
     excel(MaDonHang: any): Observable<Blob> {
         return this.http.get(`${_api}/api/DonHang/excel/${MaDonHang}`, { headers, responseType: 'blob' });
@@ -63,8 +63,5 @@ export class DonhangService {
     getTheoMa(id: number): Observable<any> {
         return this.http.get<any>(`${_api}/api/DonHang/getbyid/${id}`)
     }
-    // capNhatDonHangKhiGiao(obj: any): Observable<any> {
-    //     return this.http.post<any>(_api + '/api/DonHang/capnhat-donhang-khigiao', obj, { headers })
-    // }
 
 }

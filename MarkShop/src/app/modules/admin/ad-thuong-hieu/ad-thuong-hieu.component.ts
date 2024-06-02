@@ -45,7 +45,6 @@ export class AdThuongHieuComponent implements OnInit {
   }
   getAll = () => {
     this.th.getThuongHieuAll().subscribe(res => {
-      console.log(res);
       this.thuonghieu = res;
     })
   }
@@ -92,7 +91,6 @@ export class AdThuongHieuComponent implements OnInit {
     }
   }
   CapNhat = (item: any) => {
-    console.log(item)
     this.btnText = 'Cập nhật';
     this.MaThuongHieu = item.maThuongHieu;
     this.TenThuongHieu = item.tenThuongHieu;

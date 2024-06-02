@@ -54,7 +54,6 @@ export class AdThamSoComponent implements OnInit {
     }
     this.ts.create(formData).subscribe(
       (res) => {
-        console.log(res)
         if (res) {
           this.toastr.success('Thêm thành công', '', {
             progressBar: true,
@@ -101,7 +100,6 @@ export class AdThamSoComponent implements OnInit {
       formData.append('noiDung', this.NoiDung);
       formData.append('file', this.Anh!);
       this.ts.update(formData).subscribe(res => {
-        console.log(res)
         this.toastr.success('cập nhật thành công', '', {
           progressBar: true,
         });

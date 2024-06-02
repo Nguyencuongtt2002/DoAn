@@ -17,7 +17,6 @@ export class ChiTietHoaDonNhapService {
         return this.http.get<any>(_api + '/api/CTHoaDonNhap/get-all', { headers });
     }
     create(obj: any): Observable<any> {
-        console.log(obj)
         return this.http.post(`${_api}/api/CTHoaDonNhap/them`, obj, { headers: headers });
     }
     Delete(id: number): Observable<any> {

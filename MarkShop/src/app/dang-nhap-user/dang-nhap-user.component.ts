@@ -31,7 +31,6 @@ export class DangNhapUserComponent implements OnInit {
     };
 
     this.auSrv.login(obj).subscribe((res) => {
-      console.log(res)
       if (res.status == 404) {
         Swal.fire({
           icon: 'error',

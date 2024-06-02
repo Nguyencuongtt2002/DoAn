@@ -6,20 +6,21 @@ import { NguoidungService } from 'src/app/services/nguoidung.service';
 import Swal from 'sweetalert2';
 import { Lienhe } from 'src/app/models/lienhe';
 import { PaymentInformation } from 'src/app/models/vnpay';
+import { ChiTietDonHang, Donhang } from 'src/app/models/donhang';
 @Component({
   selector: 'app-lich-su-mua-hang',
   templateUrl: './lich-su-mua-hang.component.html',
   styleUrls: ['./lich-su-mua-hang.component.css']
 })
 export class LichSuMuaHangComponent implements OnInit {
-  lichSuMuaHang: any[] = [];
+  lichSuMuaHang: Donhang[] = [];
   loaisp: Array<Loaisanpham> = new Array<Loaisanpham>();
   HoTen: string = "";
   DiaChi: string = "";
   SoDienThoai: string = "";
   Tonghoadon: number = 0;
   MaDonHang: number = 0;
-  chitietdonhang: any[] = [];
+  chitietdonhang: ChiTietDonHang[] = [];
   TinhTrang: number = 0;
   lienhe: Array<Lienhe> = new Array<Lienhe>();
   constructor(private donhangService: DonhangService, private loaisanpham: LoaisanphamService, private nd: NguoidungService) { }
@@ -44,8 +45,6 @@ export class LichSuMuaHangComponent implements OnInit {
       this.donhangService.getLichSuMuaHang(loggedInUser.maNguoiDung).subscribe(data => {
         this.lichSuMuaHang = data.data;
       });
-    } else {
-      console.log('Người dùng chưa đăng nhập');
     }
   }
   huyDon = (item: any) => {
@@ -87,7 +86,7 @@ export class LichSuMuaHangComponent implements OnInit {
     });
 
   }
-  XemChiTiet(donhang: any) {
+  XemChiTiet(donhang: Donhang) {
     this.HoTen = donhang.hoTen;
     this.DiaChi = donhang.diaChi;
     this.SoDienThoai = donhang.soDienThoai
@@ -109,39 +108,35 @@ export class LichSuMuaHangComponent implements OnInit {
         this.Tonghoadon = data.tongTien;
       })
     })
-
-
   }
-  daNhanHang = (MaDonHang: number, MaSanPham: number) => {
+  Xacnhanhoanthanh(MaDonHang: number) {
     const obj = {
       maDonHang: MaDonHang,
-      maSanPham: MaSanPham,
-      tinhTrang: 5,
-      trangThai: 5
+      tinhTrang: 6,
     }
 
-    // Swal.fire({
-    //   title: 'Xác nhận',
-    //   text: `Bạn có chắc chắn muốn nhận  sản phẩm có mã ${MaSanPham} của đơn hàng ${MaDonHang} này?`,
-    //   icon: 'warning',
-    //   showCancelButton: true,
-    //   confirmButtonColor: '#3085d6',
-    //   cancelButtonColor: '#d33',
-    //   confirmButtonText: 'Có',
-    //   cancelButtonText: 'Hủy',
-    // }).then((result) => {
-    //   if (result.isConfirmed) {
-    //     this.donhangService.capNhatDonHangKhiGiao(obj).subscribe(res => {
-    //       Swal.fire({
-    //         title: 'Thông báo',
-    //         text: 'Cảm ơn bạn đã mua hàng tại shop',
-    //         icon: 'success'
-    //       }).then(() => {
-    //         this.lichsumuahang();
-    //       });
-    //     })
-    //   }
-    // })
+    Swal.fire({
+      title: 'Xác nhận',
+      text: `Bạn có chắc chắn muốn nhận đơn hàng này không ?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Có',
+      cancelButtonText: 'Hủy',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.donhangService.capNhatDonHang(obj).subscribe(res => {
+          Swal.fire({
+            title: 'Thông báo',
+            text: 'Cảm ơn bạn đã mua hàng tại shop',
+            icon: 'success'
+          }).then(() => {
+            this.lichsumuahang();
+          });
+        })
+      }
+    })
   }
   //Thanh toán online
   vnPay = (id: number) => {

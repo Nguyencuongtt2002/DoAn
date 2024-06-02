@@ -18,10 +18,12 @@ export class DangKyComponent implements OnInit {
   GioiTinh: string = "Nam";
   VaiTro: string = 'Khách hàng';
   ConfirmationLink: string = "";
+  submitting: boolean = false;
   constructor(private nd: NguoidungService) { }
 
   ngOnInit(): void { }
   Register() {
+
     // Perform validation checks
     if (
       !this.TaiKhoan ||
@@ -49,12 +51,11 @@ export class DangKyComponent implements OnInit {
     formData.append('SoDienThoai', this.SoDienThoai);
     formData.append('vaiTro', this.VaiTro)
     const confirmationLink = `${window.location.origin}/confirm`;
-    console.log(confirmationLink)
     formData.append('confirmationLink', confirmationLink);
 
     this.nd.kiemtra(formData).subscribe(res => {
-      console.log(res)
       if (!res.data || res.length === 0) {
+        this.submitting = true;
         this.nd.createUser(formData).subscribe(res => {
           if (res) {
             // Use Swal for success message

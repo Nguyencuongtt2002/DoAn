@@ -44,18 +44,20 @@
                                     <td>{{donHang.ngayGiao | date: 'dd/MM/yyyy'}}</td>
                                     <td>{{donHang.hoTen}}</td>
                                     <td>
-
                                         <span *ngIf="donHang.tinhTrang === 0" class="badge badge-success">Chờ xử
                                             lý</span>
-                                        <span *ngIf="donHang.tinhTrang === 1 " class="badge badge-warning">Đã
+                                        <span *ngIf="donHang.tinhTrang === 1" class="badge badge-warning">Đã
                                             duyệt</span>
                                         <span *ngIf="donHang.tinhTrang === 2" class="badge badge-info">Đã hủy</span>
-                                        <span *ngIf="donHang.tinhTrang === 3 " class="badge badge-danger">Chờ thanh
+                                        <span *ngIf="donHang.tinhTrang === 3" class="badge badge-danger">Chờ thanh
                                             toán</span>
-                                        <span *ngIf="donHang.tinhTrang === 4 " class="badge badge-primary">Đã thanh
+                                        <span *ngIf="donHang.tinhTrang === 4" class="badge badge-primary">Đã thanh
                                             toán</span>
+                                        <span *ngIf="donHang.tinhTrang === 5" class="badge badge-secondary">Đang giao
+                                            hàng</span>
+                                        <span *ngIf="donHang.tinhTrang === 6" class="badge badge-dark">Đã nhận
+                                            hàng</span>
                                     </td>
-
                                     <td>
                                         <button class="btn btnXemChiTiet btn-primary" data-toggle="modal"
                                             data-target="#exampleModal" (click)="XemChiTiet(donHang)">
@@ -139,11 +141,14 @@
 
             <div class="modal-footer">
                 <ng-container *ngIf="TinhTrang === 3">
-                    <button type="button" class="btn btn-success" data-dismiss="modal" (click)="vnPay(MaDonHang)">Thanh
-                        toán</button>
+                    <button type="button" class="btn btn-success" (click)="vnPay(MaDonHang)">Thanh toán</button>
                 </ng-container>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" *ngIf="TinhTrang === 5 || TinhTrang ===4"
+                    data-dismiss="modal" (click)="Xacnhanhoanthanh(MaDonHang)">Đồng ý
+                    nhận hàng</button>
+                <button type="button" class="btn btn-info" data-dismiss="modal">Đóng</button>
             </div>
+
         </div>
     </div>
 </div>

@@ -30,8 +30,19 @@ export class CartService {
 
             const check = cart.find((item: any) => item.MaSanPham === sanpham.MaSanPham);
 
+            // Thêm điều kiện kiểm tra số lượng sản phẩm
             //Đã tồn tại thì + 1, chưa thì thêm mới
             if (check) {
+
+                if ((check.SoLuong + soluong) > res.soLuong) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Thông báo',
+                        text: 'Bạn không thể mua quá số lượng có sẵn!',
+                        confirmButtonText: 'OK'
+                    });
+                    return;
+                }
                 if ((check.SoLuong + soluong) <= 10) {
                     check.SoLuong += soluong;
                 } else {
@@ -44,7 +55,8 @@ export class CartService {
                     });
                     return; // Dừng việc thêm sản phẩm vào giỏ hàng nếu vượt quá giới hạn
                 }
-            } else {
+            }
+            else {
                 cart.push({ ...sanpham });
             }
 
@@ -75,22 +87,34 @@ export class CartService {
     tangGioHang = (MaSanPham: number) => {
         let cart: any[] = JSON.parse(localStorage.getItem('cart') || '[]');
         const item = cart.find(item => item.MaSanPham === MaSanPham);
-
-        if (item) {
-            if (item.SoLuong >= 10) {
-                Swal.fire({
-                    icon: 'warning',
-                    title: 'Thông báo',
-                    text: 'Số lượng sản phẩm đặt mua không được vượt quá 5 sản phẩm',
-                    confirmButtonColor: 'green',
-                    confirmButtonText: 'OK'
-                });
-                return;
+        this.service.getOne(MaSanPham).subscribe(res => {
+            if (item) {
+                if (item.SoLuong + 1 > res.soLuong) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Thông báo',
+                        text: 'Bạn không thể mua quá số lượng có sẵn!',
+                        confirmButtonText: 'OK'
+                    });
+                    return;
+                }
+                if (item.SoLuong >= 10) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Thông báo',
+                        text: 'Số lượng sản phẩm đặt mua không được vượt quá 5 sản phẩm',
+                        confirmButtonColor: 'green',
+                        confirmButtonText: 'OK'
+                    });
+                    return;
+                }
+                item.SoLuong += 1;
+                localStorage.setItem('cart', JSON.stringify(cart));
+                this.cartUpdated.next();
             }
-            item.SoLuong += 1;
-            localStorage.setItem('cart', JSON.stringify(cart));
-            this.cartUpdated.next();
-        }
+
+        })
+
 
     }
 

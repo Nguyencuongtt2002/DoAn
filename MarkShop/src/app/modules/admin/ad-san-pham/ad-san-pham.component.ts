@@ -52,7 +52,7 @@ export class AdSanPhamComponent implements OnInit {
   TenThuongHieu: string = '';
   MaLoaiSanPham: any = '';
   MaThuongHieu: any = '';
-  AnhDaiDien: any = null
+  AnhDaiDien: any = '';
   donGia: number = 0;
   GiaMoiKhiGiam: number = 0;
   //giá 
@@ -248,7 +248,6 @@ export class AdSanPhamComponent implements OnInit {
     this.AnhDaiDien = this.selectedRow.anhDaiDien;
     this.PhanTram = this.selectedRow.phanTram ?? 0;
     this.TenSize = this.selectedRow.tenSize
-    console.log(this.selectedRow)
 
     this.g.getgiaBySanPham(this.selectedRow.maSanPham).subscribe(res => {
       if (!res.data || res.data.length === 0) {
@@ -333,7 +332,6 @@ export class AdSanPhamComponent implements OnInit {
     })
   }
   deleteThongSoUpdate(thongSo: any): void {
-    console.log(thongSo)
     if (confirm('Bạn có muốn xóa thông số này không')) {
       this.ts.Delete(thongSo.maThongSo).subscribe(res => { this.loadThongSo(); });
     }
@@ -490,7 +488,7 @@ export class AdSanPhamComponent implements OnInit {
   //       if (result.isConfirmed) {
   //         // Nếu người dùng chọn Xóa, thực hiện hành động xóa
   //         this.sp.Delete(this.MaSanPham).subscribe(res => {
-  //           console.log(res)
+  //         
   //           Swal.fire({
   //             icon: 'success',
   //             title: 'Thành công!',

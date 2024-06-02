@@ -3,6 +3,22 @@
   "WorkspaceRootPath": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{CFB2A9B4-D719-4B4E-9631-8F31A475CDD4}|DAL\\DAL.csproj|d:\\\u0111\u1ED3 \u00E1n\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\shopthoitrang\\dal\\donhangdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CFB2A9B4-D719-4B4E-9631-8F31A475CDD4}|DAL\\DAL.csproj|solutionrelative:dal\\donhangdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5FC4DC8C-CD83-4C38-8ED1-596240E0501E}|ShopThoiTrang\\ShopThoiTrang.csproj|d:\\\u0111\u1ED3 \u00E1n\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\shopthoitrang\\shopthoitrang\\controllers\\donhangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5FC4DC8C-CD83-4C38-8ED1-596240E0501E}|ShopThoiTrang\\ShopThoiTrang.csproj|solutionrelative:shopthoitrang\\controllers\\donhangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{54951F11-0D1E-4532-99CC-167AE9814292}|Model\\Model.csproj|d:\\\u0111\u1ED3 \u00E1n\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\shopthoitrang\\model\\donhangmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{54951F11-0D1E-4532-99CC-167AE9814292}|Model\\Model.csproj|solutionrelative:model\\donhangmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5FC4DC8C-CD83-4C38-8ED1-596240E0501E}|ShopThoiTrang\\ShopThoiTrang.csproj|d:\\\u0111\u1ED3 \u00E1n\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\shopthoitrang\\shopthoitrang\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{5FC4DC8C-CD83-4C38-8ED1-596240E0501E}|ShopThoiTrang\\ShopThoiTrang.csproj|solutionrelative:shopthoitrang\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{5FC4DC8C-CD83-4C38-8ED1-596240E0501E}|ShopThoiTrang\\ShopThoiTrang.csproj|d:\\\u0111\u1ED3 \u00E1n\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\shopthoitrang\\shopthoitrang\\controllers\\sanphamcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5FC4DC8C-CD83-4C38-8ED1-596240E0501E}|ShopThoiTrang\\ShopThoiTrang.csproj|solutionrelative:shopthoitrang\\controllers\\sanphamcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -18,10 +34,6 @@
       "RelativeMoniker": "D:0:0:{5FC4DC8C-CD83-4C38-8ED1-596240E0501E}|ShopThoiTrang\\ShopThoiTrang.csproj|solutionrelative:shopthoitrang\\controllers\\vnpaycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5FC4DC8C-CD83-4C38-8ED1-596240E0501E}|ShopThoiTrang\\ShopThoiTrang.csproj|d:\\\u0111\u1ED3 \u00E1n\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\shopthoitrang\\shopthoitrang\\controllers\\donhangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5FC4DC8C-CD83-4C38-8ED1-596240E0501E}|ShopThoiTrang\\ShopThoiTrang.csproj|solutionrelative:shopthoitrang\\controllers\\donhangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{DF5A2FD7-88CF-4D45-B4C0-B3382614E636}|BLL\\BLL.csproj|d:\\\u0111\u1ED3 \u00E1n\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\shopthoitrang\\bll\\donhangbus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DF5A2FD7-88CF-4D45-B4C0-B3382614E636}|BLL\\BLL.csproj|solutionrelative:bll\\donhangbus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -32,14 +44,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{CFB2A9B4-D719-4B4E-9631-8F31A475CDD4}|DAL\\DAL.csproj|d:\\\u0111\u1ED3 \u00E1n\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\shopthoitrang\\dal\\interfaces\\idonhangdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CFB2A9B4-D719-4B4E-9631-8F31A475CDD4}|DAL\\DAL.csproj|solutionrelative:dal\\interfaces\\idonhangdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CFB2A9B4-D719-4B4E-9631-8F31A475CDD4}|DAL\\DAL.csproj|d:\\\u0111\u1ED3 \u00E1n\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\shopthoitrang\\dal\\donhangdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CFB2A9B4-D719-4B4E-9631-8F31A475CDD4}|DAL\\DAL.csproj|solutionrelative:dal\\donhangdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5FC4DC8C-CD83-4C38-8ED1-596240E0501E}|ShopThoiTrang\\ShopThoiTrang.csproj|d:\\\u0111\u1ED3 \u00E1n\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\shopthoitrang\\shopthoitrang\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{5FC4DC8C-CD83-4C38-8ED1-596240E0501E}|ShopThoiTrang\\ShopThoiTrang.csproj|solutionrelative:shopthoitrang\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CFB2A9B4-D719-4B4E-9631-8F31A475CDD4}|DAL\\DAL.csproj|d:\\\u0111\u1ED3 \u00E1n\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\shopthoitrang\\dal\\emaildal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -125,11 +129,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 190,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "SanPhamController.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\ShopThoiTrang\\Controllers\\SanPhamController.cs",
               "RelativeDocumentMoniker": "ShopThoiTrang\\Controllers\\SanPhamController.cs",
@@ -138,12 +142,35 @@
               "ViewState": "AQIAABkBAAAAAAAAAAAmwB4BAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-27T01:44:30.911Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "DonHangController.cs",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\ShopThoiTrang\\Controllers\\DonHangController.cs",
+              "RelativeDocumentMoniker": "ShopThoiTrang\\Controllers\\DonHangController.cs",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\ShopThoiTrang\\Controllers\\DonHangController.cs",
+              "RelativeToolTip": "ShopThoiTrang\\Controllers\\DonHangController.cs",
+              "ViewState": "AQIAAEwAAAAAAAAAAAAkwF8AAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-24T12:38:53.293Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\ShopThoiTrang\\appsettings.json",
+              "RelativeDocumentMoniker": "ShopThoiTrang\\appsettings.json",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\ShopThoiTrang\\appsettings.json",
+              "RelativeToolTip": "ShopThoiTrang\\appsettings.json",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAA8AAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-05-24T12:33:22.645Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "CancellationTokenSource.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\AppData\\Local\\SourceServer\\93795797785c0cd0b888b273b508453261980a2aecfa2efe5c0990202b4dbc1b\\src\\libraries\\System.Private.CoreLib\\src\\System\\Threading\\CancellationTokenSource.cs",
               "ToolTip": "C:\\Users\\Admin\\AppData\\Local\\SourceServer\\93795797785c0cd0b888b273b508453261980a2aecfa2efe5c0990202b4dbc1b\\src\\libraries\\System.Private.CoreLib\\src\\System\\Threading\\CancellationTokenSource.cs [Read Only]",
@@ -154,19 +181,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "IDonHangBus.cs",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\BLL\\Interfaces\\IDonHangBus.cs",
-              "RelativeDocumentMoniker": "BLL\\Interfaces\\IDonHangBus.cs",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\BLL\\Interfaces\\IDonHangBus.cs",
-              "RelativeToolTip": "BLL\\Interfaces\\IDonHangBus.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAwAAAA",
+              "DocumentIndex": 0,
+              "Title": "DonHangDAL.cs",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\DAL\\DonHangDAL.cs",
+              "RelativeDocumentMoniker": "DAL\\DonHangDAL.cs",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\DAL\\DonHangDAL.cs",
+              "RelativeToolTip": "DAL\\DonHangDAL.cs",
+              "ViewState": "AQIAAFAAAAAAAAAAAADwv2UAAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-27T14:52:19.421Z"
+              "WhenOpened": "2024-05-27T14:50:21.757Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "IDonHangDAL.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\DAL\\Interfaces\\IDonHangDAL.cs",
               "RelativeDocumentMoniker": "DAL\\Interfaces\\IDonHangDAL.cs",
@@ -178,19 +206,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DonHangController.cs",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\ShopThoiTrang\\Controllers\\DonHangController.cs",
-              "RelativeDocumentMoniker": "ShopThoiTrang\\Controllers\\DonHangController.cs",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\ShopThoiTrang\\Controllers\\DonHangController.cs",
-              "RelativeToolTip": "ShopThoiTrang\\Controllers\\DonHangController.cs",
-              "ViewState": "AQIAAIgAAAAAAAAAAAAAAF8AAAAJAAAA",
+              "DocumentIndex": 9,
+              "Title": "IDonHangBus.cs",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\BLL\\Interfaces\\IDonHangBus.cs",
+              "RelativeDocumentMoniker": "BLL\\Interfaces\\IDonHangBus.cs",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\BLL\\Interfaces\\IDonHangBus.cs",
+              "RelativeToolTip": "BLL\\Interfaces\\IDonHangBus.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAwAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-24T12:38:53.293Z"
+              "WhenOpened": "2024-05-27T14:52:19.421Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
+              "Title": "DonHangModel.cs",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\Model\\DonHangModel.cs",
+              "RelativeDocumentMoniker": "Model\\DonHangModel.cs",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\Model\\DonHangModel.cs",
+              "RelativeToolTip": "Model\\DonHangModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-01T12:42:54.991Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "VnPayController.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\ShopThoiTrang\\Controllers\\VnPayController.cs",
               "RelativeDocumentMoniker": "ShopThoiTrang\\Controllers\\VnPayController.cs",
@@ -202,7 +242,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "NguoiDungController.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\ShopThoiTrang\\Controllers\\NguoiDungController.cs",
               "RelativeDocumentMoniker": "ShopThoiTrang\\Controllers\\NguoiDungController.cs",
@@ -214,7 +254,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "DonHangBus.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\BLL\\DonHangBus.cs",
               "RelativeDocumentMoniker": "BLL\\DonHangBus.cs",
@@ -226,31 +266,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "DonHangDAL.cs",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\DAL\\DonHangDAL.cs",
-              "RelativeDocumentMoniker": "DAL\\DonHangDAL.cs",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\DAL\\DonHangDAL.cs",
-              "RelativeToolTip": "DAL\\DonHangDAL.cs",
-              "ViewState": "AQIAAJMAAAAAAAAAAAAIwJsAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-27T14:50:21.757Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\ShopThoiTrang\\appsettings.json",
-              "RelativeDocumentMoniker": "ShopThoiTrang\\appsettings.json",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\ShopThoiTrang\\appsettings.json",
-              "RelativeToolTip": "ShopThoiTrang\\appsettings.json",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAABAAAAAeAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-05-24T12:33:22.645Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "EmailDAL.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\DAL\\EmailDAL.cs",
               "RelativeDocumentMoniker": "DAL\\EmailDAL.cs",
@@ -262,7 +278,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "NguoiDungModel.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\Model\\NguoiDungModel.cs",
               "RelativeDocumentMoniker": "Model\\NguoiDungModel.cs",
@@ -274,7 +290,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "HoaDonNhapController.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\ShopThoiTrang\\Controllers\\HoaDonNhapController.cs",
               "RelativeDocumentMoniker": "ShopThoiTrang\\Controllers\\HoaDonNhapController.cs",
@@ -286,7 +302,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "AnhController.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\ShopThoiTrang\\Controllers\\AnhController.cs",
               "RelativeDocumentMoniker": "ShopThoiTrang\\Controllers\\AnhController.cs",
@@ -298,7 +314,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "AnhModel.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\Model\\AnhModel.cs",
               "RelativeDocumentMoniker": "Model\\AnhModel.cs",
@@ -310,7 +326,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "LienHeDAL.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\DAL\\LienHeDAL.cs",
               "RelativeDocumentMoniker": "DAL\\LienHeDAL.cs",
@@ -322,7 +338,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "AnhBus.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\BLL\\AnhBus.cs",
               "RelativeDocumentMoniker": "BLL\\AnhBus.cs",
@@ -334,7 +350,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "IAnhBus.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\BLL\\Interfaces\\IAnhBus.cs",
               "RelativeDocumentMoniker": "BLL\\Interfaces\\IAnhBus.cs",
@@ -346,7 +362,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "AnhDAL.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\DAL\\AnhDAL.cs",
               "RelativeDocumentMoniker": "DAL\\AnhDAL.cs",
@@ -358,7 +374,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "IAnhDAL.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\DAL\\Interfaces\\IAnhDAL.cs",
               "RelativeDocumentMoniker": "DAL\\Interfaces\\IAnhDAL.cs",
@@ -370,7 +386,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "SizeController.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\ShopThoiTrang\\Controllers\\SizeController.cs",
               "RelativeDocumentMoniker": "ShopThoiTrang\\Controllers\\SizeController.cs",
@@ -382,7 +398,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "ThuongHieuController.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\ShopThoiTrang\\Controllers\\ThuongHieuController.cs",
               "RelativeDocumentMoniker": "ShopThoiTrang\\Controllers\\ThuongHieuController.cs",
@@ -394,7 +410,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "ThongSoController.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\ShopThoiTrang\\Controllers\\ThongSoController.cs",
               "RelativeDocumentMoniker": "ShopThoiTrang\\Controllers\\ThongSoController.cs",
@@ -406,7 +422,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "LienHeController.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\ShopThoiTrang\\Controllers\\LienHeController.cs",
               "RelativeDocumentMoniker": "ShopThoiTrang\\Controllers\\LienHeController.cs",
@@ -418,7 +434,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "ThongKeController.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\ShopThoiTrang\\Controllers\\ThongKeController.cs",
               "RelativeDocumentMoniker": "ShopThoiTrang\\Controllers\\ThongKeController.cs",
@@ -430,7 +446,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 28,
               "Title": "SlideController.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\ShopThoiTrang\\Controllers\\SlideController.cs",
               "RelativeDocumentMoniker": "ShopThoiTrang\\Controllers\\SlideController.cs",
@@ -442,7 +458,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 29,
               "Title": "NhaCungCapController.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\ShopThoiTrang\\Controllers\\NhaCungCapController.cs",
               "RelativeDocumentMoniker": "ShopThoiTrang\\Controllers\\NhaCungCapController.cs",
@@ -454,7 +470,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 27,
               "Title": "TinTucController.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\ShopThoiTrang\\Controllers\\TinTucController.cs",
               "RelativeDocumentMoniker": "ShopThoiTrang\\Controllers\\TinTucController.cs",
@@ -466,7 +482,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 26,
               "Title": "ThamSoController.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00C1n\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p\\ShopThoiTrang\\ShopThoiTrang\\Controllers\\ThamSoController.cs",
               "RelativeDocumentMoniker": "ShopThoiTrang\\Controllers\\ThamSoController.cs",

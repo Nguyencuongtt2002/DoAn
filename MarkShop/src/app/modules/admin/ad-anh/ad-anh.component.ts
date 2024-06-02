@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 export class AdAnhComponent implements OnInit {
   ListAnh: Array<Anh> = new Array<Anh>();
   MaAnh: any;
-  HinhAnh: any = null;
+  HinhAnh: any = "";
   TenHinhAnh: string = "";
   btnText: string = "Thêm";
   p: number = 1
@@ -44,7 +44,6 @@ export class AdAnhComponent implements OnInit {
       formData.append('file', this.HinhAnh!);
       formData.append("tenHinhAnh", this.TenHinhAnh)
       this.anhSrv.create(formData).subscribe(res => {
-        console.log(res)
         if (res) {
           this.toastr.success('Thêm thành công', '', {
             progressBar: true,

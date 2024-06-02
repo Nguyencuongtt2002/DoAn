@@ -7,7 +7,6 @@ export interface Donhang {
     soDienThoai: string;
     hoTen: string;
     diaChi: string;
-    trangThai: number;
     soLuong: number;
     giaTien: number;
     tenSP: string;
@@ -21,5 +20,6 @@ export interface ChiTietDonHang {
     soLuong: number;
     giaTien: number;
     tenSP: string;
+    tinhTrang: number;
 }
 

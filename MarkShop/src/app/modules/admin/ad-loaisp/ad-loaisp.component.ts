@@ -59,7 +59,6 @@ export class AdLoaispComponent implements OnInit {
       this.loaisp = res.data;
       this.totalItems = res.totalItems;
       this.p = p
-      // console.log(this.p)
     })
   }
   CreateUpdate = () => {
@@ -105,7 +104,6 @@ export class AdLoaispComponent implements OnInit {
     }
   }
   CapNhat = (item: any) => {
-    console.log(item.gioiThieu)
     this.btnText = 'Cập nhật';
     this.MaLoaiSanPham = item.maLoaiSanPham;
     this.TenLoaiSanPham = item.tenLoaiSanPham;

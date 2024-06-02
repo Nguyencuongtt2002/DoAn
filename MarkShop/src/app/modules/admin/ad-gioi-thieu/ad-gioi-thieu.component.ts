@@ -13,7 +13,7 @@ export class AdGioiThieuComponent implements OnInit {
   MaGioiThieu: number = 0
   TieuDe: string = '';
   NoiDung: string = '';
-  HinhAnh: any = null;
+  HinhAnh: any = "";
   searchTerm: string = '';
 
   editorConfig: AngularEditorConfig = {
@@ -45,7 +45,6 @@ export class AdGioiThieuComponent implements OnInit {
   }
   getall = () => {
     this.gt.getGioiThieuAll().subscribe(res => {
-      console.log(res);
       this.gioithieu = res;
     })
   }

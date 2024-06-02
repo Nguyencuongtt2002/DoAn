@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 export class AdSlideComponent implements OnInit {
   slide: Array<Slide> = new Array<Slide>();
   MaSlide: any;
-  Anh: any = null;
+  Anh: any = "";
   btnText: string = "Thêm";
   p: number = 1
   @ViewChild('CreateUpdateModal') CreateUpdateModal!: ElementRef;
@@ -41,7 +41,6 @@ export class AdSlideComponent implements OnInit {
       const formData = new FormData();
       formData.append('file', this.Anh!);
       this.sl.create(formData).subscribe(res => {
-        console.log(res)
         if (res) {
           this.toastr.success('Thêm thành công', '', {
             progressBar: true,

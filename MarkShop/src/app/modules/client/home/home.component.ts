@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
     nav: true,
     autoplay: true,
     autoplayHoverPause: true,
-    autoplayTimeout: 3000,
+    autoplayTimeout: 5000,
     smartSpeed: 1000,
     dots: false,
     navText: ['<span><i class="fas fa-chevron-left"></i></span>', '<span><i class="fas fa-chevron-right"></i></span>'],

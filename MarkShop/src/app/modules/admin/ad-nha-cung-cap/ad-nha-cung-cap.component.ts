@@ -36,7 +36,6 @@ export class AdNhaCungCapComponent implements OnInit {
   }
   getall = () => {
     this.ncc.getAll().subscribe(res => {
-      console.log(res)
       this.nhacungcap = res;
     })
   }
@@ -94,7 +93,6 @@ export class AdNhaCungCapComponent implements OnInit {
         soDienThoai: this.SoDienThoai,
         email: this.Email,
       };
-      console.log(lienhe)
       // Sử dụng Swal cho thông báo thành công
       this.ncc.update(lienhe).subscribe(res => {
         this.toastr.success('cập nhật thành công', '', {

@@ -67,7 +67,6 @@ export class TaiKhoanComponent implements OnInit {
             if (this.MatKhauMoi === this.NhapLaiMatKhauMoi) {
               ////Đổi mật khẩu
               formData.append('matKhau', this.MatKhauMoi);
-              console.log()
               this.nd.update(formData).subscribe(res => { });
               this.out();
             } else {

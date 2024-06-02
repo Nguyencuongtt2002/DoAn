@@ -75,14 +75,40 @@ export class AdDonHangComponent implements OnInit {
             title: 'Thông báo',
             text: 'Đơn hàng đã được duyệt',
             icon: 'success'
-          }).then(() => {
-            location.reload();
           });
+          // Reload all orders
+          this.getDonHangAll();
         });
       }
     });
   }
-
+  xacnhangiaohang(item: Donhang) {
+    const obj = {
+      maDonHang: item.maDonHang,
+      tinhTrang: 5
+    }
+    Swal.fire({
+      title: 'Thông báo',
+      text: 'Bạn có chắc chắn muốn giao đơn hàng này không?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Đồng ý'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.donhangSrv.capNhatDonHang(obj).subscribe(res => {
+          Swal.fire({
+            title: 'Thông báo',
+            text: 'Xác nhận đang giao hàng thành công !',
+            icon: 'success'
+          })
+          // Reload all orders
+          this.getDonHangAll();
+        });
+      }
+    });
+  }
   selectedRow: Donhang | null = null;
 
   onRowClick(donhang: Donhang) {

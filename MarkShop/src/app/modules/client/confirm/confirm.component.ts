@@ -36,7 +36,6 @@ export class ConfirmComponent {
 
   confirmEmail(token: string) {
     this.nguoiDungService.confirmemail({ token }).subscribe(res => {
-      console.log(res)
       if (res.success) {
         this.success = "Xác nhận email thành công";
         this.text = "Cảm ơn bạn đã xác nhận email thành công.";

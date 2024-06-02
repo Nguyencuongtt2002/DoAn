@@ -51,8 +51,6 @@ export class DanhMucComponent implements OnInit {
       tenLoaiSanPham: ""
     }
     this.loaisanphamService.getLoaiSanPhamAll(obj).subscribe(res => {
-
-      console.log(res)
       this.loaisp = res.data;
     })
   }

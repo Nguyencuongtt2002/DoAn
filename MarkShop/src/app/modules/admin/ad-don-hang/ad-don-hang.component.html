@@ -37,34 +37,37 @@
 
                     <!-- Use Bootstrap styling for "Chưa thanh toán" -->
                     <ng-container *ngIf="dh.tinhTrang === 0">
-                        <td class="badge badge-danger">Chờ duyệt</td>
+                        <td class="badge badge-warning">Chờ duyệt</td>
                         <td style="width: 70px">
-                            <button class="btn btn-warning btnDuyetDH" (click)="DuyetDon(dh)">Duyệt</button>
+                            <button class="btn btn-primary btn-sm" (click)="DuyetDon(dh)">Duyệt</button>
                         </td>
                     </ng-container>
 
-                    <ng-container *ngIf="dh.tinhTrang === 1 ">
+                    <ng-container *ngIf="dh.tinhTrang === 1">
                         <td class="badge badge-success">Đã duyệt</td>
-                        <td></td>
+                        <td style="width: 70px">
+                            <button class="btn btn-info btn-sm" (click)="xacnhangiaohang(dh)">Xác nhận giao
+                                hàng</button>
+                        </td>
                     </ng-container>
-
-                    <ng-container *ngIf="dh.tinhTrang === 2">
-                        <td class="badge badge-secondary">Đã hủy</td>
-                    </ng-container>
-
                     <ng-container *ngIf="dh.tinhTrang === 3">
-                        <td class="badge badge-primary">Chờ thanh toán</td>
+                        <td class="badge badge-warning">Chờ thanh toán</td>
                         <td></td>
                     </ng-container>
 
                     <ng-container *ngIf="dh.tinhTrang === 4">
-                        <td class="badge badge-info">Đã thanh toán</td>
+                        <td class="badge badge-primary">Đã thanh toán</td>
                         <td></td>
                     </ng-container>
 
-                    <ng-container *ngIf="dh.tinhTrang === 5 ">
-                        <td class="badge badge-warning">Đã hoàn thành</td>
+                    <ng-container *ngIf="dh.tinhTrang === 5">
+                        <td class="badge badge-secondary">Đang giao hàng</td>
                         <td></td>
+                    </ng-container>
+                    <ng-container *ngIf="dh.tinhTrang === 6">
+                        <td class="badge badge-info">Đã nhận hàng</td>
+                        <td>
+                        </td>
                     </ng-container>
 
                 </tr>

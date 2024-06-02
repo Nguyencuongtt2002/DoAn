@@ -17,11 +17,11 @@
         </div>
         <div class="col-lg-6 order-lg-2">
             <div class="main-content ">
-                <h3 class="font-weight-bold text-center">{{tintuc.tieuDe}}</h3>
-                <p>{{tintuc.noiDung}}</p>
-                <img [src]="'data:image/jpg;base64,' + tintuc.anhTinTuc" class="img-fluid mb-3 mt-3"
+                <h3 class="font-weight-bold text-center">{{tintuc?.tieuDe}}</h3>
+                <p>{{tintuc?.noiDung}}</p>
+                <img [src]="'data:image/jpg;base64,' + tintuc?.anhTinTuc" class="img-fluid mb-3 mt-3"
                     style="width:100%;;height: 450px;" alt="Ảnh tin tức">
-                <p *ngFor="let tt of tintuc.listjson_NoiDungCT">{{tt.noiDungChiTiet}}</p>
+                <p *ngFor="let tt of tintuc?.listjson_NoiDungCT">{{tt?.noiDungChiTiet}}</p>
             </div>
         </div>
         <div class="col-lg-3 order-lg-3">
@@ -31,7 +31,7 @@
                     <div class="news-item">
                         <div class="row mb-3" *ngFor="let tt of tintuckhac">
                             <div class="col-12 col-md-6">
-                                <img [src]="'data:image/jpg;base64,' + tt.anhTinTuc" class="img-fluid"
+                                <img [src]="'data:image/jpg;base64,' + tt?.anhTinTuc" class="img-fluid"
                                     alt="Ảnh tin tức khác" />
                             </div>
                             <div class="col-12 col-md-6">

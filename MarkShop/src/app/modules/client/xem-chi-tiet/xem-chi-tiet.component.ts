@@ -61,7 +61,6 @@ export class XemChiTietComponent implements OnInit {
       const ma = +params['id'];
       this.sp.getOne(ma).subscribe(res => {
         this.product = res
-        console.log(this.product)
         this.loadSanPhamCungLoai();
       });
     });
@@ -85,15 +84,24 @@ export class XemChiTietComponent implements OnInit {
       this.sanphamcungloai = res.data
     });
   }
-  Themvaogio = (res: any, soluong: number) => {
+  Themvaogio = (res: Sanpham, soluong: number) => {
     if (soluong <= 10) {
       this.cartSrv.Themvaogio(res.maSanPham, soluong);
+    }
+    else if (soluong > res.soLuong) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Thông báo',
+        text: 'Sản phẩm không đủ số lượng ',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'OK'
+      });
     }
     else {
       Swal.fire({
         icon: 'warning',
         title: 'Thông báo',
-        text: 'Số lượng sản phẩm đặt mua không được vượt quá 5 sản phẩm',
+        text: 'Số lượng sản phẩm đặt mua không được vượt quá 10 sản phẩm',
         confirmButtonColor: '#3085d6',
         confirmButtonText: 'OK'
       });

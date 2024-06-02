@@ -109,7 +109,6 @@ export class AdHoaDonNhapComponent implements OnInit {
               giaTien: this.chitiethoadonnhap[i].giaTien,
             }
             this.ct.create(obj).subscribe(res => { this.getallhdn(); });
-            console.log((this.chitiethoadonnhap[i].maSanPham))
             this.tangSoLuong(this.chitiethoadonnhap[i].maSanPham, this.chitiethoadonnhap[i].soLuong)
           }
         })
@@ -155,7 +154,6 @@ export class AdHoaDonNhapComponent implements OnInit {
   addCT() {
     if (this.newcthoadonnhap.maSanPham && this.newcthoadonnhap.soLuong && this.newcthoadonnhap.giaTien) {
       const selectedProduct = this.listsanpham.find(product => product.maSanPham === parseInt(this.newcthoadonnhap.maSanPham, 10));
-      console.log(parseInt(this.newcthoadonnhap.maSanPham, 10), this.newcthoadonnhap.maSanPham)
       if (selectedProduct) {
         this.chitiethoadonnhap.push({
           maSanPham: selectedProduct.maSanPham,
@@ -214,7 +212,6 @@ export class AdHoaDonNhapComponent implements OnInit {
   }
   loadCTHoaDonNhap() {
     this.ct.getcthoadonnhapByhoadonnhap(this.MaHDN).subscribe(res => {
-      console.log(res.data)
       this.chitiethoadonnhap = res.data;
     })
   }

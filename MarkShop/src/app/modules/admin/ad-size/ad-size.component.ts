@@ -46,7 +46,6 @@ export class AdSizeComponent implements OnInit {
   }
   getAll = () => {
     this.sz.getAll().subscribe(res => {
-      console.log(res)
       this.listsize = res;
     })
   }
@@ -93,7 +92,6 @@ export class AdSizeComponent implements OnInit {
     }
   }
   CapNhat = (item: any) => {
-    console.log(item.gioiThieu)
     this.btnText = 'Cập nhật';
     this.MaSize = item.maSize;
     this.TenSize = item.tenSize;

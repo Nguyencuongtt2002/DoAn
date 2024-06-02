@@ -45,14 +45,11 @@ export class ThuongHieuComponent implements OnInit {
       };
       this.thuonghieuService.getSanPhamTheoTH(obj).subscribe(res => {
         this.listSPtheoTH = res.data;
-        console.log(this.listSPtheoTH)
         this.p = page;
         this.totalItems = res.totalItems;
-        console.log(this.totalItems);
       });
     });
     this.thuonghieuService.getThuongHieuAll().subscribe(res => {
-      //console.log(res);
       this.thuonghieu = res;
     })
   }

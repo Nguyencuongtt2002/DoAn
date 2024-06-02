@@ -22,13 +22,13 @@ export class AdNguoiDungComponent implements OnInit {
   GioiTinh: string = '';
   DiaChi: string = '';
   SoDienThoai: string = '';
-  AnhDaiDien: any = null;
+  AnhDaiDien: any = '';
   VaiTro: string = '';
   MatKhauMoi: string = '';
 
 
   p: number = 1;
-  pageSize: number = 10;
+  pageSize: number = 2;
   totalItems: number = 0;
   searchTerm: string = '';
 

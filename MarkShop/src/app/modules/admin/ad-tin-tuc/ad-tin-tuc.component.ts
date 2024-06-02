@@ -15,7 +15,7 @@ export class AdTinTucComponent implements OnInit {
   MaTinTuc: number = 0
   TieuDe: string = '';
   NoiDung: string = '';
-  AnhTinTuc: any = null;
+  AnhTinTuc: any = '';
   NgayDang: string = '';
   user: any
 
@@ -105,7 +105,6 @@ export class AdTinTucComponent implements OnInit {
       formData.append('noiDung', this.NoiDung);
       formData.append('file', this.AnhTinTuc!);
       formData.append('maNguoiDung', this.user.maNguoiDung)
-      console.log(formData)
       // Sử dụng Swal cho thông báo thành công
       this.tt.update(formData).subscribe(res => {
         this.toastr.success('cập nhật thành công', '', {

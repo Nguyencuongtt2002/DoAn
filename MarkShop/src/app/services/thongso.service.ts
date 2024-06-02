@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { API_BASE_URL } from './api';
 const _api = API_BASE_URL;
-console.log(_api)
 const _user = JSON.parse(localStorage.getItem('user') || '{}');
 const headers = new HttpHeaders({
     'Authorization': 'Bearer ' + _user.token
