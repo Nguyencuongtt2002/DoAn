@@ -16,9 +16,9 @@
     box-shadow: 0 0 10px cyan;
 }
 
-    .myForm h3 {
-        color: cyan;
-    }
+.myForm h3 {
+    color: cyan;
+}
 
 .btnSubmit button {
     background: none;
@@ -33,58 +33,59 @@
     font-size: 18px;
 }
 
-    .btnSubmit button:hover {
-        background-color: cyan;
-        color: black;
-        box-shadow: 0 0 10px cyan, 0 0 20px cyan, 0 0 30px cyan;
-    }
+.btnSubmit button:hover {
+    background-color: cyan;
+    color: black;
+    box-shadow: 0 0 10px cyan, 0 0 20px cyan, 0 0 30px cyan;
+}
 
-    .btnSubmit button span:nth-child(1) {
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 3px;
-        background: linear-gradient(to right, transparent, cyan);
-        animation: animate1 linear 1s infinite;
-    }
+.btnSubmit button span:nth-child(1) {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, transparent, cyan);
+    animation: animate1 linear 1s infinite;
+}
 
-    .btnSubmit button span:nth-child(2) {
-        position: absolute;
-        top: -100%;
-        right: 0;
-        height: 100%;
-        width: 3px;
-        background: linear-gradient(to bottom, transparent, cyan);
-        animation: animate2 linear 1s .25s infinite;
-    }
+.btnSubmit button span:nth-child(2) {
+    position: absolute;
+    top: -100%;
+    right: 0;
+    height: 100%;
+    width: 3px;
+    background: linear-gradient(to bottom, transparent, cyan);
+    animation: animate2 linear 1s .25s infinite;
+}
 
-    .btnSubmit button span:nth-child(3) {
-        position: absolute;
-        bottom: 0;
-        right: 100%;
-        width: 100%;
-        height: 3px;
-        background: linear-gradient(to left, transparent, cyan);
-        animation: animate3 linear 1s .5s infinite;
-    }
+.btnSubmit button span:nth-child(3) {
+    position: absolute;
+    bottom: 0;
+    right: 100%;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to left, transparent, cyan);
+    animation: animate3 linear 1s .5s infinite;
+}
 
-    .btnSubmit button span:nth-child(4) {
-        position: absolute;
-        bottom: -100%;
-        left: 0;
-        height: 100%;
-        width: 3px;
-        background: linear-gradient(to top, transparent, cyan);
-        animation: animate4 linear 1s .75s infinite;
-    }
+.btnSubmit button span:nth-child(4) {
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    height: 100%;
+    width: 3px;
+    background: linear-gradient(to top, transparent, cyan);
+    animation: animate4 linear 1s .75s infinite;
+}
 
 @keyframes animate1 {
     0% {
         left: -100%;
     }
 
-    50%,100% {
+    50%,
+    100% {
         left: 100%;
     }
 }
@@ -94,7 +95,8 @@
         top: -100%;
     }
 
-    50%,100% {
+    50%,
+    100% {
         top: 100%;
     }
 }
@@ -104,7 +106,8 @@
         right: -100%;
     }
 
-    50%,100% {
+    50%,
+    100% {
         right: 100%;
     }
 }
@@ -114,7 +117,8 @@
         bottom: -100%;
     }
 
-    50%,100% {
+    50%,
+    100% {
         bottom: 100%;
     }
 }
@@ -132,13 +136,13 @@ input {
     border: none;
     border-bottom: 1px solid cyan;
     background-color: transparent;
-    color: #ffffff;
+    color: black;
 }
 
 
-    input:focus {
-        outline: none;
-    }
+input:focus {
+    outline: none;
+}
 
 /* LABEL ======================================= */
 label {
@@ -155,7 +159,8 @@ label {
 }
 
 /* active state */
-input:focus ~ label, input:valid ~ label {
+input:focus~label,
+input:valid~label {
     top: -20px;
     font-size: 14px;
     color: cyan;
@@ -168,28 +173,30 @@ input:focus ~ label, input:valid ~ label {
     width: 100%;
 }
 
-    .bar:before, .bar:after {
-        content: '';
-        height: 2px;
-        width: 0;
-        bottom: 1px;
-        position: absolute;
-        background: cyan;
-        transition: 0.2s ease all;
-        -moz-transition: 0.2s ease all;
-        -webkit-transition: 0.2s ease all;
-    }
+.bar:before,
+.bar:after {
+    content: '';
+    height: 2px;
+    width: 0;
+    bottom: 1px;
+    position: absolute;
+    background: cyan;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+}
 
-    .bar:before {
-        left: 50%;
-    }
+.bar:before {
+    left: 50%;
+}
 
-    .bar:after {
-        right: 50%;
-    }
+.bar:after {
+    right: 50%;
+}
 
 /* active state */
-input:focus ~ .bar:before, input:focus ~ .bar:after {
+input:focus~.bar:before,
+input:focus~.bar:after {
     width: 50%;
 }
 
@@ -205,7 +212,7 @@ input:focus ~ .bar:before, input:focus ~ .bar:after {
 }
 
 /* active state */
-input:focus ~ .highlight {
+input:focus~.highlight {
     -webkit-animation: inputHighlighter 0.3s ease;
     -moz-animation: inputHighlighter 0.3s ease;
     animation: inputHighlighter 0.3s ease;
@@ -244,6 +251,7 @@ input:focus ~ .highlight {
         background: transparent;
     }
 }
+
 .sidebar {
     position: fixed;
     width: 250px;
@@ -267,22 +275,22 @@ input:focus ~ .highlight {
     transition: all .5s;
 }
 
-    .menuIcon span {
-        font-size: 24px;
-        line-height: 50px;
-        color: #ffffff;
-    }
+.menuIcon span {
+    font-size: 24px;
+    line-height: 50px;
+    color: #ffffff;
+}
 
 .sidebar .text {
     text-align: center;
     background-color: #00152a;
 }
 
-    .sidebar .text h3 {
-        color: yellow;
-        font-size: 25px;
-        letter-spacing: 1px;
-    }
+.sidebar .text h3 {
+    color: yellow;
+    font-size: 25px;
+    letter-spacing: 1px;
+}
 
 #sidebar-nav ul {
     list-style: none;
@@ -290,88 +298,98 @@ input:focus ~ .highlight {
     width: 100%;
 }
 
-    #sidebar-nav ul li {
-        line-height: 60px;
-        border-bottom: 1px solid rgba(255,255,255,0.2);
-    }
+#sidebar-nav ul li {
+    line-height: 60px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
 
-        #sidebar-nav ul li a, #sidebar-nav ul li p {
-            position: relative;
-            text-decoration: none !important;
-            color: white;
-            font-size: 18px;
-            padding-left: 20px;
-            font-weight: 400;
-            display: block;
-            width: 100%;
-            cursor: pointer;
-        }
+#sidebar-nav ul li a,
+#sidebar-nav ul li p {
+    position: relative;
+    text-decoration: none !important;
+    color: white;
+    font-size: 18px;
+    padding-left: 20px;
+    font-weight: 400;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+}
 
-            #sidebar-nav ul li a:hover, #sidebar-nav ul li p:hover {
-                color: cyan;
-            }
+#sidebar-nav ul li a:hover,
+#sidebar-nav ul li p:hover {
+    color: cyan;
+}
 
-    #sidebar-nav ul ul li {
-        line-height: 42px;
-        border-bottom: none;
-    }
+#sidebar-nav ul ul li {
+    line-height: 42px;
+    border-bottom: none;
+}
 
-    #sidebar-nav ul ul {
-        display: none;
-    }
-    #sidebar-nav ul li a.donvi-btn.active {
-        color: cyan;
-        background-color: #00152a;
-        border-left: 3px solid cyan;
-    }
-    #sidebar-nav ul li a.sanpham-btn.active {
-        color: cyan;
-        background-color: #00152a;
-        border-left: 3px solid cyan;
-    }
-    #sidebar-nav ul li a.feat-btn.active {
-        color: cyan;
-        background-color: #00152a;
-        border-left: 3px solid cyan;
-    }
+#sidebar-nav ul ul {
+    display: none;
+}
 
-    #sidebar-nav ul li a.serv-btn.active {
-        color: cyan;
-        background-color: #00152a;
-        border-left: 3px solid cyan;
-    }
-    #sidebar-nav ul ul.feat-show.show {
-        display: block;
-    }
+#sidebar-nav ul li a.donvi-btn.active {
+    color: cyan;
+    background-color: #00152a;
+    border-left: 3px solid cyan;
+}
 
-    #sidebar-nav ul ul.serv-show.show1 {
-        display: block;
-    }
-    #sidebar-nav ul ul.sanpham-show.show2{
-        display: block;
-    }
-    #sidebar-nav ul ul.donvi-show.show3{
-        display: block;
-    }
+#sidebar-nav ul li a.sanpham-btn.active {
+    color: cyan;
+    background-color: #00152a;
+    border-left: 3px solid cyan;
+}
 
-    #sidebar-nav ul ul li a {
-        font-size: 16px;
-        padding-left: 55px;
-        background-color: #000c18;
-    }
+#sidebar-nav ul li a.feat-btn.active {
+    color: cyan;
+    background-color: #00152a;
+    border-left: 3px solid cyan;
+}
 
-    #sidebar-nav ul li a span, #sidebar-nav ul li p span {
-        font-size: 22px;
-        position: absolute;
-        top: 50%;
-        right: 20px;
-        transform: translateY(-50%);
-        transition: all .5s;
-    }
+#sidebar-nav ul li a.serv-btn.active {
+    color: cyan;
+    background-color: #00152a;
+    border-left: 3px solid cyan;
+}
 
-        #sidebar-nav ul li a span.rolate, #sidebar-nav ul li p span.rolate {
-            transform: translateY(-50%) rotate(-180deg);
-        }
+#sidebar-nav ul ul.feat-show.show {
+    display: block;
+}
+
+#sidebar-nav ul ul.serv-show.show1 {
+    display: block;
+}
+
+#sidebar-nav ul ul.sanpham-show.show2 {
+    display: block;
+}
+
+#sidebar-nav ul ul.donvi-show.show3 {
+    display: block;
+}
+
+#sidebar-nav ul ul li a {
+    font-size: 16px;
+    padding-left: 55px;
+    background-color: #000c18;
+}
+
+#sidebar-nav ul li a span,
+#sidebar-nav ul li p span {
+    font-size: 22px;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    transition: all .5s;
+}
+
+#sidebar-nav ul li a span.rolate,
+#sidebar-nav ul li p span.rolate {
+    transform: translateY(-50%) rotate(-180deg);
+}
 
 .collapseBtn {
     position: absolute;
@@ -396,6 +414,7 @@ input:focus ~ .highlight {
     position: relative;
     margin-bottom: 45px;
 }
+
 input.txtTimKiem {
     font-size: 18px;
     padding: 10px 10px 10px 5px;
@@ -408,9 +427,9 @@ input.txtTimKiem {
 }
 
 
-    input:focus {
-        outline: none;
-    }
+input:focus {
+    outline: none;
+}
 
 /* LABEL ======================================= */
 label.timKiem {
@@ -427,7 +446,8 @@ label.timKiem {
 }
 
 /* active state */
-input.txtTimKiem:focus ~ label.timKiem,  input.txtTimKiem:valid ~ label.timKiem {
+input.txtTimKiem:focus~label.timKiem,
+input.txtTimKiem:valid~label.timKiem {
     top: -20px;
     font-size: 14px;
     color: #000 !important;
@@ -435,43 +455,43 @@ input.txtTimKiem:focus ~ label.timKiem,  input.txtTimKiem:valid ~ label.timKiem 
 
 
 .btnStyle {
-        border-radius: 6px;
-        cursor: pointer;
-        color: #ffffff;
-        background-size: 200%;
-        padding: 13px;
-        width: 200px;
-        transition: all .5s;
-        outline: none;
-        border: none;
-    }
+    border-radius: 6px;
+    cursor: pointer;
+    color: #ffffff;
+    background-size: 200%;
+    padding: 13px;
+    width: 200px;
+    transition: all .5s;
+    outline: none;
+    border: none;
+}
 
-        .btnStyle:focus {
-            outline: none;
-        }
+.btnStyle:focus {
+    outline: none;
+}
 
-    .btn1 {
-        background-image: linear-gradient(to left,#33d9b2,#218c74,#33d9b2);
-    }
+.btn1 {
+    background-image: linear-gradient(to left, #33d9b2, #218c74, #33d9b2);
+}
 
-    .btnStyle:hover {
-        background-position: right;
-    }
+.btnStyle:hover {
+    background-position: right;
+}
 
-    body {
-        font-family: 'Roboto', sans-serif;
-        /* Additional CSS styles */
-    }
+body {
+    font-family: 'Roboto', sans-serif;
+    /* Additional CSS styles */
+}
 
-    /* Style for the form */
-    .myForm {
-        /* Additional styles */
-    }
+/* Style for the form */
+.myForm {
+    /* Additional styles */
+}
 
-    .group {
-        /* Additional styles */
-    }
+.group {
+    /* Additional styles */
+}
 
-    .btnSubmit {
-        /* Additional styles */
-    }
+.btnSubmit {
+    /* Additional styles */
+}

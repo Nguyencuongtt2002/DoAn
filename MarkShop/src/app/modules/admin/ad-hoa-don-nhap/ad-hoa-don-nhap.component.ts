@@ -34,7 +34,7 @@ export class AdHoaDonNhapComponent implements OnInit {
   chitiethoadonnhap: { maSanPham: any, soLuong: number, giaTien: number, tenSP?: string }[] = [];
 
   MaHDN: any;
-
+  search2: string = '';
 
   TenSP: string = '';
   TenNguoiNhap: string = '';
@@ -175,8 +175,8 @@ export class AdHoaDonNhapComponent implements OnInit {
   getSPALL() {
     const obj = {
       page: 1,
-      pageSize: 100,
-      tenSP: ''
+      pageSize: 20,
+      tenSP: this.search2
     }
     this.sp.getSPAll(obj).subscribe(res => {
       this.listsanpham = res.data;
@@ -303,5 +303,11 @@ export class AdHoaDonNhapComponent implements OnInit {
       console.error('Đã xảy ra lỗi khi xuất Excel:', error);
       // Xử lý lỗi
     });
+  }
+
+  // Hàm được gọi khi có sự thay đổi trong trường tìm kiếm
+  onSearchChange(event: any) {
+    this.search2 = event.target.value;
+    this.getSPALL();
   }
 }

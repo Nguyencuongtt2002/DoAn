@@ -33,7 +33,7 @@
             <tbody *ngFor="let hdn of listhoadonnhap ;let i = index">
                 <tr class="text-center" (click)="onRowClick(hdn)" [class.selected]="selectedRow === hdn">
                     <td>{{i+1}}</td>
-                    <td>{{hdn.ngayNhap| date:"dd/MM/yyyy"}}</td>
+                    <td>{{hdn.ngayNhap| date: "HH:mm:ss dd/MM/yyyy"}}</td>
                     <td>{{hdn.tenNhaCungCap}}</td>
                     <td>{{hdn.hoTen}}</td>
                 </tr>
@@ -81,41 +81,41 @@
                     </div>
                     <!-- Second Column - Chi tiết hóa đơn -->
                     <div class="col-md-6">
-                        <form novalidate name="frmLoaiSP" id="frmLoaiSP" class="form-horizontal row-border">
-                            <h3 class="text-center mb-3 font-weight-bold">Chi tiết hóa đơn</h3>
-                            <div class="form-group row">
-                                <label class="col-md-4 control-label" for="idTenLoaiSanPham1">Tên Sản phẩm:</label>
-                                <div class="col-md-8">
-                                    <select class="form-control" id="TenSanPham" name="newcthoadonnhap.maSanPham"
-                                        [(ngModel)]="newcthoadonnhap.maSanPham">
-                                        <option value="" disabled selected>Chọn sản phẩm</option>
-                                        <option *ngFor="let sp of listsanpham" [value]="sp.maSanPham">
-                                            {{ sp.tenSP }}
-                                        </option>
-                                    </select>
-                                </div>
+                        <h3 class="text-center mb-3 font-weight-bold">Chi tiết hóa đơn</h3>
+                        <div class="form-group row">
+                            <label class="col-md-4 control-label" for="idTenSanPham1">Tên Sản phẩm:</label>
+                            <div class="col-md-8">
+                                <ng-select [items]="listsanpham" bindLabel="tenSP" bindValue="maSanPham"
+                                    placeholder="Chọn sản phẩm" name="newcthoadonnhap.maSanPham"
+                                    [(ngModel)]="newcthoadonnhap.maSanPham" (input)="onSearchChange($event)">
+                                    <ng-template ng-option-tmp let-item="item" let-search="search2">
+                                        <div class="custom-option">
+                                            {{ item.tenSP }}
+                                        </div>
+                                    </ng-template>
+                                </ng-select>
                             </div>
-                            <div class="form-group row">
-                                <label class="col-md-4 control-label" for="idTenLoaiSanPham">Số lượng:</label>
-                                <div class="col-md-8">
-                                    <input type="text" id="idTenLoaiSanPham" class="form-control"
-                                        name="newcthoadonnhap.soLuong" [(ngModel)]="newcthoadonnhap.soLuong" />
-                                </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 control-label" for="idTenLoaiSanPham">Số lượng:</label>
+                            <div class="col-md-8">
+                                <input type="text" id="idTenLoaiSanPham" class="form-control"
+                                    name="newcthoadonnhap.soLuong" [(ngModel)]="newcthoadonnhap.soLuong" />
                             </div>
-                            <div class="form-group row">
-                                <label class="col-md-4 control-label" for="idTenLoaiSanPham">Giá tiền:</label>
-                                <div class="col-md-8">
-                                    <input type="text" id="idTenLoaiSanPham" class="form-control"
-                                        name="newcthoadonnhap.giaTien" [(ngModel)]="newcthoadonnhap.giaTien" />
-                                </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 control-label" for="idTenLoaiSanPham">Giá tiền:</label>
+                            <div class="col-md-8">
+                                <input type="text" id="idTenLoaiSanPham" class="form-control"
+                                    name="newcthoadonnhap.giaTien" [(ngModel)]="newcthoadonnhap.giaTien" />
                             </div>
-                            <div class="form-group row">
-                                <div class="col-md-12 text-center">
-                                    <button type="button" class="btn btn-primary" (click)="addCT()">Thêm chi
-                                        tiết</button>
-                                </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-12 text-center">
+                                <button type="button" class="btn btn-primary" (click)="addCT()">Thêm chi
+                                    tiết</button>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -197,12 +197,15 @@
                             <div class="form-group row">
                                 <label class="col-md-4 control-label" for="idTenLoaiSanPham1">Mã Sản phẩm:</label>
                                 <div class="col-md-8">
-                                    <select class="form-control" id="MaSanPham" name="newcthoadonnhap.maSanPham"
-                                        [(ngModel)]="newcthoadonnhap.maSanPham">
-                                        <option value="" disabled selected>Chọn sản phẩm</option>
-                                        <option *ngFor="let sp of listsanpham" [value]="sp.maSanPham">
-                                            {{sp.maSanPham}}- {{sp.tenSP}}</option>
-                                    </select>
+                                    <ng-select [items]="listsanpham" bindLabel="tenSP" bindValue="maSanPham"
+                                        placeholder="Chọn sản phẩm" name="newcthoadonnhap.maSanPham"
+                                        [(ngModel)]="newcthoadonnhap.maSanPham" (input)="onSearchChange($event)">
+                                        <ng-template ng-option-tmp let-item="item" let-search="search2">
+                                            <div class="custom-option">
+                                                {{ item.tenSP }}
+                                            </div>
+                                        </ng-template>
+                                    </ng-select>
                                 </div>
                             </div>
                             <div class="form-group row">

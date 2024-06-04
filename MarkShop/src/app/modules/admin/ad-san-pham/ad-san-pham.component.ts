@@ -472,38 +472,47 @@ export class AdSanPhamComponent implements OnInit {
     });
   }
   //xóa 
-  // xoa() {
-  //   // Sử dụng Swal để xác nhận việc xóa
-  //   if (this.selectedRow) {
-  //     Swal.fire({
-  //       icon: 'question',
-  //       title: 'Xác nhận',
-  //       text: 'Bạn có chắc muốn xóa sản phẩm này ko  này không ?',
-  //       showCancelButton: true,
-  //       confirmButtonColor: '#d33',
-  //       cancelButtonColor: '#3085d6',
-  //       confirmButtonText: 'Xóa',
-  //       cancelButtonText: 'Hủy'
-  //     }).then((result) => {
-  //       if (result.isConfirmed) {
-  //         // Nếu người dùng chọn Xóa, thực hiện hành động xóa
-  //         this.sp.Delete(this.MaSanPham).subscribe(res => {
-  //         
-  //           Swal.fire({
-  //             icon: 'success',
-  //             title: 'Thành công!',
-  //             text: 'Xóa sản phẩm thành công!',
-  //             confirmButtonColor: '#3085d6',
-  //             confirmButtonText: 'OK',
-  //           }).then(() => {
-  //             // Cập nhật danh sách sau khi xóa
-  //             this.getListSPALL(this.p);
-  //           });
-  //         });
-  //       }
-  //     });
-  //   }
-  // }
+  xoa() {
+    // Check if a row is selected
+    if (this.selectedRow) {
+      // Use Swal for confirmation
+      Swal.fire({
+        icon: 'question',
+        title: 'Xác nhận',
+        text: 'Bạn có chắc muốn xóa sản phẩm này không?',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Xóa',
+        cancelButtonText: 'Hủy'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // If user confirms deletion, proceed with deletion
+          this.sp.Delete(this.MaSanPham).subscribe(res => {
+            // On successful deletion, show success message
+            Swal.fire({
+              icon: 'success',
+              title: 'Thành công!',
+              text: 'Xóa sản phẩm thành công!',
+              confirmButtonColor: '#3085d6',
+              confirmButtonText: 'OK',
+            }).then(() => {
+              // Update the list after deletion
+              this.getListSPALL(this.p);
+            });
+          }, error => {
+            // If an error occurs during deletion, show error message
+            Swal.fire({
+              icon: 'error',
+              title: 'Lỗi',
+              text: "Không thể xoá loại sản phẩm này",
+              showConfirmButton: true
+            });
+          });
+        }
+      });
+    }
+  }
   //File
   onFileChange(event: any) {
     const fileList: FileList = event.target.files;

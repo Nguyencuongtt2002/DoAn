@@ -28,17 +28,7 @@
                 </div>
                 <div class="col-md-6">
                     <h2 style="font-weight: 400" class="pb-3" data-aos="fade-left">{{product?.tenSP}}</h2>
-                    <!-- Quantity input field -->
-                    <div class="row">
-                        <div class="col-auto" data-aos="fade-left" data-aos-duration="1000">
-                            <label for="quantity" class="form-label" style="font-size: 16px;">Số lượng:</label>
-                        </div>
-                        <div class="col-auto" data-aos="fade-left" data-aos-duration="1000">
-                            <input type="number" id="quantity" name="quantity" min="1" max="{{product?.soLuong}}"
-                                value="{{soluong}}" [(ngModel)]="soluong" class="form-control form-control-sm"
-                                style="font-size: 12px; max-width: 80px;">
-                        </div>
-                    </div>
+
                     <div *ngIf="product?.phanTram == null">
                         <h4 style="font-weight: 400" class="pb-3" data-aos="fade-left">Giá: <span
                                 class="text-danger">{{product?.donGia| number: '1.0-0'}} VNĐ</span></h4>
@@ -47,8 +37,19 @@
                         <h4 style="font-weight: 400" class="pb-3" data-aos="fade-left">Giá: <span
                                 class="text-danger">{{product?.giaMoiKhiGiam| number: '1.0-0'}} VNĐ</span></h4>
                     </div>
-                    <p style="color: red; font-size: 25px" data-aos="fade-left">Chi tiết sản phẩm</p>
-                    <p class="lead" data-aos="fade-left">{{product?.moTa}}</p>
+                    <p style="color: red; font-size: 22px" data-aos="fade-left">Chi tiết sản phẩm</p>
+                    <p class="lead" data-aos="fade-left" style="font-size: 18px;" [innerHTML]="product?.moTa"></p>
+                    <!-- Quantity input field -->
+                    <div class="row">
+                        <div class="col-auto" data-aos="fade-left" data-aos-duration="1000">
+                            <label for="quantity" class="form-label" style="font-size: 22px;">Số lượng:</label>
+                        </div>
+                        <div class="col-auto" data-aos="fade-left" data-aos-duration="1000">
+                            <input type="number" id="quantity" name="quantity" min="1" max="{{product?.soLuong}}"
+                                value="{{soluong}}" [(ngModel)]="soluong" class="form-control form-control-sm"
+                                style="font-size: 12px;width: 70px;height: 50pxx;">
+                        </div>
+                    </div>
                     <button type="button" class="btnStyle btn1 mr-3" data-aos="fade-left" data-aos-duration="1000"
                         (click)="Themvaogio(product,soluong)">
                         THÊM VÀO GIỎ

@@ -83,20 +83,29 @@ export class AdNguoiDungComponent implements OnInit {
       formData.append('confirmationLink', confirmationLink);
       this.nd.createUser(formData).subscribe(
         (res) => {
-          this.toastr.success('Thêm thành công', '', {
-            progressBar: true,
-          });
-          this.getall(1);
+          if (res.success === false) {
+            Swal.fire({
+              icon: 'warning',
+              title: 'Tài khoản đã tồn tại',
+              text: 'Đã có một tài khoản tồn tại với thông tin đã nhập. Vui lòng thử lại với thông tin khác.'
+            });
+            return;
+          } else {
+            this.toastr.success('Thêm thành công', '', {
+              progressBar: true,
+            });
+            this.getall(1);
 
-          // Đóng modal khi tạo thành công
-          const addModal = this.addModal.nativeElement;
-          addModal.classList.remove('show');
-          addModal.style.display = 'none';
-          document.body.classList.remove('modal-open');
+            // Đóng modal khi tạo thành công
+            const addModal = this.addModal.nativeElement;
+            addModal.classList.remove('show');
+            addModal.style.display = 'none';
+            document.body.classList.remove('modal-open');
 
-          const modalBackdrop = document.getElementsByClassName('modal-backdrop');
-          for (let i = 0; i < modalBackdrop.length; i++) {
-            modalBackdrop[i].remove();
+            const modalBackdrop = document.getElementsByClassName('modal-backdrop');
+            for (let i = 0; i < modalBackdrop.length; i++) {
+              modalBackdrop[i].remove();
+            }
           }
         },
         (error) => {
