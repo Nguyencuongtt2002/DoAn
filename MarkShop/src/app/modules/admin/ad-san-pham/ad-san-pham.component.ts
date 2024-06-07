@@ -505,7 +505,7 @@ export class AdSanPhamComponent implements OnInit {
             Swal.fire({
               icon: 'error',
               title: 'Lỗi',
-              text: "Không thể xoá loại sản phẩm này",
+              text: "Không thể xoá sản phẩm này",
               showConfirmButton: true
             });
           });

@@ -102,7 +102,7 @@ export class CartService {
                     Swal.fire({
                         icon: 'warning',
                         title: 'Thông báo',
-                        text: 'Số lượng sản phẩm đặt mua không được vượt quá 5 sản phẩm',
+                        text: 'Số lượng sản phẩm đặt mua không được vượt quá 10 sản phẩm',
                         confirmButtonColor: 'green',
                         confirmButtonText: 'OK'
                     });
