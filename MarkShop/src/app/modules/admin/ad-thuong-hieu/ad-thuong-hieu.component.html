@@ -23,7 +23,7 @@
             </thead>
             <tbody *ngFor="let th of thuonghieu | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
                 <tr>
-                    <td>{{ i + 1 }}</td>
+                    <td>{{ i + 1 + (p - 1) * 10 }}</td>
                     <td>{{ th.tenThuongHieu }}</td>
                     <td [innerHTML]="th.gioiThieu"></td>
                     <td class="w-100 " colspan="2">
@@ -40,6 +40,7 @@
                     </td>
                 </tr>
             </tbody>
+
         </table>
         <div class="text-center mt-4">
             <pagination-controls class="pagination" (pageChange)="p = $event"></pagination-controls>

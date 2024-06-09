@@ -18,16 +18,16 @@
         <table class="table table-bordered table-striped">
             <thead class="thead-dark">
                 <tr class="text-center">
-                    <th style="width:10%;">Mã Loại</th>
+                    <th style="width:10%;">STT</th>
                     <th style="width:15%;">Tên Loại</th>
                     <th style="width:65%;">Giới Thiệu</th>
                     <th colspan="2">Thao tác</th>
                 </tr>
             </thead>
             <tbody
-                *ngFor="let loaisp of loaisp | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: totalItems }">
+                *ngFor="let loaisp of loaisp | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: totalItems }; let i = index">
                 <tr class="text-center">
-                    <td>{{loaisp.maLoaiSanPham}}</td>
+                    <td>{{ (p - 1) * pageSize + i + 1 }}</td>
                     <td>{{loaisp.tenLoaiSanPham}}</td>
                     <td [innerHTML]="loaisp.gioiThieu"></td>
                     <td class="w-100 " colspan="2">

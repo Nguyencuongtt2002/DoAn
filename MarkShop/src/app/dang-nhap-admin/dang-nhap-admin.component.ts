@@ -3,6 +3,7 @@ import { LoadCssService } from 'src/app/services/loadcss.service';
 import { NguoidungService } from '../services/nguoidung.service';
 import Swal from 'sweetalert2';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dang-nhap-admin',
@@ -12,7 +13,12 @@ import { AuthService } from '../services/auth.service';
 export class DangNhapAdminComponent implements OnInit {
   TaiKhoan: string = "";
   MatKhau: string = "";
-  constructor(private load: LoadCssService, private nd: NguoidungService, private authSrv: AuthService) { }
+  constructor(
+    private load: LoadCssService,
+    private nd: NguoidungService,
+    private authSrv: AuthService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.loadCss();
@@ -55,7 +61,7 @@ export class DangNhapAdminComponent implements OnInit {
               loginTime: new Date().getTime()
             };
             localStorage.setItem('user', JSON.stringify(data));
-            location.assign('/admin');
+            this.router.navigate(['/admin']);
           }
         });
       }

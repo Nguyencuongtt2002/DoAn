@@ -29,8 +29,8 @@
             <tbody *ngFor="let dh of donhang;let i = index">
                 <tr class="text-center" (click)="onRowClick(dh)" [class.selected]="selectedRow === dh">
                     <td>{{i+1}}</td>
-                    <td>{{dh.ngayDat | date: 'dd/MM/yyyy'}}</td>
-                    <td>{{dh.ngayGiao | date: 'dd/MM/yyyy'}}</td>
+                    <td>{{dh.ngayDat | date: "HH:mm:ss dd/MM/yyyy"}}</td>
+                    <td>{{dh.ngayGiao | date: "HH:mm:ss dd/MM/yyyy"}}</td>
                     <td>{{dh.hoTen}}</td>
                     <td>{{dh.diaChi}}</td>
                     <td>{{dh.soDienThoai}}</td>

@@ -45,7 +45,7 @@
                 *ngFor="let nd of nguoidung | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: totalItems };let i = index">
                 <ng-container *ngIf="!searchTerm || nd.hoTen.toLowerCase().includes(searchTerm.toLowerCase())">
                     <tr class="text-center" (click)="onRowClick(nd)" [class.selected]="selectedRow === nd">
-                        <td>{{i+1}}</td>
+                        <td>{{ (p - 1) * pageSize + i + 1 }}</td>
                         <td>{{nd.taiKhoan}}</td>
                         <td>
                             <img [src]="'data:image/jpg;base64,' + nd.anhDaiDien" style="width: 150px;height: 150px;" />

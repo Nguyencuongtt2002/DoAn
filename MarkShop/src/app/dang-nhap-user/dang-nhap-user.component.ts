@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NguoidungService } from 'src/app/services/nguoidung.service';
-import { Nguoidung } from 'src/app/models/nguoidung';
-import Swal from 'sweetalert2';
 import { AuthService } from '../services/auth.service';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dang-nhap-user',
@@ -12,9 +12,11 @@ import { AuthService } from '../services/auth.service';
 export class DangNhapUserComponent implements OnInit {
   TaiKhoan: string = "";
   MatKhau: string = "";
-  constructor(private nd: NguoidungService, private auSrv: AuthService) { }
+
+  constructor(private nd: NguoidungService, private auSrv: AuthService, private router: Router) { }
 
   ngOnInit(): void { }
+
   Login() {
     if (!this.TaiKhoan || !this.MatKhau) {
       Swal.fire({
@@ -57,7 +59,7 @@ export class DangNhapUserComponent implements OnInit {
               loginTime: new Date().getTime()
             };
             localStorage.setItem('user', JSON.stringify(data));
-            location.assign('http://localhost:4200/');
+            this.router.navigate(['/']); // Navigate to home page
           }
         });
       }

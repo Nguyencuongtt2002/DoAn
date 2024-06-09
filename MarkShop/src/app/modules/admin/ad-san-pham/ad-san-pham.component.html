@@ -33,7 +33,7 @@
                         <table class="table table-bordered table-striped">
                             <thead class="thead-dark">
                                 <tr class="text-center">
-                                    <th style="width: 5%;">ID</th>
+                                    <th style="width: 5%;">STT</th>
                                     <th style="width: 15%;">Tên Sản Phẩm</th>
                                     <th style="width: 25%;">Mô Tả</th>
                                     <th style="width: 15%;">Tên Loại</th>
@@ -44,7 +44,7 @@
                             <tbody
                                 *ngFor="let sp of listsanpham | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: totalItems } ; let i = index">
                                 <tr (click)="onRowClick(sp)" [class.selected]="selectedRow === sp">
-                                    <td>{{ sp.maSanPham }}</td>
+                                    <td>{{ (p - 1) * pageSize + i + 1 }}</td>
                                     <td>{{ sp.tenSP }}</td>
                                     <td [innerHTML]="sp.moTa |slice:0:100"></td>
                                     <td>{{ sp.tenLoaiSanPham }}</td>
