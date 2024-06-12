@@ -53,16 +53,18 @@ export class DangNhapAdminComponent implements OnInit {
         Swal.fire({
           title: 'Success',
           text: 'Đăng nhập thành công',
-          icon: 'success'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            const data = {
-              ...res.result,
-              loginTime: new Date().getTime()
-            };
-            localStorage.setItem('user', JSON.stringify(data));
-            this.router.navigate(['/admin']);
-          }
+          icon: 'success',
+          allowOutsideClick: false,
+          showConfirmButton: false,
+          didOpen: () => {
+            Swal.showLoading(); // Hiển thị tiến trình tiến triển khi cửa sổ được mở
+          },
+          timer: 5000, // Tự động đóng cửa sổ sau 3 giây
+          timerProgressBar: true // Hiển thị thanh tiến trình
+        }).then(() => {
+          const data = { ...res.result, loginTime: new Date().getTime() };
+          localStorage.setItem('user', JSON.stringify(data));
+          this.router.navigate(['/admin']);
         });
       }
     });

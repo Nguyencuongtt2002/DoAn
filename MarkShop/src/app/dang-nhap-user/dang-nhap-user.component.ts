@@ -27,43 +27,39 @@ export class DangNhapUserComponent implements OnInit {
       return; // Exit the function if fields are blank
     }
 
-    const obj: any = {
-      taiKhoan: this.TaiKhoan,
-      matKhau: this.MatKhau,
-    };
-
+    const obj = { taiKhoan: this.TaiKhoan, matKhau: this.MatKhau };
     this.auSrv.login(obj).subscribe((res) => {
-      if (res.status == 404) {
+      if (res.status === 404) {
         Swal.fire({
           icon: 'error',
           title: 'Login Failed',
           text: 'Tên đăng nhập hoặc mật khẩu không hợp lệ'
         });
-      }
-      else if (res.success == false) {
+      } else if (res.success === false) {
         Swal.fire({
-          title: "Error!",
-          text: res.message,
-          icon: "error",
+          icon: 'error',
+          title: 'Error!',
+          text: res.message
         });
-      }
-      else {
+      } else {
         Swal.fire({
+          icon: 'success',
           title: 'Success',
           text: 'Đăng nhập thành công',
-          icon: 'success'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            const data = {
-              ...res.result,
-              loginTime: new Date().getTime()
-            };
-            localStorage.setItem('user', JSON.stringify(data));
-            this.router.navigate(['/']); // Navigate to home page
-          }
+          allowOutsideClick: false,
+          showConfirmButton: false,
+          didOpen: () => {
+            Swal.showLoading(); // Hiển thị tiến trình tiến triển khi cửa sổ được mở
+          },
+          timer: 5000, // Tự động đóng cửa sổ sau 3 giây
+          timerProgressBar: true // Hiển thị thanh tiến trình
+        }).then(() => {
+          const data = { ...res.result, loginTime: new Date().getTime() };
+          localStorage.setItem('user', JSON.stringify(data));
+          this.router.navigate(['/']);
         });
       }
     });
-
   }
 }
+

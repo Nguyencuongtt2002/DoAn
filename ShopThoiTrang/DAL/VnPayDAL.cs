@@ -22,29 +22,37 @@ namespace DAL
         }
         public string CreatePaymentUrl(PaymentInformationModel model, HttpContext context)
         {
-            var timeNow = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.Local);
+            // Lấy thời gian hiện tại ở múi giờ địa phương
+            var thoiGianHienTai = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.Local);
+
+            // Lấy số nháy thời gian hiện tại và chuyển thành chuỗi
             var tick = DateTime.Now.Ticks.ToString();
 
-            var pay = new VnPayLibrary();
+            // Khởi tạo một đối tượng thư viện VnPay mới
+            var vnpay = new VnPayLibrary();
 
-            pay.AddRequestData("vnp_Version", _configuration["Vnpay:Version"]);
-            pay.AddRequestData("vnp_Command", _configuration["Vnpay:Command"]);
-            pay.AddRequestData("vnp_TmnCode", _configuration["Vnpay:TmnCode"]);
-            pay.AddRequestData("vnp_Amount", ((int)model.Amount * 100).ToString());
-            pay.AddRequestData("vnp_CreateDate", timeNow.ToString("yyyyMMddHHmmss"));
-            pay.AddRequestData("vnp_CurrCode", _configuration["Vnpay:CurrCode"]);
-            pay.AddRequestData("vnp_IpAddr", Utils.GetIpAddress(context));
-            pay.AddRequestData("vnp_Locale", _configuration["Vnpay:Locale"]);
-            pay.AddRequestData("vnp_OrderInfo", model.OrderId.ToString());
-            pay.AddRequestData("vnp_OrderType", model.OrderType);
-            pay.AddRequestData("vnp_ReturnUrl", model.Url);
-            pay.AddRequestData("vnp_TxnRef", model.OrderId.ToString());
+            // Thêm các dữ liệu yêu cầu vào đối tượng VnPay để tạo URL thanh toán
+            vnpay.AddRequestData("vnp_Version", _configuration["Vnpay:Version"]); // Phiên bản API của VnPay
+            vnpay.AddRequestData("vnp_Command", _configuration["Vnpay:Command"]); // Lệnh thanh toán
+            vnpay.AddRequestData("vnp_TmnCode", _configuration["Vnpay:TmnCode"]); // Mã cửa hàng của bạn trên hệ thống VnPay
+            vnpay.AddRequestData("vnp_Amount", ((int)model.Amount * 100).ToString()); // Số tiền thanh toán (đơn vị: đồng)
+            vnpay.AddRequestData("vnp_CreateDate", thoiGianHienTai.ToString("yyyyMMddHHmmss")); // Thời gian tạo đơn hàng
+            vnpay.AddRequestData("vnp_CurrCode", _configuration["Vnpay:CurrCode"]); // Mã tiền tệ (VND)
+            vnpay.AddRequestData("vnp_IpAddr", Utils.GetIpAddress(context)); // Địa chỉ IP của khách hàng
+            vnpay.AddRequestData("vnp_Locale", _configuration["Vnpay:Locale"]); // Ngôn ngữ hiển thị trên giao diện thanh toán
+            vnpay.AddRequestData("vnp_OrderInfo", model.OrderId.ToString()); // Thông tin đơn hàng
+            vnpay.AddRequestData("vnp_OrderType", model.OrderType); // Loại đơn hàng
+            vnpay.AddRequestData("vnp_ReturnUrl", model.Url); // URL để xử lý kết quả thanh toán
+            vnpay.AddRequestData("vnp_TxnRef", model.OrderId.ToString()); // Tham chiếu đơn hàng
 
+            // Tạo URL thanh toán bằng cách gọi phương thức CreateRequestUrl của đối tượng VnPay
             var paymentUrl =
-                pay.CreateRequestUrl(_configuration["Vnpay:BaseUrl"], _configuration["Vnpay:HashSecret"]);
+                vnpay.CreateRequestUrl(_configuration["Vnpay:BaseUrl"], _configuration["Vnpay:HashSecret"]);
 
+            // Trả về URL thanh toán được tạo ra
             return paymentUrl;
         }
+
 
         public VnPaymentModel PaymentExecute(IQueryCollection collections)
         {

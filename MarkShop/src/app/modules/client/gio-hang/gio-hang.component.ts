@@ -65,8 +65,7 @@ export class GioHangComponent implements OnInit {
       });
       return;
     }
-
-    this.router.navigate(['/thanh-toan']);
+    location.assign('/thanh-toan');
   }
 
 }

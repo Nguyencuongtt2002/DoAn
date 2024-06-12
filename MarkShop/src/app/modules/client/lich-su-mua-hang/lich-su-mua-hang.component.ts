@@ -47,7 +47,7 @@ export class LichSuMuaHangComponent implements OnInit {
       });
     }
   }
-  huyDon = (item: any) => {
+  huyDon = (item: ChiTietDonHang) => {
     const obj = {
       maDonHang: item.maDonHang,
       maSanPham: item.maSanPham
