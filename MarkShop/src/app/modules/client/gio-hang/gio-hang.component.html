@@ -19,9 +19,9 @@
     <tbody *ngFor="let gh of ListGioHang">
         <tr class="text-center">
             <td>{{gh.MaSanPham}}</td>
-            <td>{{gh.TenSP}}</td>
+            <td routerLink="/XemChiTiet/{{gh.MaSanPham}}">{{gh.TenSP}}</td>
             <td style="text-align: center;">
-                <a routerLink="" data-lightbox="listImg">
+                <a routerLink="/XemChiTiet/{{gh.MaSanPham}}" data-lightbox="listImg">
                     <img [src]="'data:image/jpg;base64,' + gh.AnhDaiDien" height="70" />
                 </a>
             </td>

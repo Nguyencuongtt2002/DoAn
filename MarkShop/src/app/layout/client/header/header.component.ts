@@ -67,4 +67,8 @@ export class HeaderComponent implements OnInit {
       this.logo = res;
     });
   }
+
+  taiKhoan = () => {
+    location.assign("/tai-khoan")
+  }
 }

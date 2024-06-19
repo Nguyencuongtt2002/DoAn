@@ -13,7 +13,6 @@ export class LayoutAdminComponent {
     this.loadCss();
     this.loadJS()
   }
-
   private async loadCss(): Promise<void> {
     await this.loadcss.loadCSS('/assets/StyleForm.css');
   }

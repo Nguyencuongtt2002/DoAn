@@ -64,7 +64,7 @@ export class DangNhapAdminComponent implements OnInit {
         }).then(() => {
           const data = { ...res.result, loginTime: new Date().getTime() };
           localStorage.setItem('user', JSON.stringify(data));
-          this.router.navigate(['/admin']);
+          location.assign('/admin')
         });
       }
     });

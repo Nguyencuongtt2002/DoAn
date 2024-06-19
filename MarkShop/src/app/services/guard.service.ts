@@ -17,19 +17,22 @@ export class AuthGuard {
                 }
                 // vai trò Nhân viên
                 else if (user.vaiTro === "Nhân viên") {
-                    // Hiển thị thông báo sử dụng Swal
-                    Swal.fire({
-                        icon: 'warning',
-                        title: 'Truy cập bị từ chối',
-                        text: 'Nhân viên không có quyền truy cập vào trang này!',
-                        confirmButtonColor: '#3085d6',
-                        confirmButtonText: 'OK'
-                    }).then((result) => {
-                        if (result.isConfirmed || result.isDismissed) {
-                            this.router.navigate(['/dang-nhap-admin']);
-                        }
-                    });
-                    return false;
+                    if (state.url === '/admin/ad-nguoidung') {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Truy cập bị từ chối',
+                            text: 'Nhân viên không có quyền truy cập vào trang này!',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.isConfirmed || result.isDismissed) {
+                                this.router.navigate(['/dang-nhap-admin']);
+                            }
+                        });
+                        return false;
+                    } else {
+                        return true;
+                    }
                 }
                 else {
                     // vai trò khách hàng

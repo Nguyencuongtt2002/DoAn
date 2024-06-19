@@ -51,7 +51,8 @@ export class SidebarComponent {
   }
 
   nguoidung() {
-    this.router.navigate(['/admin/ad-nguoidung']);
+    location.assign('/admin/ad-nguoidung')
+    //this.router.navigate(['/admin/ad-nguoidung']);
   }
 
   toggleFeat() {

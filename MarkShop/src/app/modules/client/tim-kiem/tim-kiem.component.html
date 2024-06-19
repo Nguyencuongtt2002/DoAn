@@ -41,7 +41,9 @@
                         </div>
                         <input (click)="Themvaogio(sp.maSanPham)" class="btn_muangay" type="button" value="MUA NGAY" />
                     </a>
-                    <p class="mt-2 mb-0" style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden">
+                    <p class="mt-2 mb-0"
+                        style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;cursor: pointer;"
+                        routerLink="/XemChiTiet/{{sp.maSanPham}}">
                         {{sp.tenSP}}</p>
                     <div *ngIf="sp.phanTram == null">
                         <span style="color: red">{{sp.donGia | number: '1.0-0' }}VNĐ</span>

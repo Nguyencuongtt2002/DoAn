@@ -41,7 +41,7 @@
             <div class="row" *ngIf="listSPtheoloai.length !==0">
                 <div class="col-md-4 mb-3" style="box-shadow: 0 0 8px rgba(0,0,0,0.2)"
                     *ngFor="let sp of listSPtheoloai| paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: totalItems }">
-                    <a routerLink="" style="position: relative; display: block;">
+                    <a style="position: relative; display: block;">
                         <img [src]="'data:image/jpg;base64,' + sp.anhDaiDien" style="width:100%;height:300px ;" />
                         <div *ngIf="sp.phanTram == null">
                             <div id="label">New</div>
@@ -51,7 +51,9 @@
                         </div>
                         <input ng-click="Themvaogio(s)" class="btn_muangay" type="button" value="MUA NGAY" />
                     </a>
-                    <p class="mt-2 mb-0" style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden">
+                    <p class="mt-2 mb-0"
+                        style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;cursor: pointer;"
+                        routerLink="/XemChiTiet/{{sp.maSanPham}}">
                         {{sp.tenSP}}</p>
                     <div *ngIf="sp.phanTram == null">
                         <span style="color: red">{{sp.donGia | number: '1.0-0' }}VNĐ</span>

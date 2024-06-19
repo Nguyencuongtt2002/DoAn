@@ -8,7 +8,7 @@ using System.Drawing;
 
 namespace ShopThoiTrang.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,Nhân viên")]
     [Route("api/[controller]")]
     [ApiController]
     public class SanPhamController : ControllerBase
